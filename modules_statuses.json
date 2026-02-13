@@ -1,0 +1,9 @@
+{
+    "Dashboard": true,
+    "Funcionarios": true,
+    "CatalogoEpi": true,
+    "EntradasSaidas": true,
+    "TreinamentosExames": true,
+    "AcidentesRelatorios": true,
+    "Configuracoes": true
+}

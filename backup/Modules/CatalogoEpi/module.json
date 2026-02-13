@@ -1,0 +1,11 @@
+{
+    "name": "CatalogoEpi",
+    "alias": "catalogoepi",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CatalogoEpi\\Providers\\CatalogoEpiServiceProvider"
+    ],
+    "files": []
+}

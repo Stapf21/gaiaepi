@@ -1,0 +1,11 @@
+{
+    "name": "EntradasSaidas",
+    "alias": "entradassaidas",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\EntradasSaidas\\Providers\\EntradasSaidasServiceProvider"
+    ],
+    "files": []
+}

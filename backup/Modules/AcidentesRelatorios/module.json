@@ -1,0 +1,11 @@
+{
+    "name": "AcidentesRelatorios",
+    "alias": "acidentesrelatorios",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\AcidentesRelatorios\\Providers\\AcidentesRelatoriosServiceProvider"
+    ],
+    "files": []
+}

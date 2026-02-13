@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/entradassaidas",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\EntradasSaidas\\": "app/",
+            "Modules\\EntradasSaidas\\Database\\Factories\\": "database/factories/",
+            "Modules\\EntradasSaidas\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\EntradasSaidas\\Tests\\": "tests/"
+        }
+    }
+}

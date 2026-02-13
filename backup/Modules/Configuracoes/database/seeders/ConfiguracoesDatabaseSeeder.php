@@ -1,0 +1,18 @@
+<?php
+
+namespace Modules\Configuracoes\Database\Seeders;
+
+use Illuminate\Database\Seeder;
+
+class ConfiguracoesDatabaseSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $this->call([
+            RoleHierarchySeeder::class,
+        ]);
+    }
+}

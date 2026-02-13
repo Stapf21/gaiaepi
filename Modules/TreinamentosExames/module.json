@@ -1,0 +1,11 @@
+{
+    "name": "TreinamentosExames",
+    "alias": "treinamentosexames",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\TreinamentosExames\\Providers\\TreinamentosExamesServiceProvider"
+    ],
+    "files": []
+}

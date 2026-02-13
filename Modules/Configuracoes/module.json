@@ -1,0 +1,11 @@
+{
+    "name": "Configuracoes",
+    "alias": "configuracoes",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Configuracoes\\Providers\\ConfiguracoesServiceProvider"
+    ],
+    "files": []
+}
