@@ -18,14 +18,26 @@ class SystemUpdateController extends Controller
         $logPath = base_path(config('deploy.log_file', 'storage/logs/deploy.log'));
         $lockPath = base_path(config('deploy.lock_file', 'storage/app/deploy.lock'));
 
+        $currentCommit = $this->resolveGitVersion('HEAD');
+        $remoteCommit = $this->resolveRemoteVersion($branch);
+
         return Inertia::render('Configuracoes/Updates/Index', [
             'deploy' => [
                 'branch' => $branch,
                 'allow_web_trigger' => (bool) config('deploy.allow_web_trigger', false),
                 'running' => File::exists($lockPath),
                 'script_exists' => File::exists($scriptPath),
-                'current_version' => $this->resolveGitVersion('HEAD'),
-                'remote_version' => $this->resolveRemoteVersion($branch),
+                // Keep legacy keys for backwards compatibility with the page.
+                'current_version' => $currentCommit,
+                'remote_version' => $remoteCommit,
+
+                // Extra version metadata (more user-friendly than raw commit hashes).
+                'current_commit' => $currentCommit,
+                'remote_commit' => $remoteCommit,
+                'current_tag' => $this->resolveGitTag('HEAD'),
+                'remote_tag' => $this->resolveRemoteTag(),
+                'behind_commits' => $this->resolveBehindCount($branch),
+                'update_available' => $currentCommit && $remoteCommit && $currentCommit !== $remoteCommit,
                 'log_lines' => $this->tailFile($logPath, 120),
                 'log_file' => str_replace(base_path() . DIRECTORY_SEPARATOR, '', $logPath),
             ],
@@ -45,6 +57,9 @@ class SystemUpdateController extends Controller
         $scriptRelativePath = config('deploy.script_path', 'scripts/deploy.sh');
         $scriptPath = base_path($scriptRelativePath);
         $lockPath = base_path(config('deploy.lock_file', 'storage/app/deploy.lock'));
+
+        $currentCommit = $this->resolveGitVersion('HEAD');
+        $remoteCommit = $this->resolveRemoteVersion($branch);
 
         if (!File::exists($scriptPath)) {
             return back()->with('error', 'Script de deploy nao encontrado em ' . $scriptRelativePath . '.');
@@ -103,7 +118,63 @@ class SystemUpdateController extends Controller
         return trim($process->getOutput());
     }
 
-    private function tailFile(string $path, int $maxLines = 120): array
+    
+
+    private function resolveGitTag(string $reference): ?string
+    {
+        // Returns the closest reachable tag (e.g. v1.2.3). Empty when none.
+        $output = $this->runCommand(['git', 'describe', '--tags', '--abbrev=0', $reference]);
+
+        return $output !== '' ? $output : null;
+    }
+
+    private function resolveRemoteTag(): ?string
+    {
+        // Returns the latest tag name on origin, sorted by version-like name.
+        // Note: this does not fetch; it queries the remote directly.
+        $output = $this->runCommand(['git', 'ls-remote', '--tags', '--sort=-v:refname', 'origin']);
+        if ($output === '') {
+            return null;
+        }
+
+        foreach (preg_split('/?
+/', trim($output)) as $line) {
+            if ($line === '' || str_contains($line, '^{}')) {
+                continue;
+            }
+
+            [, $ref] = preg_split('/\s+/', $line, 2);
+            if (!$ref) {
+                continue;
+            }
+
+            $tag = str_replace('refs/tags/', '', trim($ref));
+            if ($tag !== '') {
+                return $tag;
+            }
+        }
+
+        return null;
+    }
+
+    private function resolveBehindCount(string $branch): ?int
+    {
+        // If the server has a tracked origin/<branch>, show how many commits it's behind.
+        $remoteRef = "origin/{$branch}";
+
+        $hasRemote = $this->runCommand(['git', 'rev-parse', '--verify', $remoteRef]);
+        if ($hasRemote === '') {
+            return null;
+        }
+
+        $output = $this->runCommand(['git', 'rev-list', '--count', "HEAD..{$remoteRef}"]);
+        if ($output === '' || !is_numeric($output)) {
+            return null;
+        }
+
+        return (int) $output;
+    }
+private function tailFile(string $path, int $maxLines = 120): array
     {
         if (!File::exists($path)) {
             return [];
