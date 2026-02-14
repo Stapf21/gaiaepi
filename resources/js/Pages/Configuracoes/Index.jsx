@@ -14,6 +14,7 @@ import { Settings, ShieldCheck } from 'lucide-react';
 const GROUP_LABELS = {
     alerts: 'Alertas',
     documents: 'Documentos',
+    branding: 'Identidade visual',
 };
 
 function formatGroupLabel(group) {
@@ -177,13 +178,18 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
             },
         });
     };
+    const hasBrandingTab = Boolean(can?.manageBranding);
 
-    const defaultTab = groupKeys[0] ?? (can.manageBranding ? 'branding' : undefined);
+    const settingsGroupKeys = useMemo(
+        () => groupKeys.filter((key) => !(hasBrandingTab && key === 'branding')),
+        [groupKeys, hasBrandingTab],
+    );
 
+    const defaultTab = settingsGroupKeys[0] ?? (hasBrandingTab ? 'branding' : undefined);
 
     const totalSettings = useMemo(
-        () => groupKeys.reduce((sum, key) => sum + (groups?.[key]?.length ?? 0), 0),
-        [groupKeys, groups],
+        () => settingsGroupKeys.reduce((sum, key) => sum + (groups?.[key]?.length ?? 0), 0),
+        [settingsGroupKeys, groups],
     );
 
     const editableKey = 'documents.epi_delivery_declaration';
@@ -226,7 +232,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                             <CardTitle className="text-sm font-medium uppercase tracking-wide text-slate-600">Grupos</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-3xl font-semibold text-slate-900">{groupKeys.length}</p>
+                            <p className="text-3xl font-semibold text-slate-900">{settingsGroupKeys.length + (hasBrandingTab ? 1 : 0)}</p>
                             <p className="text-xs text-muted-foreground">Seções de configuração disponíveis.</p>
                         </CardContent>
                     </Card>
@@ -261,26 +267,26 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                     <CardContent>
                         {defaultTab ? (
                             <Tabs defaultValue={defaultTab} className="w-full">
-                                <TabsList className="flex flex-wrap gap-2 rounded-lg bg-slate-100 p-1">
-                                    {groupKeys.map((group) => (
+                                <TabsList className="flex flex-wrap gap-1 rounded-xl bg-slate-100/80 p-1">
+                                    {settingsGroupKeys.map((group) => (
                                         <TabsTrigger
                                             key={group}
                                             value={group}
-                                            className="capitalize data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm"
+                                            className="rounded-md px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:text-slate-900 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm"
                                         >
                                             {formatGroupLabel(group)}
                                         </TabsTrigger>
                                     ))}
-                                    {can.manageBranding && (
+                                    {hasBrandingTab && (
                                         <TabsTrigger
                                             value="branding"
-                                            className="data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm"
+                                            className="rounded-md px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:text-slate-900 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm"
                                         >
                                             Identidade visual
                                         </TabsTrigger>
                                     )}
                                 </TabsList>
-                                {groupKeys.map((group) => (
+                                {settingsGroupKeys.map((group) => (
                                     <TabsContent key={group} value={group} className="mt-4">
                                         <div className="space-y-4">
                                             {groups[group].map((setting) => (
@@ -293,7 +299,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                             <p className="text-sm font-medium text-slate-800">
                                                                 {setting.label}
                                                             </p>
-                                                            <p className="text-xs text-slate-500">{setting.key}</p>
+                                                            <p className="text-xs font-mono text-slate-500">{setting.key}</p>
                                                         </div>
                                                         <div className="flex items-center gap-2">
                                                             {setting.key !== editableKey ? (
@@ -321,14 +327,14 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                     </div>
                                                     <Separator className="my-3" />
                                                     <p className="text-sm text-muted-foreground">
-                                                        Valor atual: <strong>{setting.value ?? '-'}</strong>
+                                                        Valor atual: <strong className="break-all font-semibold text-slate-800">{setting.value ?? '-'}</strong>
                                                     </p>
                                                 </div>
                                             ))}
                                         </div>
                                     </TabsContent>
                                 ))}
-                                {can.manageBranding && (
+                                {hasBrandingTab && (
                                     <TabsContent value="branding" className="mt-4">
                                         <form onSubmit={submitBranding} className="space-y-6">
                                             <div className="grid gap-6 md:grid-cols-2">
