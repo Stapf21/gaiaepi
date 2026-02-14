@@ -57,7 +57,9 @@ class SystemUpdateController extends Controller
         $scriptRelativePath = config('deploy.script_path', 'scripts/deploy.sh');
         $scriptPath = base_path($scriptRelativePath);
         $lockPath = base_path(config('deploy.lock_file', 'storage/app/deploy.lock'));
+        $branch = config('deploy.branch', 'main');
 
+        // Resolve versions best-effort; do not block deploy if git is unavailable.
         $currentCommit = $this->resolveGitVersion('HEAD');
         $remoteCommit = $this->resolveRemoteVersion($branch);
 
