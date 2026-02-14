@@ -37,12 +37,12 @@ export default function TreinamentosExamesIndex({ stats = {}, trainings, exams }
                     ].map((item) => (
                         <Card key={item.label} className="shadow-sm">
                             <CardHeader className="pb-2">
-                                <CardTitle className="text-sm font-medium text-slate-600">
+                                <CardTitle className="text-sm font-medium text-muted-foreground">
                                     {item.label}
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-2xl font-semibold text-slate-900">{item.value}</p>
+                                <p className="text-2xl font-semibold text-foreground">{item.value}</p>
                             </CardContent>
                         </Card>
                     ))}
@@ -51,7 +51,7 @@ export default function TreinamentosExamesIndex({ stats = {}, trainings, exams }
                 <div className="grid gap-6 lg:grid-cols-2">
                     <Card className="shadow-sm">
                         <CardHeader>
-                            <CardTitle className="text-base font-semibold text-slate-800">
+                            <CardTitle className="text-base font-semibold text-foreground">
                                 Próximos treinamentos
                             </CardTitle>
                         </CardHeader>
@@ -91,7 +91,7 @@ export default function TreinamentosExamesIndex({ stats = {}, trainings, exams }
 
                     <Card className="shadow-sm">
                         <CardHeader>
-                            <CardTitle className="text-base font-semibold text-slate-800">
+                            <CardTitle className="text-base font-semibold text-foreground">
                                 Próximos exames
                             </CardTitle>
                         </CardHeader>

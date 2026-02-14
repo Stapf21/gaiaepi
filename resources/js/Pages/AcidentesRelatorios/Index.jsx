@@ -6,16 +6,16 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 
 const severityColor = {
-    leve: 'bg-emerald-100 text-emerald-700',
-    moderado: 'bg-amber-100 text-amber-700',
-    grave: 'bg-orange-100 text-orange-700',
-    fatal: 'bg-rose-100 text-rose-700',
+    leve: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200',
+    moderado: 'bg-amber-100 text-amber-700 dark:bg-amber-500/10 dark:text-amber-200',
+    grave: 'bg-orange-100 text-orange-700 dark:bg-orange-500/10 dark:text-orange-200',
+    fatal: 'bg-rose-100 text-rose-700 dark:bg-rose-500/10 dark:text-rose-200',
 };
 
 const statusColor = {
-    aberto: 'bg-slate-100 text-slate-700',
-    em_investigacao: 'bg-indigo-100 text-indigo-700',
-    encerrado: 'bg-emerald-100 text-emerald-700',
+    aberto: 'bg-slate-100 text-slate-700 dark:bg-slate-900/40 dark:text-slate-200',
+    em_investigacao: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-200',
+    encerrado: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200',
 };
 
 export default function AcidentesRelatoriosIndex({ stats = {}, accidents }) {
@@ -41,12 +41,12 @@ export default function AcidentesRelatoriosIndex({ stats = {}, accidents }) {
                     ].map((item) => (
                         <Card key={item.label} className="shadow-sm">
                             <CardHeader className="pb-2">
-                                <CardTitle className="text-sm font-medium text-slate-600">
+                                <CardTitle className="text-sm font-medium text-muted-foreground">
                                     {item.label}
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-2xl font-semibold text-slate-900">{item.value}</p>
+                                <p className="text-2xl font-semibold text-foreground">{item.value}</p>
                             </CardContent>
                         </Card>
                     ))}
@@ -54,7 +54,7 @@ export default function AcidentesRelatoriosIndex({ stats = {}, accidents }) {
 
                 <Card className="shadow-sm">
                     <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                        <CardTitle className="text-base font-semibold text-slate-800">
+                        <CardTitle className="text-base font-semibold text-foreground">
                             Ocorrências recentes
                         </CardTitle>
                     </CardHeader>
