@@ -5,9 +5,28 @@ import { Head, useForm } from '@inertiajs/react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { textareaBaseClass } from '@/lib/formStyles';
+import { Settings, ShieldCheck } from 'lucide-react';
+
+const GROUP_LABELS = {
+    alerts: 'Alertas',
+    documents: 'Documentos',
+};
+
+function formatGroupLabel(group) {
+    if (!group) return '-';
+    const key = String(group);
+    if (GROUP_LABELS[key]) return GROUP_LABELS[key];
+
+    return key
+        .split('_')
+        .filter(Boolean)
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(' ');
+}
 
 export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {} }) {
     const groupKeys = Object.keys(groups);
@@ -161,27 +180,105 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
 
     const defaultTab = groupKeys[0] ?? (can.manageBranding ? 'branding' : undefined);
 
-    return (
-        <AuthenticatedLayout header={<h2 className="text-lg font-semibold tracking-tight">Preferencias do sistema</h2>}>
-            <Head title="Configuracoes" />
 
-            <div className="space-y-6 px-4 pb-10 pt-6 sm:px-6 lg:px-12">
+    const totalSettings = useMemo(
+        () => groupKeys.reduce((sum, key) => sum + (groups?.[key]?.length ?? 0), 0),
+        [groupKeys, groups],
+    );
+
+    const editableKey = 'documents.epi_delivery_declaration';
+
+    const brandingConfigured = useMemo(() => {
+        const assets = [
+            branding?.logo_url,
+            branding?.favicon_url,
+            branding?.login_background_url,
+            branding?.login_overlay_gif_url,
+        ];
+        return assets.filter(Boolean).length;
+    }, [branding?.favicon_url, branding?.login_background_url, branding?.login_overlay_gif_url, branding?.logo_url]);
+
+    return (
+        <AuthenticatedLayout header={<h2 className="text-lg font-semibold tracking-tight">PreferÃªncias do sistema</h2>}>
+            <Head title="PreferÃªncias do sistema" />
+
+            <div className="mx-auto max-w-7xl space-y-6 px-4 pb-10 pt-6 sm:px-6 lg:px-8">
+                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <div>
+                        <div className="mb-2 flex flex-wrap items-center gap-2">
+                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700">
+                                <Settings className="mr-1 h-3 w-3" />
+                                PreferÃªncias do sistema
+                            </Badge>
+                            <Badge variant="outline" className="border-blue-100 bg-white text-blue-700">
+                                <ShieldCheck className="mr-1 h-3 w-3" />
+                                AdministraÃ§Ã£o
+                            </Badge>
+                        </div>
+                        <h1 className="text-2xl font-semibold text-slate-900">PreferÃªncias do sistema</h1>
+                        <p className="text-sm text-muted-foreground">Gerencie parÃ¢metros, documentos e identidade visual.</p>
+                    </div>
+                </div>
+
+                <div className="grid gap-4 md:grid-cols-3">
+                    <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 shadow-sm">
+                        <CardHeader className="pb-2">
+                            <CardTitle className="text-sm font-medium uppercase tracking-wide text-slate-600">Grupos</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-3xl font-semibold text-slate-900">{groupKeys.length}</p>
+                            <p className="text-xs text-muted-foreground">SeÃ§Ãµes de configuraÃ§Ã£o disponÃ­veis.</p>
+                        </CardContent>
+                    </Card>
+
+                    <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-indigo-50 shadow-sm">
+                        <CardHeader className="pb-2">
+                            <CardTitle className="text-sm font-medium uppercase tracking-wide text-slate-600">ParÃ¢metros</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-3xl font-semibold text-slate-900">{totalSettings}</p>
+                            <p className="text-xs text-muted-foreground">Valores controlados pelo sistema.</p>
+                        </CardContent>
+                    </Card>
+
+                    <Card className="border-emerald-100 bg-gradient-to-br from-emerald-50 via-white to-emerald-50 shadow-sm">
+                        <CardHeader className="pb-2">
+                            <CardTitle className="text-sm font-medium uppercase tracking-wide text-slate-600">Identidade visual</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-3xl font-semibold text-slate-900">{brandingConfigured}</p>
+                            <p className="text-xs text-muted-foreground">Assets configurados (logo, favicon, fundo, GIF).</p>
+                        </CardContent>
+                    </Card>
+                </div>
+
                 <Card className="shadow-sm">
                     <CardHeader>
                         <CardTitle className="text-base font-semibold text-slate-900">
-                            Parametros do sistema
+                            ParÃ¢metros do sistema
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
                         {defaultTab ? (
                             <Tabs defaultValue={defaultTab} className="w-full">
-                                <TabsList className="flex flex-wrap gap-2 bg-slate-100 p-1">
+                                <TabsList className="flex flex-wrap gap-2 rounded-lg bg-slate-100 p-1">
                                     {groupKeys.map((group) => (
-                                        <TabsTrigger key={group} value={group} className="capitalize">
-                                            {group.replace('_', ' ')}
+                                        <TabsTrigger
+                                            key={group}
+                                            value={group}
+                                            className="capitalize data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm"
+                                        >
+                                            {formatGroupLabel(group)}
                                         </TabsTrigger>
                                     ))}
-                                    {can.manageBranding && <TabsTrigger value="branding">Identidade visual</TabsTrigger>}
+                                    {can.manageBranding && (
+                                        <TabsTrigger
+                                            value="branding"
+                                            className="data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm"
+                                        >
+                                            Identidade visual
+                                        </TabsTrigger>
+                                    )}
                                 </TabsList>
                                 {groupKeys.map((group) => (
                                     <TabsContent key={group} value={group} className="mt-4">
@@ -198,14 +295,29 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                             </p>
                                                             <p className="text-xs text-slate-500">{setting.key}</p>
                                                         </div>
-                                                        <Button
-                                                            variant="outline"
-                                                            size="sm"
-                                                            disabled={setting.key !== 'documents.epi_delivery_declaration'}
-                                                            onClick={() => startEditing(setting)}
-                                                        >
-                                                            Editar
-                                                        </Button>
+                                                        <div className="flex items-center gap-2">
+                                                            {setting.key !== editableKey ? (
+                                                                <Badge
+                                                                    variant="outline"
+                                                                    className="border-slate-200 bg-slate-50 text-slate-600"
+                                                                >
+                                                                    Somente leitura
+                                                                </Badge>
+                                                            ) : null}
+                                                            <Button
+                                                                variant="outline"
+                                                                size="sm"
+                                                                disabled={setting.key !== editableKey}
+                                                                title={
+                                                                    setting.key !== editableKey
+                                                                        ? 'EdiÃ§Ã£o disponÃ­vel apenas para a declaraÃ§Ã£o do documento de entrega.'
+                                                                        : 'Editar'
+                                                                }
+                                                                onClick={() => startEditing(setting)}
+                                                            >
+                                                                Editar
+                                                            </Button>
+                                                        </div>
                                                     </div>
                                                     <Separator className="my-3" />
                                                     <p className="text-sm text-muted-foreground">
@@ -403,7 +515,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
 
                                             <div className="space-y-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
                                                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                                                    <p className="text-sm font-medium text-slate-800">GIF de sobreposi??o do login</p>
+                                                    <p className="text-sm font-medium text-slate-800">GIF de sobreposiÃ§Ã£o do login</p>
                                                     {brandingForm.data.clear_login_overlay_gif && (
                                                         <span className="text-xs font-semibold text-amber-600">
                                                             GIF ser? removido
@@ -498,7 +610,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                             </Tabs>
                         ) : (
                             <p className="text-sm text-muted-foreground">
-                                Nenhuma configuracao cadastrada ainda.
+                                Nenhuma configuraÃ§Ã£o cadastrada ainda.
                             </p>
                         )}
                     </CardContent>
@@ -510,15 +622,15 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                     <div className="space-y-4 p-6">
                         <div>
                             <h3 className="text-base font-semibold text-slate-900">
-                                Editar declaracao da ficha de entrega
+                                Editar declaraÃ§Ã£o da ficha de entrega
                             </h3>
                             <p className="text-sm text-slate-500">
-                                Ajuste o texto exibido na declaracao do documento de entrega de EPI.
+                                Ajuste o texto exibido na declaraÃ§Ã£o do documento de entrega de EPI.
                             </p>
                         </div>
                         <div className="space-y-2">
                             <label htmlFor="declaration" className="text-sm font-medium text-slate-700">
-                                Declaracao
+                                DeclaraÃ§Ã£o
                             </label>
                             <textarea
                                 id="declaration"
