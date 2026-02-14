@@ -269,7 +269,7 @@ export default function EstoqueIndex({
                                 </span>
                                 <span className="font-semibold text-rose-700">{belowMinCount}</span>
                             </div>
-                            <div className="flex items-center justify-between rounded-lg bg-blue-50/70 dark:bg-slate-950/60 dark:bg-blue-500/10 px-3 py-2 text-sm">
+                            <div className="flex items-center justify-between rounded-lg bg-blue-50/70 dark:bg-blue-500/10 px-3 py-2 text-sm">
                                 <span className="inline-flex items-center gap-2 font-medium text-blue-700">
                                     <PackageCheck className="h-4 w-4" />
                                     Em conformidade
@@ -290,10 +290,10 @@ export default function EstoqueIndex({
                 <Card className="shadow-sm">
                     <CardContent className="px-0 py-0">
                         <Tabs defaultValue="stock">
-                            <TabsList className="flex flex-wrap gap-2 bg-slate-100 p-2">
-                                <TabsTrigger value="stock" className="data-[state=active]:bg-slate-900 data-[state=active]:text-white">Posição de estoque</TabsTrigger>
-                                <TabsTrigger value="catalog" className="data-[state=active]:bg-slate-900 data-[state=active]:text-white">Catálogo de EPIs</TabsTrigger>
-                                <TabsTrigger value="categories" className="data-[state=active]:bg-slate-900 data-[state=active]:text-white">Categorias de EPI</TabsTrigger>
+                            <TabsList className="flex flex-wrap gap-2 rounded-none bg-muted/50 p-2 dark:bg-slate-950/40">
+                                <TabsTrigger value="stock" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Posição de estoque</TabsTrigger>
+                                <TabsTrigger value="catalog" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Catálogo de EPIs</TabsTrigger>
+                                <TabsTrigger value="categories" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Categorias de EPI</TabsTrigger>
                             </TabsList>
 
                             <TabsContent value="stock" className="space-y-4 px-6 py-6">
@@ -355,7 +355,7 @@ export default function EstoqueIndex({
 
                                     <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2 text-xs text-muted-foreground">
                                         <span>Exibindo <strong className="text-foreground">{filteredItems.length}</strong> de <strong className="text-foreground">{items.length}</strong> itens</span>
-                                        <span className="inline-flex items-center gap-1 text-rose-700">
+                                        <span className="inline-flex items-center gap-1 text-rose-700 dark:text-rose-300">
                                             <AlertTriangle className="h-3.5 w-3.5" />
                                             Criticos: <strong>{criticalCount}</strong>
                                         </span>
@@ -395,7 +395,7 @@ export default function EstoqueIndex({
                                                         <tr
                                                             key={item.id}
                                                             className={clsx('transition-colors hover:bg-muted/50 dark:hover:bg-slate-900/40', {
-                                                                'bg-red-50/60 hover:bg-red-50': item.is_below_min,
+                                                                'bg-red-50/60 hover:bg-red-50 dark:bg-rose-500/10 dark:hover:bg-rose-500/15': item.is_below_min,
                                                             })}
                                                         >
                                                             <td className="w-5/12 px-4 py-3">
@@ -503,7 +503,7 @@ export default function EstoqueIndex({
                                                 key={link.url ?? link.label}
                                                 href={link.url ?? '#'}
                                                 className={clsx(
-                                                    'rounded-md border border-border px-3 py-1 text-sm text-muted-foreground transition hover:bg-slate-100',
+                                                    'rounded-md border border-border px-3 py-1 text-sm text-muted-foreground transition hover:bg-accent hover:text-accent-foreground',
                                                     {
                                                         'bg-blue-700 text-white hover:bg-blue-700': link.active,
                                                         'pointer-events-none opacity-50': !link.url,

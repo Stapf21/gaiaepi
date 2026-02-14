@@ -83,7 +83,7 @@ export default function CatalogoEpiShow({ epi }) {
                             <CardTitle className="text-base font-medium text-muted-foreground">Estoque</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3 text-sm">
-                            <div className="flex items-center justify-between rounded-lg bg-blue-50/70 dark:bg-slate-950/60 dark:bg-blue-500/10 px-3 py-2">
+                            <div className="flex items-center justify-between rounded-lg bg-blue-50/70 dark:bg-blue-500/10 px-3 py-2">
                                 <span className="font-medium text-blue-700">Minimo</span>
                                 <span className="font-semibold text-blue-700">{epi?.min_stock ?? '-'}</span>
                             </div>

@@ -115,7 +115,7 @@ export default function CatalogoEpiIndex({ stats = {}, epis }) {
                                 </span>
                                 <span className="font-semibold text-rose-700">{stockMinAlerts}</span>
                             </div>
-                            <div className="flex items-center justify-between rounded-lg bg-blue-50/70 dark:bg-slate-950/60 dark:bg-blue-500/10 px-3 py-2">
+                            <div className="flex items-center justify-between rounded-lg bg-blue-50/70 dark:bg-blue-500/10 px-3 py-2">
                                 <span className="inline-flex items-center gap-2 font-medium text-blue-700">
                                     <Tags className="h-4 w-4" />
                                     Categorias

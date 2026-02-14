@@ -102,7 +102,7 @@ export default function CatalogoEpiEdit({ categories = [], epi }) {
                             <CardTitle className="text-base font-medium text-muted-foreground">Checklist</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3 text-sm text-muted-foreground">
-                            <div className="rounded-lg bg-blue-50/70 dark:bg-slate-950/60 dark:bg-blue-500/10 px-3 py-2">
+                            <div className="rounded-lg bg-blue-50/70 dark:bg-blue-500/10 px-3 py-2">
                                 <p className="font-medium text-blue-700">Obrigatorios</p>
                                 <p>Categoria, nome e unidade.</p>
                             </div>
