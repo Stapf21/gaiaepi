@@ -7,7 +7,8 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { Link, usePage } from '@inertiajs/react';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { applyTheme, getStoredTheme, setStoredTheme } from '@/lib/theme';
 import {
     LayoutDashboard,
     Users,
@@ -23,7 +24,11 @@ import {
     Warehouse,
     Shield,
     Rocket,
-} from 'lucide-react';
+    Laptop,
+    Moon,
+    Sun,
+}
+ from 'lucide-react';
 
 const navGroups = [
     {
@@ -149,6 +154,19 @@ export default function AuthenticatedLayout({ header, children }) {
         .filter((group) => group.items.length > 0);
     const routeHelper = route();
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [theme, setTheme] = useState(() => getStoredTheme());
+
+    const themeLabel = useMemo(() => {
+        if (theme === 'dark') return 'Escuro';
+        if (theme === 'light') return 'Claro';
+        return 'Sistema';
+    }, [theme]);
+
+    const changeTheme = (next) => {
+        setStoredTheme(next);
+        setTheme(next);
+        applyTheme(next);
+    };
     const logoUrl = branding?.logo_url ?? null;
 
     const initials = user.name
@@ -158,7 +176,7 @@ export default function AuthenticatedLayout({ header, children }) {
         .join('') ?? 'US';
 
     return (
-        <div className="flex min-h-screen bg-slate-100">
+        <div className="flex min-h-screen bg-background text-foreground">
             {sidebarOpen && (
                 <button
                     type="button"
@@ -169,12 +187,12 @@ export default function AuthenticatedLayout({ header, children }) {
             )}
             <aside
                 className={clsx(
-                    'fixed inset-y-0 left-0 z-30 w-72 transform border-r border-slate-200 bg-gradient-to-b from-white via-slate-50 to-slate-100/70 shadow-xl transition-transform duration-200 lg:static lg:translate-x-0',
+                    'fixed inset-y-0 left-0 z-30 w-72 transform border-r border-border bg-gradient-to-b from-background via-background to-muted/30 shadow-xl transition-transform duration-200 lg:static lg:translate-x-0 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40',
                     { '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen },
                 )}
             >
                 <div className="flex h-20 items-center justify-between px-5">
-                    <Link href="/" className="flex items-center gap-3 text-base font-semibold text-slate-900">
+                    <Link href="/" className="flex items-center gap-3 text-base font-semibold text-foreground">
                         {logoUrl ? (
                             <>
                                 <img
@@ -189,7 +207,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                 <ApplicationLogo className="h-8 w-8" />
                                 <div className="leading-tight">
                                     <span className="block">Gestao EPI</span>
-                                    <span className="block text-xs font-medium text-slate-500">Painel operacional</span>
+                                    <span className="block text-xs font-medium text-muted-foreground">Painel operacional</span>
                                 </div>
                             </>
                         )}
@@ -207,7 +225,7 @@ export default function AuthenticatedLayout({ header, children }) {
                 <ScrollArea className="h-[calc(100vh-9rem)] px-3 py-4">
                     {filteredNavGroups.map((group) => (
                         <div key={group.title} className="mb-6">
-                            <p className="mb-2 px-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+                            <p className="mb-2 px-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                                 {group.title}
                             </p>
                             <nav className="space-y-1">
@@ -226,14 +244,14 @@ export default function AuthenticatedLayout({ header, children }) {
                                             className={clsx(
                                                 'group flex items-center gap-3 rounded-xl border px-3 py-2.5 text-sm font-medium transition',
                                                 isActive
-                                                    ? 'border-slate-900 bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-md'
-                                                    : 'border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-900',
+                                                    ? 'border-slate-900 bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-md dark:border-slate-200 dark:from-slate-50 dark:to-slate-200 dark:text-slate-900'
+                                                    : 'border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-900 dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-slate-950/60 dark:hover:text-white',
                                             )}
                                         >
                                             <IconComponent
                                                 className={clsx(
                                                     'h-5 w-5 transition-transform',
-                                                    isActive ? 'scale-105 text-white' : 'text-slate-500 group-hover:text-slate-700',
+                                                    isActive ? 'scale-105 text-white dark:text-slate-900' : 'text-slate-500 group-hover:text-slate-700 dark:text-slate-400 dark:group-hover:text-slate-200',
                                                 )}
                                                 aria-hidden="true"
                                             />
@@ -248,7 +266,7 @@ export default function AuthenticatedLayout({ header, children }) {
                 <Separator />
                 <div className="flex items-center gap-3 px-5 py-4">
                     <Avatar className="h-10 w-10">
-                        <AvatarFallback className="bg-slate-200 text-sm font-semibold text-slate-700">
+                        <AvatarFallback className="bg-muted text-sm font-semibold text-foreground">
                             {initials}
                         </AvatarFallback>
                     </Avatar>
@@ -260,7 +278,7 @@ export default function AuthenticatedLayout({ header, children }) {
             </aside>
 
             <div className="flex flex-1 flex-col">
-                <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/90 backdrop-blur">
+                <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur">
                     <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
                         <div className="flex items-center gap-3">
                             <Button
@@ -274,7 +292,7 @@ export default function AuthenticatedLayout({ header, children }) {
                             <NavigationMenu className="hidden lg:flex">
                                 <NavigationMenuList>
                                     <NavigationMenuItem>
-                                        <NavigationMenuLink className="text-sm font-medium text-slate-600">
+                                        <NavigationMenuLink className="text-sm font-medium text-muted-foreground">
                                             Sistema modular
                                         </NavigationMenuLink>
                                     </NavigationMenuItem>
@@ -286,17 +304,66 @@ export default function AuthenticatedLayout({ header, children }) {
                         <Dropdown>
                             <Dropdown.Trigger>
                                 <Button variant="ghost" className="flex items-center gap-2">
-                                    <span className="hidden text-sm font-medium text-slate-700 sm:inline-flex">
+                                    <span className="hidden text-sm font-medium text-foreground sm:inline-flex">
                                         {user.name}
                                     </span>
                                     <Avatar className="h-8 w-8">
-                                        <AvatarFallback className="bg-slate-200 text-xs font-semibold text-slate-700">
+                                        <AvatarFallback className="bg-muted text-xs font-semibold text-foreground">
                                             {initials}
                                         </AvatarFallback>
                                     </Avatar>
                                 </Button>
                             </Dropdown.Trigger>
-                            <Dropdown.Content align="end" className="w-48">
+                            <Dropdown.Content align="end" className="w-56">
+                                <div className="px-3 pb-2 pt-2">
+                                    <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Tema</p>
+                                    <div className="mt-2 grid grid-cols-3 gap-1">
+                                        <button
+                                            type="button"
+                                            onClick={() => changeTheme('system')}
+                                            className={clsx(
+                                                'flex items-center justify-center gap-1 rounded-md border px-2 py-1 text-xs font-medium transition',
+                                                theme === 'system'
+                                                    ? 'border-border bg-accent text-accent-foreground'
+                                                    : 'border-transparent text-muted-foreground hover:border-border hover:bg-accent/60 hover:text-foreground',
+                                            )}
+                                            title="Sistema"
+                                        >
+                                            <Laptop className="h-3.5 w-3.5" />
+                                            Sistema
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => changeTheme('light')}
+                                            className={clsx(
+                                                'flex items-center justify-center gap-1 rounded-md border px-2 py-1 text-xs font-medium transition',
+                                                theme === 'light'
+                                                    ? 'border-border bg-accent text-accent-foreground'
+                                                    : 'border-transparent text-muted-foreground hover:border-border hover:bg-accent/60 hover:text-foreground',
+                                            )}
+                                            title="Claro"
+                                        >
+                                            <Sun className="h-3.5 w-3.5" />
+                                            Claro
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => changeTheme('dark')}
+                                            className={clsx(
+                                                'flex items-center justify-center gap-1 rounded-md border px-2 py-1 text-xs font-medium transition',
+                                                theme === 'dark'
+                                                    ? 'border-border bg-accent text-accent-foreground'
+                                                    : 'border-transparent text-muted-foreground hover:border-border hover:bg-accent/60 hover:text-foreground',
+                                            )}
+                                            title="Escuro"
+                                        >
+                                            <Moon className="h-3.5 w-3.5" />
+                                            Escuro
+                                        </button>
+                                    </div>
+                                    <p className="mt-2 text-[11px] text-muted-foreground">Atual: <span className="font-medium text-foreground">{themeLabel}</span></p>
+                                </div>
+                                <Separator />
                                 <Dropdown.Link href={route('profile.edit')}>
                                     Meu perfil
                                 </Dropdown.Link>
@@ -308,7 +375,7 @@ export default function AuthenticatedLayout({ header, children }) {
                     </div>
                 </header>
 
-                <main className="flex-1 bg-slate-50">
+                <main className="flex-1 bg-muted/20 dark:bg-background">
                     <div className="min-h-[calc(100vh-4rem)]">{children}</div>
                 </main>
             </div>
