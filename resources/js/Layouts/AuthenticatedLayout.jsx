@@ -260,14 +260,14 @@ const changeTheme = (next) => {
                                             className={clsx(
                                                 'group flex items-center gap-3 rounded-xl border px-3 py-2.5 text-sm font-medium transition',
                                                 isActive
-                                                    ? 'border-slate-900 bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-md dark:border-slate-200 dark:from-slate-50 dark:to-slate-200 dark:text-slate-900'
+                                                    ? 'border-slate-900 bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-md dark:border-slate-700 dark:from-slate-900 dark:to-slate-800 dark:text-slate-50'
                                                     : 'border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-900 dark:text-slate-300 dark:hover:border-slate-700 dark:hover:bg-slate-950/60 dark:hover:text-white',
                                             )}
                                         >
                                             <IconComponent
                                                 className={clsx(
                                                     'h-5 w-5 transition-transform',
-                                                    isActive ? 'scale-105 text-white dark:text-slate-900' : 'text-slate-500 group-hover:text-slate-700 dark:text-slate-400 dark:group-hover:text-slate-200',
+                                                    isActive ? 'scale-105 text-white dark:text-slate-50' : 'text-slate-500 group-hover:text-slate-700 dark:text-slate-400 dark:group-hover:text-slate-200',
                                                 )}
                                                 aria-hidden="true"
                                             />

@@ -212,11 +212,11 @@ export default function Overview({
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
                         <div className="mb-2 flex flex-wrap items-center gap-2">
-                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700">
+                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 <Sparkles className="mr-1 h-3 w-3" />
                                 Dashboard executivo
                             </Badge>
-                            <Badge variant="outline" className="border-blue-100 bg-white text-blue-700">
+                            <Badge variant="outline" className="border-blue-100 bg-white text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 <Clock3 className="mr-1 h-3 w-3" />
                                 Atualizado agora
                             </Badge>
@@ -241,24 +241,24 @@ export default function Overview({
                         <CardContent className="p-5">
                             <div className="flex flex-wrap items-center justify-between gap-4">
                                 <div>
-                                    <p className="text-xs uppercase tracking-wider text-blue-700">Resumo operacional</p>
+                                    <p className="text-xs uppercase tracking-wider text-blue-700 dark:text-sky-200">Resumo operacional</p>
                                     <p className="mt-1 text-xl font-semibold text-foreground">Status geral do dia</p>
-                                    <p className="mt-1 text-sm text-slate-700">
+                                    <p className="mt-1 text-sm text-muted-foreground">
                                         Alertas ativos, entregas em andamento e custo acumulado de estoque.
                                     </p>
                                 </div>
                                 <div className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-3">
-                                    <div className="rounded-lg border border-border bg-white/90 px-3 py-2">
-                                        <p className="text-xs text-blue-700">Alertas</p>
-                                        <p className="text-lg font-semibold text-blue-900">{stats?.alertaEpi ?? 0}</p>
+                                    <div className="rounded-lg border border-border bg-card/70 px-3 py-2 dark:bg-slate-950/40">
+                                        <p className="text-xs text-muted-foreground">Alertas</p>
+                                        <p className="text-lg font-semibold text-foreground">{stats?.alertaEpi ?? 0}</p>
                                     </div>
-                                    <div className="rounded-lg border border-border bg-white/90 px-3 py-2">
-                                        <p className="text-xs text-blue-700">Baixo estoque</p>
-                                        <p className="text-lg font-semibold text-blue-900">{stats?.estoqueBaixo ?? 0}</p>
+                                    <div className="rounded-lg border border-border bg-card/70 px-3 py-2 dark:bg-slate-950/40">
+                                        <p className="text-xs text-muted-foreground">Baixo estoque</p>
+                                        <p className="text-lg font-semibold text-foreground">{stats?.estoqueBaixo ?? 0}</p>
                                     </div>
-                                    <div className="rounded-lg border border-border bg-white/90 px-3 py-2">
-                                        <p className="text-xs text-blue-700">EPIs em uso</p>
-                                        <p className="text-lg font-semibold text-blue-900">{stats?.episEmUso ?? 0}</p>
+                                    <div className="rounded-lg border border-border bg-card/70 px-3 py-2 dark:bg-slate-950/40">
+                                        <p className="text-xs text-muted-foreground">EPIs em uso</p>
+                                        <p className="text-lg font-semibold text-foreground">{stats?.episEmUso ?? 0}</p>
                                     </div>
                                 </div>
                             </div>
@@ -270,14 +270,14 @@ export default function Overview({
                             <CardTitle className="text-base font-medium text-muted-foreground">Risco de alertas</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3">
-                            <div className="flex items-center justify-between rounded-lg bg-rose-50 px-3 py-2 text-sm">
+                            <div className="flex items-center justify-between rounded-lg border border-rose-200/40 bg-rose-50 px-3 py-2 text-sm dark:border-rose-500/20 dark:bg-rose-500/10">
                                 <span className="inline-flex items-center gap-2 font-medium text-rose-700">
                                     <ShieldAlert className="h-4 w-4" />
                                     Vencidos
                                 </span>
                                 <span className="font-semibold text-rose-700">{overdueAlerts}</span>
                             </div>
-                            <div className="flex items-center justify-between rounded-lg bg-amber-50 px-3 py-2 text-sm">
+                            <div className="flex items-center justify-between rounded-lg border border-amber-200/40 bg-amber-50 px-3 py-2 text-sm dark:border-amber-500/20 dark:bg-amber-500/10">
                                 <span className="inline-flex items-center gap-2 font-medium text-amber-700">
                                     <AlertTriangle className="h-4 w-4" />
                                     Proximos do vencimento
@@ -367,7 +367,7 @@ export default function Overview({
                             {topUsed.length === 0 ? (
                                 <p className="text-sm text-muted-foreground">Sem dados de entregas para exibir.</p>
                             ) : (
-                                <div className="rounded-xl border border-border bg-gradient-to-b from-blue-50/40 to-white p-4">
+                                <div className="rounded-xl border border-border bg-gradient-to-b from-blue-50/40 to-background dark:from-slate-950 dark:to-slate-900/40 p-4">
                                     <div className="grid h-72 grid-cols-2 items-end gap-4 border-b border-border pb-2 md:grid-cols-3 lg:grid-cols-6">
                                         {topUsed.slice(0, 6).map((item, index) => {
                                             const value = Number(item.total ?? 0);
@@ -376,7 +376,7 @@ export default function Overview({
 
                                             return (
                                                 <div key={`${item.name}-${index}`} className="flex h-full flex-col items-center justify-end gap-2">
-                                                    <span className="text-sm font-semibold text-slate-700">{percent}%</span>
+                                                    <span className="text-sm font-semibold text-muted-foreground">{percent}%</span>
                                                     <div className="flex h-52 w-full items-end justify-center">
                                                         <div
                                                             className="w-full max-w-24 rounded-t-2xl bg-gradient-to-b from-blue-400 to-indigo-500 shadow-sm transition-all duration-500"
@@ -384,7 +384,7 @@ export default function Overview({
                                                             title={`${item.name}: ${value}`}
                                                         />
                                                     </div>
-                                                    <p className="w-full truncate text-center text-xs font-medium text-slate-700" title={item.name}>
+                                                    <p className="w-full truncate text-center text-xs font-medium text-muted-foreground" title={item.name}>
                                                         {item.name}
                                                     </p>
                                                     <p className="text-sm font-semibold text-foreground">{value}</p>
@@ -409,7 +409,7 @@ export default function Overview({
                                     {recentAlerts.map((alert) => (
                                         <li
                                             key={alert.id}
-                                            className="rounded-lg border border-border bg-white/90 px-3 py-2"
+                                            className="rounded-lg border border-border bg-card/70 px-3 py-2 dark:bg-slate-950/40"
                                         >
                                             <div className="flex items-start justify-between gap-2">
                                                 <p className="font-semibold text-foreground">
@@ -460,10 +460,10 @@ export default function Overview({
                                     return (
                                         <div key={`${item.name}-${index}`} className="space-y-1">
                                             <div className="flex items-center justify-between gap-3 text-sm">
-                                                <span className="font-medium text-slate-800">{item.name}</span>
+                                                <span className="font-medium text-foreground">{item.name}</span>
                                                 <span className="font-semibold text-foreground">{formatMoney(value)}</span>
                                             </div>
-                                            <div className="h-2 w-full rounded-full bg-amber-100">
+                                            <div className="h-2 w-full rounded-full bg-amber-200/40 dark:bg-amber-500/20">
                                                 <div
                                                     className="h-2 rounded-full bg-amber-500 transition-all duration-500"
                                                     style={{ width }}
@@ -527,7 +527,7 @@ export default function Overview({
                                 return (
                                     <li
                                         key={alert.id}
-                                        className="rounded-lg border border-slate-200 bg-white px-4 py-3 shadow-sm"
+                                        className="rounded-lg border border-border bg-card px-4 py-3 shadow-sm"
                                     >
                                         <div className="flex items-start justify-between gap-3">
                                             <p className="text-sm font-semibold text-foreground">
@@ -538,14 +538,14 @@ export default function Overview({
                                             </Badge>
                                         </div>
 
-                                        <p className="mt-1 text-sm font-medium text-slate-700">{alert.epi ?? 'EPI'}</p>
+                                        <p className="mt-1 text-sm font-medium text-foreground">{alert.epi ?? 'EPI'}</p>
 
-                                        <div className="mt-2 flex flex-wrap gap-2 text-xs text-slate-600">
-                                            <span className="rounded-md bg-slate-100 px-2 py-1">
+                                        <div className="mt-2 flex flex-wrap gap-2 text-xs text-muted-foreground">
+                                            <span className="rounded-md bg-muted px-2 py-1">
                                                 {formatRemainingDays(alert.days_remaining)}
                                             </span>
                                             {alert.expected_return_at ? (
-                                                <span className="rounded-md bg-slate-100 px-2 py-1">
+                                                <span className="rounded-md bg-muted px-2 py-1">
                                                     Previsto: {alert.expected_return_at}
                                                 </span>
                                             ) : null}
@@ -578,7 +578,7 @@ export default function Overview({
                                 return (
                                     <li
                                         key={item.id}
-                                        className="rounded-lg border border-slate-200 bg-white px-4 py-3 shadow-sm"
+                                        className="rounded-lg border border-border bg-card px-4 py-3 shadow-sm"
                                     >
                                         <div className="flex items-start justify-between gap-3">
                                             <p className="text-sm font-semibold text-foreground">{item.name}</p>
@@ -588,13 +588,13 @@ export default function Overview({
                                         </div>
 
                                         <div className="mt-2 grid gap-2 text-xs sm:grid-cols-3">
-                                            <div className="rounded-md bg-slate-100 px-2 py-1 text-slate-700">
+                                            <div className="rounded-md bg-muted px-2 py-1 text-foreground">
                                                 Em estoque: <span className="font-semibold">{currentStock}</span>
                                             </div>
-                                            <div className="rounded-md bg-slate-100 px-2 py-1 text-slate-700">
+                                            <div className="rounded-md bg-muted px-2 py-1 text-foreground">
                                                 Minimo: <span className="font-semibold">{item.min_stock ?? '-'}</span>
                                             </div>
-                                            <div className="rounded-md bg-slate-100 px-2 py-1 text-slate-700">
+                                            <div className="rounded-md bg-muted px-2 py-1 text-foreground">
                                                 Deficit: <span className="font-semibold">{deficit}</span>
                                             </div>
                                         </div>
