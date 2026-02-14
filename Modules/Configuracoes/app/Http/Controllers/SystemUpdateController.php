@@ -137,7 +137,8 @@ class SystemUpdateController extends Controller
             return null;
         }
 
-        foreach (preg_split('/?
+        foreach (preg_split('/
+?
 /', trim($output)) as $line) {
             if ($line === '' || str_contains($line, '^{}')) {
                 continue;
@@ -174,7 +175,8 @@ class SystemUpdateController extends Controller
 
         return (int) $output;
     }
-private function tailFile(string $path, int $maxLines = 120): array
+
+    private function tailFile(string $path, int $maxLines = 120): array
     {
         if (!File::exists($path)) {
             return [];
@@ -185,6 +187,15 @@ private function tailFile(string $path, int $maxLines = 120): array
             return [];
         }
 
-        return array_slice($lines, -$maxLines);
+        $tail = array_slice($lines, -$maxLines);
+
+        return array_map(static function ($line) {
+            if (!is_string($line)) {
+                return '';
+            }
+
+            // Strip ANSI escape sequences (colors/progress), so the log is readable in the browser.
+            return preg_replace('/\x1B\[[0-9;?]*[ -\/]*[@-~]/', '', $line) ?? $line;
+        }, $tail);
     }
 }

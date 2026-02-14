@@ -142,9 +142,9 @@ export default function UpdatesIndex({ deploy = {} }) {
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <pre className="max-h-[480px] max-w-full overflow-auto whitespace-pre-wrap break-words rounded-lg bg-slate-950 p-4 text-xs leading-relaxed text-slate-100">
-                            {logLines.length ? logLines.join('\n') : 'Sem logs ainda.'}
-                        </pre>
+                        <div className="max-h-[480px] w-full overflow-auto rounded-lg bg-slate-950 p-4">
+                            <pre className="w-full whitespace-pre-wrap break-all text-xs leading-relaxed text-slate-100">{logLines.length ? logLines.join('\n') : 'Sem logs ainda.'}</pre>
+                        </div>
                     </CardContent>
                 </Card>
             </div>
