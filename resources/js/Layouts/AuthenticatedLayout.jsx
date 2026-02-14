@@ -5,10 +5,10 @@ import { Button } from '@/components/ui/button';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '@/components/ui/navigation-menu';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import { Link, usePage } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 import clsx from 'clsx';
-import { useMemo, useState } from 'react';
-import { applyTheme, getStoredTheme, setStoredTheme } from '@/lib/theme';
+import { useEffect, useMemo, useState } from 'react';
+import { getSystemTheme, getStoredTheme, setStoredTheme } from '@/lib/theme';
 import {
     LayoutDashboard,
     Users,
@@ -156,16 +156,32 @@ export default function AuthenticatedLayout({ header, children }) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [theme, setTheme] = useState(() => getStoredTheme());
 
-    const themeLabel = useMemo(() => {
+        useEffect(() => {
+        const serverTheme = (user?.theme_preference ?? 'system');
+        if (serverTheme !== theme) {
+            setStoredTheme(serverTheme);
+            setTheme(serverTheme);
+        }
+    }, [user?.theme_preference]);
+
+const themeLabel = useMemo(() => {
         if (theme === 'dark') return 'Escuro';
         if (theme === 'light') return 'Claro';
         return 'Sistema';
     }, [theme]);
 
-    const changeTheme = (next) => {
+        const resolvedTheme = useMemo(() => (theme === 'system' ? getSystemTheme() : theme), [theme]);
+    const isDark = resolvedTheme === 'dark';
+
+const changeTheme = (next) => {
         setStoredTheme(next);
         setTheme(next);
-        applyTheme(next);
+
+        // Persist for this user (keeps across devices).
+        router.put(route('preferences.theme.update'), { theme: next }, {
+            preserveScroll: true,
+            preserveState: true,
+        });
     };
     const logoUrl = branding?.logo_url ?? null;
 
@@ -271,8 +287,8 @@ export default function AuthenticatedLayout({ header, children }) {
                         </AvatarFallback>
                     </Avatar>
                     <div className="flex-1">
-                        <p className="text-sm font-semibold text-slate-900">{user.name}</p>
-                        <p className="text-xs text-slate-500">{user.email}</p>
+                        <p className="text-sm font-semibold text-foreground">{user.name}</p>
+                        <p className="text-xs text-muted-foreground">{user.email}</p>
                     </div>
                 </div>
             </aside>
@@ -301,7 +317,18 @@ export default function AuthenticatedLayout({ header, children }) {
                             {header && <div className="lg:pl-4">{header}</div>}
                         </div>
 
-                        <Dropdown>
+                        <div className="flex items-center gap-2">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={() => changeTheme(isDark ? 'light' : 'dark')}
+                                aria-label="Alternar tema"
+                                title="Alternar tema"
+                            >
+                                {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                            </Button>
+
+                            <Dropdown>
                             <Dropdown.Trigger>
                                 <Button variant="ghost" className="flex items-center gap-2">
                                     <span className="hidden text-sm font-medium text-foreground sm:inline-flex">
@@ -372,6 +399,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                 </Dropdown.Link>
                             </Dropdown.Content>
                         </Dropdown>
+                        </div>
                     </div>
                 </header>
 

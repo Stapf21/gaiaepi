@@ -85,11 +85,11 @@ function Modal({ open, title, onClose, children }) {
             onClick={onClose}
         >
             <div
-                className="w-full max-w-2xl rounded-lg bg-white shadow-xl"
+                className="w-full max-w-2xl rounded-lg bg-background text-foreground shadow-xl"
                 onClick={(event) => event.stopPropagation()}
             >
-                <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
-                    <h3 className="text-base font-semibold text-slate-900">{title}</h3>
+                <div className="flex items-center justify-between border-b border-border px-4 py-3">
+                    <h3 className="text-base font-semibold text-foreground">{title}</h3>
                     <Button variant="ghost" size="icon" onClick={onClose} aria-label="Fechar">
                         <X className="h-4 w-4" />
                     </Button>
@@ -154,7 +154,7 @@ export default function Overview({
                 actionTarget: 'alerts',
                 actionLabel: 'Ver alertas',
                 actionDisabled: !hasAlerts,
-                toneClass: 'from-amber-50 to-white',
+                toneClass: 'from-amber-50 to-white dark:from-slate-950 dark:to-slate-900/40',
                 accentClass: 'bg-amber-100 text-amber-700',
             },
             {
@@ -169,7 +169,7 @@ export default function Overview({
                 actionTarget: 'stock',
                 actionLabel: 'Ver itens',
                 actionDisabled: !hasLowStock,
-                toneClass: 'from-rose-50 to-white',
+                toneClass: 'from-rose-50 to-white dark:from-slate-950 dark:to-slate-900/40',
                 accentClass: 'bg-rose-100 text-rose-700',
             },
             {
@@ -183,7 +183,7 @@ export default function Overview({
                 actionType: 'link',
                 actionTarget: route('funcionarios.index'),
                 actionLabel: 'Ver funcionarios',
-                toneClass: 'from-blue-50 to-white',
+                toneClass: 'from-blue-50 to-white dark:from-slate-950 dark:to-slate-900/40',
                 accentClass: 'bg-blue-100 text-blue-700',
             },
             {
@@ -197,7 +197,7 @@ export default function Overview({
                 actionType: 'link',
                 actionTarget: route('entradassaidas.index'),
                 actionLabel: 'Ver entregas',
-                toneClass: 'from-emerald-50 to-white',
+                toneClass: 'from-emerald-50 to-white dark:from-slate-950 dark:to-slate-900/40',
                 accentClass: 'bg-emerald-100 text-emerald-700',
             },
         ],
@@ -221,7 +221,7 @@ export default function Overview({
                                 Atualizado agora
                             </Badge>
                         </div>
-                        <h1 className="text-2xl font-semibold tracking-tight text-gray-900">Painel administrativo</h1>
+                        <h1 className="text-2xl font-semibold tracking-tight text-foreground">Painel administrativo</h1>
                         <p className="text-sm text-muted-foreground">
                             Panorama geral dos EPIs, equipe e alertas operacionais.
                         </p>
@@ -237,26 +237,26 @@ export default function Overview({
                 </div>
 
                 <section className="grid gap-4 lg:grid-cols-[2fr_1fr]">
-                    <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 shadow-sm">
+                    <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40 shadow-sm">
                         <CardContent className="p-5">
                             <div className="flex flex-wrap items-center justify-between gap-4">
                                 <div>
                                     <p className="text-xs uppercase tracking-wider text-blue-700">Resumo operacional</p>
-                                    <p className="mt-1 text-xl font-semibold text-slate-900">Status geral do dia</p>
+                                    <p className="mt-1 text-xl font-semibold text-foreground">Status geral do dia</p>
                                     <p className="mt-1 text-sm text-slate-700">
                                         Alertas ativos, entregas em andamento e custo acumulado de estoque.
                                     </p>
                                 </div>
                                 <div className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-3">
-                                    <div className="rounded-lg border border-blue-100 bg-white/90 px-3 py-2">
+                                    <div className="rounded-lg border border-border bg-white/90 px-3 py-2">
                                         <p className="text-xs text-blue-700">Alertas</p>
                                         <p className="text-lg font-semibold text-blue-900">{stats?.alertaEpi ?? 0}</p>
                                     </div>
-                                    <div className="rounded-lg border border-blue-100 bg-white/90 px-3 py-2">
+                                    <div className="rounded-lg border border-border bg-white/90 px-3 py-2">
                                         <p className="text-xs text-blue-700">Baixo estoque</p>
                                         <p className="text-lg font-semibold text-blue-900">{stats?.estoqueBaixo ?? 0}</p>
                                     </div>
-                                    <div className="rounded-lg border border-blue-100 bg-white/90 px-3 py-2">
+                                    <div className="rounded-lg border border-border bg-white/90 px-3 py-2">
                                         <p className="text-xs text-blue-700">EPIs em uso</p>
                                         <p className="text-lg font-semibold text-blue-900">{stats?.episEmUso ?? 0}</p>
                                     </div>
@@ -267,7 +267,7 @@ export default function Overview({
 
                     <Card className="shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-base font-medium text-gray-700">Risco de alertas</CardTitle>
+                            <CardTitle className="text-base font-medium text-muted-foreground">Risco de alertas</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3">
                             <div className="flex items-center justify-between rounded-lg bg-rose-50 px-3 py-2 text-sm">
@@ -309,14 +309,14 @@ export default function Overview({
                                 >
                                     <CardHeader className="pb-2">
                                         <div className="flex items-start justify-between gap-2">
-                                            <CardTitle className="text-base font-medium text-gray-700">{card.label}</CardTitle>
+                                            <CardTitle className="text-base font-medium text-muted-foreground">{card.label}</CardTitle>
                                             <div className={`rounded-md p-2 ${card.accentClass}`}>
                                                 <Icon className={`h-4 w-4 ${card.iconClass}`} />
                                             </div>
                                         </div>
                                     </CardHeader>
                                     <CardContent className="space-y-2">
-                                        <p className="text-3xl font-semibold text-gray-900">{card.value}</p>
+                                        <p className="text-3xl font-semibold text-foreground">{card.value}</p>
                                         <svg width="120" height="32" viewBox="0 0 120 32" aria-hidden="true">
                                             <polyline
                                                 fill="none"
@@ -327,7 +327,7 @@ export default function Overview({
                                                 points={points}
                                             />
                                         </svg>
-                                        <Separator className="bg-gray-200" />
+                                        <Separator className="bg-border" />
                                         <p className="text-xs text-muted-foreground">{card.description}</p>
                                         {card.actionType === 'modal' && (
                                             <div className="pt-2">
@@ -358,7 +358,7 @@ export default function Overview({
                 <section className="grid gap-6 lg:grid-cols-[2fr_1fr]">
                     <Card className="shadow-sm">
                         <CardHeader>
-                            <CardTitle className="text-base font-medium text-gray-700">Top EPIs entregues</CardTitle>
+                            <CardTitle className="text-base font-medium text-muted-foreground">Top EPIs entregues</CardTitle>
                             <p className="text-sm text-muted-foreground">
                                 Ranking de produtos por quantidade entregue ({totalUsedQuantity} no total).
                             </p>
@@ -367,8 +367,8 @@ export default function Overview({
                             {topUsed.length === 0 ? (
                                 <p className="text-sm text-muted-foreground">Sem dados de entregas para exibir.</p>
                             ) : (
-                                <div className="rounded-xl border border-blue-100 bg-gradient-to-b from-blue-50/40 to-white p-4">
-                                    <div className="grid h-72 grid-cols-2 items-end gap-4 border-b border-slate-200 pb-2 md:grid-cols-3 lg:grid-cols-6">
+                                <div className="rounded-xl border border-border bg-gradient-to-b from-blue-50/40 to-white p-4">
+                                    <div className="grid h-72 grid-cols-2 items-end gap-4 border-b border-border pb-2 md:grid-cols-3 lg:grid-cols-6">
                                         {topUsed.slice(0, 6).map((item, index) => {
                                             const value = Number(item.total ?? 0);
                                             const percent = Math.round((value / maxUsed) * 100);
@@ -387,7 +387,7 @@ export default function Overview({
                                                     <p className="w-full truncate text-center text-xs font-medium text-slate-700" title={item.name}>
                                                         {item.name}
                                                     </p>
-                                                    <p className="text-sm font-semibold text-slate-900">{value}</p>
+                                                    <p className="text-sm font-semibold text-foreground">{value}</p>
                                                 </div>
                                             );
                                         })}
@@ -399,7 +399,7 @@ export default function Overview({
 
                     <Card className="shadow-sm">
                         <CardHeader>
-                            <CardTitle className="text-base font-medium text-gray-700">Alertas recentes</CardTitle>
+                            <CardTitle className="text-base font-medium text-muted-foreground">Alertas recentes</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3 text-sm">
                             {recentAlerts.length === 0 ? (
@@ -409,10 +409,10 @@ export default function Overview({
                                     {recentAlerts.map((alert) => (
                                         <li
                                             key={alert.id}
-                                            className="rounded-lg border border-blue-100 bg-white/90 px-3 py-2"
+                                            className="rounded-lg border border-border bg-white/90 px-3 py-2"
                                         >
                                             <div className="flex items-start justify-between gap-2">
-                                                <p className="font-semibold text-slate-900">
+                                                <p className="font-semibold text-foreground">
                                                     {alert.employee ?? 'Funcionario desconhecido'}
                                                 </p>
                                                 <Badge
@@ -444,7 +444,7 @@ export default function Overview({
                 <section className="grid gap-6 lg:grid-cols-[2fr_1fr]">
                     <Card className="shadow-sm">
                         <CardHeader>
-                            <CardTitle className="text-base font-medium text-gray-700">Maior valor em estoque</CardTitle>
+                            <CardTitle className="text-base font-medium text-muted-foreground">Maior valor em estoque</CardTitle>
                             <p className="text-sm text-muted-foreground">
                                 Produtos com maior capital parado no estoque ({formatMoney(totalValuableAmount)}).
                             </p>
@@ -461,7 +461,7 @@ export default function Overview({
                                         <div key={`${item.name}-${index}`} className="space-y-1">
                                             <div className="flex items-center justify-between gap-3 text-sm">
                                                 <span className="font-medium text-slate-800">{item.name}</span>
-                                                <span className="font-semibold text-slate-900">{formatMoney(value)}</span>
+                                                <span className="font-semibold text-foreground">{formatMoney(value)}</span>
                                             </div>
                                             <div className="h-2 w-full rounded-full bg-amber-100">
                                                 <div
@@ -478,7 +478,7 @@ export default function Overview({
 
                     <Card className="shadow-sm">
                         <CardHeader>
-                            <CardTitle className="text-base font-medium text-gray-700">Acoes rapidas</CardTitle>
+                            <CardTitle className="text-base font-medium text-muted-foreground">Acoes rapidas</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-2">
                             <Button asChild className="w-full justify-start">
@@ -515,7 +515,7 @@ export default function Overview({
                     <p className="text-sm text-muted-foreground">Nenhum alerta de EPI no momento.</p>
                 ) : (
                     <div className="space-y-3">
-                        <div className="flex items-center justify-between rounded-lg border border-amber-100 bg-amber-50 px-3 py-2">
+                        <div className="flex items-center justify-between rounded-lg border border-amber-200/30 bg-amber-500/10 dark:border-amber-500/20 dark:bg-amber-500/10 px-3 py-2">
                             <p className="text-xs font-medium uppercase tracking-wide text-amber-700">Total de alertas</p>
                             <Badge className="bg-amber-600 text-white">{alerts.length}</Badge>
                         </div>
@@ -530,7 +530,7 @@ export default function Overview({
                                         className="rounded-lg border border-slate-200 bg-white px-4 py-3 shadow-sm"
                                     >
                                         <div className="flex items-start justify-between gap-3">
-                                            <p className="text-sm font-semibold text-slate-900">
+                                            <p className="text-sm font-semibold text-foreground">
                                                 {alert.employee ?? 'Funcionario desconhecido'}
                                             </p>
                                             <Badge variant={isOverdue ? 'destructive' : 'outline'}>
@@ -563,7 +563,7 @@ export default function Overview({
                     <p className="text-sm text-muted-foreground">Nenhum item abaixo do estoque minimo.</p>
                 ) : (
                     <div className="space-y-3">
-                        <div className="flex items-center justify-between rounded-lg border border-rose-100 bg-rose-50 px-3 py-2">
+                        <div className="flex items-center justify-between rounded-lg border border-rose-200/30 bg-rose-500/10 dark:border-rose-500/20 dark:bg-rose-500/10 px-3 py-2">
                             <p className="text-xs font-medium uppercase tracking-wide text-rose-700">Itens em atencao</p>
                             <Badge className="bg-rose-600 text-white">{lowStockItems.length}</Badge>
                         </div>
@@ -581,7 +581,7 @@ export default function Overview({
                                         className="rounded-lg border border-slate-200 bg-white px-4 py-3 shadow-sm"
                                     >
                                         <div className="flex items-start justify-between gap-3">
-                                            <p className="text-sm font-semibold text-slate-900">{item.name}</p>
+                                            <p className="text-sm font-semibold text-foreground">{item.name}</p>
                                             <Badge variant={critical ? 'destructive' : 'outline'}>
                                                 {critical ? 'Critico' : 'Baixo'}
                                             </Badge>
