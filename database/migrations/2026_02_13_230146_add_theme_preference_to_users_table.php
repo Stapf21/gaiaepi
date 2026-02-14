@@ -8,16 +8,16 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('users', function (Blueprint ) {
+        Schema::table('users', function (Blueprint $table) {
             // 'system' means follow OS preference.
-            ->string('theme_preference', 16)->nullable()->after('remember_token');
+            $table->string('theme_preference', 16)->nullable()->after('remember_token');
         });
     }
 
     public function down(): void
     {
-        Schema::table('users', function (Blueprint ) {
-            ->dropColumn('theme_preference');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('theme_preference');
         });
     }
 };
