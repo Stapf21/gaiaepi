@@ -73,21 +73,21 @@ export default function Empresas({ companies = [] }) {
 
             <div className="space-y-6 px-4 pb-10 pt-6 sm:px-6 lg:px-12">
                 <div>
-                    <h1 className="text-2xl font-semibold text-slate-900">Empresas</h1>
+                    <h1 className="text-2xl font-semibold text-foreground">Empresas</h1>
                     <p className="text-sm text-muted-foreground">
                         Cadastre e gerencie as empresas utilizadas em todos os cadastros do sistema.
                     </p>
                 </div>
                 <Card className="shadow-sm">
                     <CardHeader>
-                        <CardTitle className="text-base font-semibold text-slate-900">
+                        <CardTitle className="text-base font-semibold text-foreground">
                             {editingCompany ? 'Editar empresa' : 'Nova empresa'}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-6">
                         <form onSubmit={submit} className="grid gap-4 md:grid-cols-2">
                             <div className="space-y-2">
-                                <label htmlFor="company_name" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="company_name" className="text-sm font-medium text-muted-foreground">
                                     Nome da empresa
                                 </label>
                                 <input
@@ -102,7 +102,7 @@ export default function Empresas({ companies = [] }) {
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="company_legal_name" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="company_legal_name" className="text-sm font-medium text-muted-foreground">
                                     Razao social (opcional)
                                 </label>
                                 <input
@@ -116,7 +116,7 @@ export default function Empresas({ companies = [] }) {
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="company_document" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="company_document" className="text-sm font-medium text-muted-foreground">
                                     Documento (CNPJ)
                                 </label>
                                 <input
@@ -130,7 +130,7 @@ export default function Empresas({ companies = [] }) {
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="company_email" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="company_email" className="text-sm font-medium text-muted-foreground">
                                     E-mail
                                 </label>
                                 <input
@@ -144,7 +144,7 @@ export default function Empresas({ companies = [] }) {
                             </div>
 
                             <div className="space-y-2 md:col-span-2">
-                                <label htmlFor="company_phone" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="company_phone" className="text-sm font-medium text-muted-foreground">
                                     Telefone (opcional)
                                 </label>
                                 <input
@@ -173,25 +173,25 @@ export default function Empresas({ companies = [] }) {
                             </div>
                         </form>
 
-                        <div className="overflow-hidden rounded-lg border border-slate-200">
-                            <table className="min-w-full divide-y divide-slate-200">
-                                <thead className="bg-slate-50">
+                        <div className="overflow-hidden rounded-lg border border-border">
+                            <table className="min-w-full divide-y divide-border">
+                                <thead className="bg-muted/50 dark:bg-slate-950/60">
                                     <tr>
-                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                             Empresa
                                         </th>
-                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                             Contato
                                         </th>
-                                        <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                             Acoes
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-slate-200 bg-white">
+                                <tbody className="divide-y divide-border bg-card">
                                     {companies.length === 0 ? (
                                         <tr>
-                                            <td className="px-4 py-4 text-sm text-slate-500" colSpan={3}>
+                                            <td className="px-4 py-4 text-sm text-muted-foreground" colSpan={3}>
                                                 Nenhuma empresa cadastrada.
                                             </td>
                                         </tr>
@@ -199,15 +199,15 @@ export default function Empresas({ companies = [] }) {
                                         companies.map((company) => (
                                             <tr key={company.id}>
                                                 <td className="px-4 py-3">
-                                                    <p className="text-sm font-semibold text-slate-800">{company.name}</p>
+                                                    <p className="text-sm font-semibold text-foreground">{company.name}</p>
                                                     {company.document && (
-                                                        <p className="text-xs text-slate-500">CNPJ: {company.document}</p>
+                                                        <p className="text-xs text-muted-foreground">CNPJ: {company.document}</p>
                                                     )}
                                                 </td>
-                                                <td className="px-4 py-3 text-sm text-slate-600">
+                                                <td className="px-4 py-3 text-sm text-muted-foreground">
                                                     {company.email ?? '—'}
                                                     {company.phone && (
-                                                        <span className="block text-xs text-slate-500">{company.phone}</span>
+                                                        <span className="block text-xs text-muted-foreground">{company.phone}</span>
                                                     )}
                                                 </td>
                                                 <td className="px-4 py-3 text-right text-sm">

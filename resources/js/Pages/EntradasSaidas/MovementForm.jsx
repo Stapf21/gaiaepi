@@ -281,14 +281,14 @@ export default function MovementForm({
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
                         <div className="mb-2 flex flex-wrap items-center gap-2">
-                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700">
+                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 Fluxo operacional
                             </Badge>
-                            <Badge variant="outline" className="border-blue-100 bg-white text-blue-700">
+                            <Badge variant="outline" className="border-blue-100 bg-white text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 Entrega de EPIs
                             </Badge>
                         </div>
-                        <h1 className="text-2xl font-semibold text-slate-900">{headerTitle}</h1>
+                        <h1 className="text-2xl font-semibold text-foreground">{headerTitle}</h1>
                         <p className="text-sm text-muted-foreground">
                             {isEdit
                                 ? 'Ajuste os dados da movimenta??o, itens e status de entrega.'
@@ -296,20 +296,20 @@ export default function MovementForm({
                         </p>
                     </div>
                     <div className="grid grid-cols-2 gap-2 text-sm">
-                        <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                        <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                             <p className="text-xs text-blue-700">Itens</p>
-                            <p className="font-semibold text-slate-900">{data.items.length}</p>
+                            <p className="font-semibold text-foreground">{data.items.length}</p>
                         </div>
-                        <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                        <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                             <p className="text-xs text-blue-700">Quantidade</p>
-                            <p className="font-semibold text-slate-900">{totalQuantity}</p>
+                            <p className="font-semibold text-foreground">{totalQuantity}</p>
                         </div>
                     </div>
                 </div>
 
                 <Card className="shadow-sm">
                     <CardHeader className="flex flex-col gap-1">
-                        <CardTitle className="text-base font-semibold text-slate-800">
+                        <CardTitle className="text-base font-semibold text-foreground">
                             {isEdit ? 'Atualize os dados da movimentação' : 'Registro rápido'}
                         </CardTitle>
                         <p className="text-sm text-muted-foreground">
@@ -322,7 +322,7 @@ export default function MovementForm({
                         <form onSubmit={submit} className="space-y-8">
                             <div className="grid gap-6 md:grid-cols-2">
                                 <div className="space-y-2">
-                                    <label htmlFor="employee_id" className="text-sm font-medium text-slate-700">
+                                    <label htmlFor="employee_id" className="text-sm font-medium text-muted-foreground">
                                         Colaborador
                                     </label>
                                     <select
@@ -344,14 +344,14 @@ export default function MovementForm({
                                     </select>
                                     <InputError message={errors.employee_id} />
                                     {selectedEmployee?.department && (
-                                        <p className="text-xs text-slate-500">
+                                        <p className="text-xs text-muted-foreground">
                                             Setor vinculado: {selectedEmployee.department}
                                         </p>
                                     )}
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="manual_department" className="text-sm font-medium text-slate-700">
+                                    <label htmlFor="manual_department" className="text-sm font-medium text-muted-foreground">
                                         Departamento
                                     </label>
                                     <select
@@ -384,12 +384,12 @@ export default function MovementForm({
                                         </p>
                                     )}
                                     {!selectedDepartmentId && (
-                                        <p className="text-xs text-slate-500">Selecione um colaborador ou setor para sugerir o kit.</p>
+                                        <p className="text-xs text-muted-foreground">Selecione um colaborador ou setor para sugerir o kit.</p>
                                     )}
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="status" className="text-sm font-medium text-slate-700">
+                                    <label htmlFor="status" className="text-sm font-medium text-muted-foreground">
                                         Status
                                     </label>
                                     <select
@@ -409,7 +409,7 @@ export default function MovementForm({
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="delivered_at" className="text-sm font-medium text-slate-700">
+                                    <label htmlFor="delivered_at" className="text-sm font-medium text-muted-foreground">
                                         Data da entrega
                                     </label>
                                     <input
@@ -424,7 +424,7 @@ export default function MovementForm({
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="expected_return_at" className="text-sm font-medium text-slate-700">
+                                    <label htmlFor="expected_return_at" className="text-sm font-medium text-muted-foreground">
                                         Devolução prevista (opcional)
                                     </label>
                                     <input
@@ -438,13 +438,13 @@ export default function MovementForm({
                                 </div>
                             </div>
 
-                            <div className="space-y-3 rounded-lg border border-slate-200 p-4">
+                            <div className="space-y-3 rounded-lg border border-border p-4">
                                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                                     <div>
-                                        <p className="text-sm font-semibold text-slate-800">
+                                        <p className="text-sm font-semibold text-foreground">
                                             Kit padrão do setor {currentDepartment ? `— ${currentDepartment.name}` : ''}
                                         </p>
-                                        <p className="text-xs text-slate-500">
+                                        <p className="text-xs text-muted-foreground">
                                             Aplique o kit sugerido ou adicione itens avulsos logo abaixo.
                                         </p>
                                     </div>
@@ -456,7 +456,7 @@ export default function MovementForm({
                                 </div>
 
                                 {currentKit ? (
-                                    <div className="space-y-1 text-sm text-slate-700">
+                                    <div className="space-y-1 text-sm text-muted-foreground">
                                         {(currentKit.items ?? []).map((item, index) => (
                                             <div key={`${item.id}-${index}`} className="flex flex-wrap gap-2">
                                                 <span className="font-medium">{item.epi ?? 'EPI'}</span>
@@ -474,10 +474,10 @@ export default function MovementForm({
                                         ))}
                                     </div>
                                 ) : (
-                                    <p className="text-sm text-slate-500">Nenhum kit disponível para o setor selecionado.</p>
+                                    <p className="text-sm text-muted-foreground">Nenhum kit disponível para o setor selecionado.</p>
                                 )}
                                 {noKitDepartmentId === selectedDepartmentId && (
-                                    <p className="text-xs text-slate-500">
+                                    <p className="text-xs text-muted-foreground">
                                         Configure um kit em Administrativo &gt; Departamentos para acelerar o lançamento.
                                     </p>
                                 )}
@@ -485,19 +485,19 @@ export default function MovementForm({
 
                             <div className="space-y-4">
                                 <div className="flex items-center justify-between">
-                                    <p className="text-sm font-semibold text-slate-800">Itens</p>
+                                    <p className="text-sm font-semibold text-foreground">Itens</p>
                                     <Button type="button" variant="outline" onClick={addItem}>
                                         Adicionar item
                                     </Button>
                                 </div>
 
                                 {data.items.map((item, index) => (
-                                    <div key={`item-${index}`} className="rounded-lg border border-slate-200 p-4">
+                                    <div key={`item-${index}`} className="rounded-lg border border-border p-4">
                                         <div className="flex flex-wrap items-center justify-between gap-2">
-                                            <p className="text-sm font-semibold text-slate-800">Item #{index + 1}</p>
+                                            <p className="text-sm font-semibold text-foreground">Item #{index + 1}</p>
                                             <div className="flex items-center gap-2">
                                                 {item.origin === 'kit' && (
-                                                    <Badge variant="outline" className="text-slate-600">
+                                                    <Badge variant="outline" className="text-muted-foreground">
                                                         Adicionado via kit do setor
                                                     </Badge>
                                                 )}
@@ -516,7 +516,7 @@ export default function MovementForm({
 
                                         <div className="mt-3 grid gap-4 md:grid-cols-12">
                                             <div className="space-y-2 md:col-span-6">
-                                                <label className="text-xs font-medium text-slate-600">Item de EPI</label>
+                                                <label className="text-xs font-medium text-muted-foreground">Item de EPI</label>
                                                 <select
                                                     className={inputBaseClass}
                                                     value={item.epi_id}
@@ -540,7 +540,7 @@ export default function MovementForm({
                                             </div>
 
                                             <div className="space-y-2 md:col-span-3">
-                                                <label className="text-xs font-medium text-slate-600">Quantidade</label>
+                                                <label className="text-xs font-medium text-muted-foreground">Quantidade</label>
                                                 <input
                                                     type="number"
                                                     min="1"
@@ -554,7 +554,7 @@ export default function MovementForm({
                                             </div>
 
                                             <div className="space-y-2 md:col-span-3">
-                                                <label className="text-xs font-medium text-slate-600">
+                                                <label className="text-xs font-medium text-muted-foreground">
                                                     Observações
                                                 </label>
                                                 <input
@@ -572,7 +572,7 @@ export default function MovementForm({
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="notes" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="notes" className="text-sm font-medium text-muted-foreground">
                                     Observações gerais (opcional)
                                 </label>
                                 <textarea
@@ -601,16 +601,16 @@ export default function MovementForm({
             <Modal show={kitModal.open} onClose={cancelKitModal}>
                 <div className="space-y-4 p-6">
                     <div>
-                        <h2 className="text-lg font-semibold text-slate-900">
+                        <h2 className="text-lg font-semibold text-foreground">
                             Kit padrão do setor — {kitModal.department ?? 'Setor'}
                         </h2>
-                        <p className="text-sm text-slate-600">
+                        <p className="text-sm text-muted-foreground">
                             Confirme os itens sugeridos para aplicar automaticamente na movimentação.
                         </p>
                     </div>
 
                     <div className="space-y-2">
-                        <div className="grid gap-2 text-sm font-medium text-slate-600 md:grid-cols-12">
+                        <div className="grid gap-2 text-sm font-medium text-muted-foreground md:grid-cols-12">
                             <span className="md:col-span-4">Item</span>
                             <span className="md:col-span-2">Tamanho</span>
                             <span className="md:col-span-2">Quantidade</span>
@@ -621,7 +621,7 @@ export default function MovementForm({
                             {kitModal.items.map((item, index) => (
                                 <div
                                     key={`${item.id}-${index}`}
-                                    className="grid items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 md:grid-cols-12"
+                                    className="grid items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm text-muted-foreground md:grid-cols-12"
                                 >
                                     <span className="font-semibold md:col-span-4">{item.epi ?? 'EPI'}</span>
                                     <span className="md:col-span-2">{item.size ?? '-'}</span>
@@ -641,7 +641,7 @@ export default function MovementForm({
                                 </div>
                             ))}
                         </div>
-                        <p className="text-xs text-slate-500">Você poderá adicionar itens extras após aplicar o kit.</p>
+                        <p className="text-xs text-muted-foreground">Você poderá adicionar itens extras após aplicar o kit.</p>
                     </div>
 
                     <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">

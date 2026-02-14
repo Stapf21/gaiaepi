@@ -259,15 +259,15 @@ export default function EntradasSaidasShow({ delivery, documents = [], document 
                 <Card className="shadow-sm">
                     <CardHeader className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                         <div>
-                            <CardTitle className="text-base font-semibold text-slate-900">
+                            <CardTitle className="text-base font-semibold text-foreground">
                                 {delivery.code}
                             </CardTitle>
-                            <p className="text-sm text-slate-600">
+                            <p className="text-sm text-muted-foreground">
                                 {delivery.employee?.name ?? 'Colaborador nao informado'}
                             </p>
                         </div>
                         <div className="flex flex-wrap items-center gap-3">
-                            <Badge className={statusColor[delivery.status] ?? 'bg-slate-200 text-slate-700'}>
+                            <Badge className={statusColor[delivery.status] ?? 'bg-slate-200 text-muted-foreground'}>
                                 {formatStatus(delivery.status)}
                             </Badge>
                             <div className="flex items-center gap-2">
@@ -305,35 +305,35 @@ export default function EntradasSaidasShow({ delivery, documents = [], document 
                     </CardHeader>
                     <CardContent className="grid gap-4 sm:grid-cols-2">
                         <div>
-                            <p className="text-xs font-medium uppercase text-slate-500">Colaborador</p>
-                            <p className="text-sm text-slate-800">{delivery.employee?.name ?? '-'}</p>
+                            <p className="text-xs font-medium uppercase text-muted-foreground">Colaborador</p>
+                            <p className="text-sm text-foreground">{delivery.employee?.name ?? '-'}</p>
                         </div>
                         <div>
-                            <p className="text-xs font-medium uppercase text-slate-500">Cargo</p>
-                            <p className="text-sm text-slate-800">{delivery.employee?.position ?? '-'}</p>
+                            <p className="text-xs font-medium uppercase text-muted-foreground">Cargo</p>
+                            <p className="text-sm text-foreground">{delivery.employee?.position ?? '-'}</p>
                         </div>
                         <div>
-                            <p className="text-xs font-medium uppercase text-slate-500">Departamento</p>
-                            <p className="text-sm text-slate-800">{delivery.employee?.department ?? '-'}</p>
+                            <p className="text-xs font-medium uppercase text-muted-foreground">Departamento</p>
+                            <p className="text-sm text-foreground">{delivery.employee?.department ?? '-'}</p>
                         </div>
                         <div>
-                            <p className="text-xs font-medium uppercase text-slate-500">Data da entrega</p>
-                            <p className="text-sm text-slate-800">{delivery.delivered_at ?? '-'}</p>
+                            <p className="text-xs font-medium uppercase text-muted-foreground">Data da entrega</p>
+                            <p className="text-sm text-foreground">{delivery.delivered_at ?? '-'}</p>
                         </div>
                         <div>
-                            <p className="text-xs font-medium uppercase text-slate-500">Retorno previsto</p>
-                            <p className="text-sm text-slate-800">{delivery.expected_return_at ?? '-'}</p>
+                            <p className="text-xs font-medium uppercase text-muted-foreground">Retorno previsto</p>
+                            <p className="text-sm text-foreground">{delivery.expected_return_at ?? '-'}</p>
                         </div>
                         <div>
-                            <p className="text-xs font-medium uppercase text-slate-500">Observacoes</p>
-                            <p className="text-sm text-slate-800">{delivery.notes ?? '-'}</p>
+                            <p className="text-xs font-medium uppercase text-muted-foreground">Observacoes</p>
+                            <p className="text-sm text-foreground">{delivery.notes ?? '-'}</p>
                         </div>
                     </CardContent>
                 </Card>
 
                 <Card className="shadow-sm">
                     <CardHeader>
-                        <CardTitle className="text-base font-semibold text-slate-900">
+                        <CardTitle className="text-base font-semibold text-foreground">
                             Equipamentos entregues
                         </CardTitle>
                     </CardHeader>
@@ -374,7 +374,7 @@ export default function EntradasSaidasShow({ delivery, documents = [], document 
                 <Card className="shadow-sm">
                     <CardHeader className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
                         <div>
-                            <CardTitle className="text-base font-semibold text-slate-900">
+                            <CardTitle className="text-base font-semibold text-foreground">
                                 Assinatura eletrônica
                             </CardTitle>
                             <p className="text-sm text-muted-foreground">
@@ -385,20 +385,20 @@ export default function EntradasSaidasShow({ delivery, documents = [], document 
                     <CardContent className="space-y-3">
                         {hasSignature ? (
                             <div className="space-y-2">
-                                <div className="rounded-md border border-slate-200 bg-white p-3">
+                                <div className="rounded-md border border-border bg-card/70 dark:bg-slate-950/40 p-3">
                                     <img
                                         src={signatureInfo.url}
                                         alt="Assinatura do colaborador"
                                         className="h-24 w-full object-contain"
                                     />
                                 </div>
-                                <p className="text-sm text-slate-600">
+                                <p className="text-sm text-muted-foreground">
                                     Assinado por{' '}
                                     <span className="font-semibold">{signatureInfo.signed_by ?? 'Colaborador'}</span>
                                     {signatureInfo.signed_at ? ` em ${signatureInfo.signed_at}` : ''}.
                                 </p>
                                 {signatureInfo.collected_by && (
-                                    <p className="text-xs text-slate-500">
+                                    <p className="text-xs text-muted-foreground">
                                         Registrado por {signatureInfo.collected_by}.
                                     </p>
                                 )}
@@ -424,7 +424,7 @@ export default function EntradasSaidasShow({ delivery, documents = [], document 
 
                 <Card className="shadow-sm">
                     <CardHeader>
-                        <CardTitle className="text-base font-semibold text-slate-900">
+                        <CardTitle className="text-base font-semibold text-foreground">
                             Documentos
                         </CardTitle>
                     </CardHeader>
@@ -432,13 +432,13 @@ export default function EntradasSaidasShow({ delivery, documents = [], document 
                         <form
                             onSubmit={submitDocument}
                             encType="multipart/form-data"
-                            className="flex flex-col gap-3 rounded-md border border-dashed border-slate-300 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between"
+                            className="flex flex-col gap-3 rounded-md border border-dashed border-border bg-muted dark:bg-slate-900/40 p-4 sm:flex-row sm:items-center sm:justify-between"
                         >
                             <div>
-                                <p className="text-sm font-medium text-slate-800">
+                                <p className="text-sm font-medium text-foreground">
                                     Enviar documento assinado (PDF)
                                 </p>
-                                <p className="text-xs text-slate-500">
+                                <p className="text-xs text-muted-foreground">
                                     O arquivo sera adicionado como uma nova versao assinada.
                                 </p>
                             </div>
@@ -475,13 +475,13 @@ export default function EntradasSaidasShow({ delivery, documents = [], document 
                                 documentRows.map((doc) => (
                                     <div
                                         key={doc.id}
-                                        className="flex flex-col gap-3 rounded-md border border-slate-200 bg-white p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between"
+                                        className="flex flex-col gap-3 rounded-md border border-border bg-card/70 dark:bg-slate-950/40 p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between"
                                     >
                                         <div>
-                                            <p className="text-sm font-medium text-slate-800">
+                                            <p className="text-sm font-medium text-foreground">
                                                 {doc.label} • Versao {doc.version.toString().padStart(2, '0')}
                                             </p>
-                                            <p className="text-xs text-slate-500">
+                                            <p className="text-xs text-muted-foreground">
                                                 {doc.created_at ?? '-'}
                                             </p>
                                         </div>
@@ -538,7 +538,7 @@ export default function EntradasSaidasShow({ delivery, documents = [], document 
                             )}
                         </div>
                     </CardContent>
-                    <CardFooter className="text-xs text-slate-500">
+                    <CardFooter className="text-xs text-muted-foreground">
                         A declaracao utilizada pode ser personalizada em Configuracoes → Preferencias do sistema.
                     </CardFooter>
                 </Card>
@@ -548,20 +548,20 @@ export default function EntradasSaidasShow({ delivery, documents = [], document 
                 <form onSubmit={submitSignature}>
                     <div className="space-y-4 p-6">
                         <div>
-                            <h3 className="text-base font-semibold text-slate-900">Registrar assinatura</h3>
-                            <p className="text-sm text-slate-500">
+                            <h3 className="text-base font-semibold text-foreground">Registrar assinatura</h3>
+                            <p className="text-sm text-muted-foreground">
                                 Utilize a mesa digitalizadora ou o mouse para coletar a assinatura do colaborador.
                             </p>
                         </div>
 
                         <div className="space-y-2">
-                            <label htmlFor="signed_by_name" className="text-sm font-medium text-slate-700">
+                            <label htmlFor="signed_by_name" className="text-sm font-medium text-muted-foreground">
                                 Nome do colaborador
                             </label>
                             <input
                                 id="signed_by_name"
                                 type="text"
-                                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none"
+                                className="w-full rounded-md border border-border px-3 py-2 text-sm focus:border-slate-500 focus:outline-none"
                                 value={signatureForm.data.signed_by_name}
                                 onChange={(event) => signatureForm.setData('signed_by_name', event.target.value)}
                                 placeholder="Nome para exibir no relatório"
@@ -570,8 +570,8 @@ export default function EntradasSaidasShow({ delivery, documents = [], document 
                         </div>
 
                         <div className="space-y-2">
-                            <p className="text-sm font-medium text-slate-700">Assine no quadro abaixo</p>
-                            <div className="rounded-md border border-slate-300 bg-white">
+                            <p className="text-sm font-medium text-muted-foreground">Assine no quadro abaixo</p>
+                            <div className="rounded-md border border-border bg-card">
                                 <canvas
                                     ref={signatureCanvasRef}
                                     className="h-48 w-full"
@@ -586,7 +586,7 @@ export default function EntradasSaidasShow({ delivery, documents = [], document 
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-end gap-3 border-t border-slate-100 bg-slate-50 px-6 py-4">
+                    <div className="flex justify-end gap-3 border-t border-border bg-muted dark:bg-slate-900/40 px-6 py-4">
                         <Button type="button" variant="outline" onClick={closeSignatureModal}>
                             Cancelar
                         </Button>

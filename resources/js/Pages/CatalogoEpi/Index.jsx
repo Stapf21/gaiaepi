@@ -1,4 +1,4 @@
-﻿import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.jsx';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.jsx';
 import { Head, Link } from '@inertiajs/react';
 import { useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -25,16 +25,16 @@ export default function CatalogoEpiIndex({ stats = {}, epis }) {
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
                         <div className="mb-2 flex flex-wrap items-center gap-2">
-                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700">
+                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 <ClipboardList className="mr-1 h-3 w-3" />
                                 Catálogo técnico
                             </Badge>
-                            <Badge variant="outline" className="border-blue-100 bg-white text-blue-700">
+                            <Badge variant="outline" className="border-blue-100 bg-card text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 <ShieldCheck className="mr-1 h-3 w-3" />
                                 Controle de itens
                             </Badge>
                         </div>
-                        <h1 className="text-2xl font-semibold text-slate-900">Catálogo de EPIs</h1>
+                        <h1 className="text-2xl font-semibold text-foreground">Catálogo de EPIs</h1>
                         <p className="text-sm text-muted-foreground">Acompanhe itens cadastrados, categorias e sinalizadores de estoque.</p>
                     </div>
                     <Button asChild>
@@ -46,56 +46,56 @@ export default function CatalogoEpiIndex({ stats = {}, epis }) {
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-3">
-                    <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 shadow-sm">
+                    <Card className="border-border bg-gradient-to-br from-blue-50 via-white to-sky-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40 shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-sm font-medium uppercase tracking-wide text-slate-600">EPIs cadastrados</CardTitle>
+                            <CardTitle className="text-sm font-medium uppercase tracking-wide text-muted-foreground">EPIs cadastrados</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-3xl font-semibold text-slate-900">{totalEpis}</p>
+                            <p className="text-3xl font-semibold text-foreground">{totalEpis}</p>
                             <p className="text-xs text-muted-foreground">Total de equipamentos disponíveis no catálogo.</p>
                         </CardContent>
                     </Card>
 
-                    <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-indigo-50 shadow-sm">
+                    <Card className="border-border bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40 shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-sm font-medium uppercase tracking-wide text-slate-600">Categorias</CardTitle>
+                            <CardTitle className="text-sm font-medium uppercase tracking-wide text-muted-foreground">Categorias</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-3xl font-semibold text-slate-900">{categories}</p>
+                            <p className="text-3xl font-semibold text-foreground">{categories}</p>
                             <p className="text-xs text-muted-foreground">Organização por tipo e uso operacional.</p>
                         </CardContent>
                     </Card>
 
-                    <Card className="border-rose-100 bg-gradient-to-br from-rose-50 via-white to-rose-50 shadow-sm">
+                    <Card className="border-border bg-gradient-to-br from-rose-50 via-white to-rose-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40 shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-sm font-medium uppercase tracking-wide text-slate-600">Alertas de estoque mínimo</CardTitle>
+                            <CardTitle className="text-sm font-medium uppercase tracking-wide text-muted-foreground">Alertas de estoque mínimo</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-3xl font-semibold text-slate-900">{stockMinAlerts}</p>
+                            <p className="text-3xl font-semibold text-foreground">{stockMinAlerts}</p>
                             <p className="text-xs text-muted-foreground">Itens com necessidade de reposição.</p>
                         </CardContent>
                     </Card>
                 </div>
 
                 <section className="grid gap-4 lg:grid-cols-[2fr_1fr]">
-                    <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 shadow-sm">
+                    <Card className="border-border bg-gradient-to-br from-blue-50 via-white to-sky-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40 shadow-sm">
                         <CardContent className="p-5">
                             <p className="text-xs font-semibold uppercase tracking-wider text-blue-700">Panorama do catálogo</p>
-                            <h2 className="mt-1 text-xl font-semibold text-slate-900">Visão consolidada dos equipamentos</h2>
-                            <p className="mt-1 text-sm text-slate-600">Consistência do cadastro e distribuição dos itens por categoria.</p>
+                            <h2 className="mt-1 text-xl font-semibold text-foreground">Visão consolidada dos equipamentos</h2>
+                            <p className="mt-1 text-sm text-muted-foreground">Consistência do cadastro e distribuição dos itens por categoria.</p>
 
                             <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                                <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                     <p className="text-xs text-blue-700">Com número de CA</p>
-                                    <p className="text-sm font-semibold text-slate-900">{withCa}</p>
+                                    <p className="text-sm font-semibold text-foreground">{withCa}</p>
                                 </div>
-                                <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                     <p className="text-xs text-blue-700">Sem número de CA</p>
-                                    <p className="text-sm font-semibold text-slate-900">{Math.max(0, totalEpis - withCa)}</p>
+                                    <p className="text-sm font-semibold text-foreground">{Math.max(0, totalEpis - withCa)}</p>
                                 </div>
-                                <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                     <p className="text-xs text-blue-700">Média por categoria</p>
-                                    <p className="text-sm font-semibold text-slate-900">
+                                    <p className="text-sm font-semibold text-foreground">
                                         {categories > 0 ? (totalEpis / categories).toFixed(1) : '0.0'}
                                     </p>
                                 </div>
@@ -105,7 +105,7 @@ export default function CatalogoEpiIndex({ stats = {}, epis }) {
 
                     <Card className="shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-base font-medium text-slate-700">Sinalizadores</CardTitle>
+                            <CardTitle className="text-base font-medium text-muted-foreground">Sinalizadores</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3 text-sm">
                             <div className="flex items-center justify-between rounded-lg bg-rose-50 px-3 py-2">
@@ -115,7 +115,7 @@ export default function CatalogoEpiIndex({ stats = {}, epis }) {
                                 </span>
                                 <span className="font-semibold text-rose-700">{stockMinAlerts}</span>
                             </div>
-                            <div className="flex items-center justify-between rounded-lg bg-blue-50 px-3 py-2">
+                            <div className="flex items-center justify-between rounded-lg bg-blue-50/70 dark:bg-slate-950/60 dark:bg-blue-500/10 px-3 py-2">
                                 <span className="inline-flex items-center gap-2 font-medium text-blue-700">
                                     <Tags className="h-4 w-4" />
                                     Categorias
@@ -128,14 +128,14 @@ export default function CatalogoEpiIndex({ stats = {}, epis }) {
 
                 <Card className="shadow-sm">
                     <CardHeader>
-                        <CardTitle className="text-base font-semibold text-slate-800">Inventário</CardTitle>
+                        <CardTitle className="text-base font-semibold text-foreground">Inventário</CardTitle>
                         <p className="text-sm text-muted-foreground">Lista dos EPIs cadastrados com dados principais e acesso rápido.</p>
                     </CardHeader>
                     <CardContent>
-                        <div className="overflow-x-auto rounded-lg border border-slate-200">
+                        <div className="overflow-x-auto rounded-lg border border-border">
                             <Table>
                                 <TableHeader>
-                                    <TableRow className="bg-blue-50/70">
+                                    <TableRow className="bg-blue-50/70 dark:bg-slate-950/60">
                                         <TableHead>Nome</TableHead>
                                         <TableHead>Categoria</TableHead>
                                         <TableHead>CA</TableHead>
@@ -147,8 +147,8 @@ export default function CatalogoEpiIndex({ stats = {}, epis }) {
                                 <TableBody>
                                     {epis?.data?.length ? (
                                         epis.data.map((epi) => (
-                                            <TableRow key={epi.id} className="transition-colors hover:bg-slate-50">
-                                                <TableCell className="font-medium text-slate-900">{epi.name}</TableCell>
+                                            <TableRow key={epi.id} className="transition-colors hover:bg-muted/50 dark:hover:bg-slate-900/40">
+                                                <TableCell className="font-medium text-foreground">{epi.name}</TableCell>
                                                 <TableCell>{epi.category ?? '-'}</TableCell>
                                                 <TableCell>{epi.ca_number ?? '-'}</TableCell>
                                                 <TableCell>{epi.unit}</TableCell>

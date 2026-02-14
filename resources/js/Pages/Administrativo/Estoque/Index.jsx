@@ -1,4 +1,4 @@
-﻿import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.jsx';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.jsx';
 import InputError from '@/Components/InputError.jsx';
 import { Head, Link, router, useForm } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
@@ -156,16 +156,16 @@ export default function EstoqueIndex({
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
                         <div className="mb-2 flex flex-wrap items-center gap-2">
-                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700">
+                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 <Boxes className="mr-1 h-3 w-3" />
                                 Controle de estoque
                             </Badge>
-                            <Badge variant="outline" className="border-blue-100 bg-white text-blue-700">
+                            <Badge variant="outline" className="border-blue-100 bg-card text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 <ShieldCheck className="mr-1 h-3 w-3" />
                                 Visao operacional
                             </Badge>
                         </div>
-                        <h1 className="text-2xl font-semibold text-slate-900">Gestão de EPIs e estoque</h1>
+                        <h1 className="text-2xl font-semibold text-foreground">Gestão de EPIs e estoque</h1>
                         <p className="text-sm text-muted-foreground">
                             Controle centralizado do catálogo de EPIs, posição de estoque e reposições.
                         </p>
@@ -181,75 +181,75 @@ export default function EstoqueIndex({
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                    <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 shadow-sm">
+                    <Card className="border-border bg-gradient-to-br from-blue-50 via-white to-sky-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40 shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-sm font-medium text-slate-600 uppercase tracking-wide">
+                            <CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
                                 Itens monitorados
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-3xl font-semibold text-slate-900">{totalItems}</p>
+                            <p className="text-3xl font-semibold text-foreground">{totalItems}</p>
                             <p className="text-xs text-muted-foreground">EPIs com movimentações e controle de estoque.</p>
                         </CardContent>
                     </Card>
-                    <Card className="border-rose-100 bg-gradient-to-br from-rose-50 via-white to-rose-50 shadow-sm">
+                    <Card className="border-border bg-gradient-to-br from-rose-50 via-white to-rose-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40 shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-sm font-medium text-slate-600 uppercase tracking-wide">
+                            <CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
                                 Abaixo do mínimo
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-3xl font-semibold text-slate-900">{belowMinCount}</p>
+                            <p className="text-3xl font-semibold text-foreground">{belowMinCount}</p>
                             <p className="text-xs text-muted-foreground">Itens que atingiram ou ultrapassaram o limite mínimo definido.</p>
                         </CardContent>
                     </Card>
-                    <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-indigo-50 shadow-sm">
+                    <Card className="border-border bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40 shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-sm font-medium text-slate-600 uppercase tracking-wide">
+                            <CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
                                 EPIs cadastrados
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-3xl font-semibold text-slate-900">{totalCatalog}</p>
+                            <p className="text-3xl font-semibold text-foreground">{totalCatalog}</p>
                             <p className="text-xs text-muted-foreground">Total de itens disponíveis no catálogo.</p>
                         </CardContent>
                     </Card>
-                    <Card className="border-blue-100 bg-gradient-to-br from-slate-50 via-white to-blue-50 shadow-sm">
+                    <Card className="border-border bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40 shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-sm font-medium text-slate-600 uppercase tracking-wide">
+                            <CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
                                 Categorias e alertas
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-3xl font-semibold text-slate-900">{categoryCount}</p>
+                            <p className="text-3xl font-semibold text-foreground">{categoryCount}</p>
                             <p className="text-xs text-muted-foreground">Categorias ativas • Alertas mínimos: {minAlerts}</p>
                         </CardContent>
                     </Card>
                 </div>
 
                 <section className="grid gap-4 lg:grid-cols-[2fr_1fr]">
-                    <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 shadow-sm">
+                    <Card className="border-border bg-gradient-to-br from-blue-50 via-white to-sky-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40 shadow-sm">
                         <CardContent className="p-5">
                             <div className="flex flex-wrap items-start justify-between gap-4">
                                 <div>
                                     <p className="text-xs font-semibold uppercase tracking-wider text-blue-700">Panorama do estoque</p>
-                                    <h2 className="mt-1 text-xl font-semibold text-slate-900">Saude operacional dos itens</h2>
-                                    <p className="mt-1 text-sm text-slate-600">
+                                    <h2 className="mt-1 text-xl font-semibold text-foreground">Saude operacional dos itens</h2>
+                                    <p className="mt-1 text-sm text-muted-foreground">
                                         Visao consolidada dos itens com cobertura minima, status critico e disponibilidade geral.
                                     </p>
                                 </div>
                                 <div className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-3">
-                                    <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                    <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                         <p className="text-xs text-blue-700">Itens saudaveis</p>
-                                        <p className="text-lg font-semibold text-slate-900">{healthyCount}</p>
+                                        <p className="text-lg font-semibold text-foreground">{healthyCount}</p>
                                     </div>
-                                    <div className="rounded-lg border border-rose-100 bg-white px-3 py-2">
+                                    <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                         <p className="text-xs text-rose-700">Criticos</p>
-                                        <p className="text-lg font-semibold text-slate-900">{criticalCount}</p>
+                                        <p className="text-lg font-semibold text-foreground">{criticalCount}</p>
                                     </div>
-                                    <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                    <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                         <p className="text-xs text-blue-700">Cobertura media</p>
-                                        <p className="text-lg font-semibold text-slate-900">{stockCoverage !== null ? `${stockCoverage}%` : '-'}
+                                        <p className="text-lg font-semibold text-foreground">{stockCoverage !== null ? `${stockCoverage}%` : '-'}
                                         </p>
                                     </div>
                                 </div>
@@ -269,19 +269,19 @@ export default function EstoqueIndex({
                                 </span>
                                 <span className="font-semibold text-rose-700">{belowMinCount}</span>
                             </div>
-                            <div className="flex items-center justify-between rounded-lg bg-blue-50 px-3 py-2 text-sm">
+                            <div className="flex items-center justify-between rounded-lg bg-blue-50/70 dark:bg-slate-950/60 dark:bg-blue-500/10 px-3 py-2 text-sm">
                                 <span className="inline-flex items-center gap-2 font-medium text-blue-700">
                                     <PackageCheck className="h-4 w-4" />
                                     Em conformidade
                                 </span>
                                 <span className="font-semibold text-blue-700">{healthyCount}</span>
                             </div>
-                            <div className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 text-sm">
-                                <span className="inline-flex items-center gap-2 font-medium text-slate-700">
+                            <div className="flex items-center justify-between rounded-lg bg-muted dark:bg-slate-900/40 px-3 py-2 text-sm">
+                                <span className="inline-flex items-center gap-2 font-medium text-muted-foreground">
                                     <Activity className="h-4 w-4" />
                                     Itens filtrados
                                 </span>
-                                <span className="font-semibold text-slate-700">{filteredItems.length}</span>
+                                <span className="font-semibold text-muted-foreground">{filteredItems.length}</span>
                             </div>
                         </CardContent>
                     </Card>
@@ -297,10 +297,10 @@ export default function EstoqueIndex({
                             </TabsList>
 
                             <TabsContent value="stock" className="space-y-4 px-6 py-6">
-                                <div className="space-y-4 rounded-lg border border-blue-100 bg-gradient-to-r from-blue-50/60 to-white p-4">
+                                <div className="space-y-4 rounded-lg border border-border bg-gradient-to-r from-blue-50/60 to-background dark:from-slate-950 dark:to-slate-900/40 p-4">
                                     <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                                     <div className="flex-1 space-y-2">
-                                        <label htmlFor="stock_search" className="text-xs font-semibold uppercase tracking-wide text-slate-500">Buscar por nome ou CA</label>
+                                        <label htmlFor="stock_search" className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Buscar por nome ou CA</label>
                                         <input
                                             id="stock_search"
                                             type="text"
@@ -311,7 +311,7 @@ export default function EstoqueIndex({
                                         />
                                     </div>
                                     <div className="flex flex-wrap items-center gap-2">
-                                        <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">Filtro rápido</span>
+                                        <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Filtro rápido</span>
                                         {[
                                             { id: 'all', label: 'Todos' },
                                             { id: 'below', label: 'Abaixo do mínimo' },
@@ -325,7 +325,7 @@ export default function EstoqueIndex({
                                                     'rounded-full border px-3 py-1 text-xs font-medium transition',
                                                     stockFilter === option.id
                                                         ? 'border-blue-700 bg-blue-700 text-white'
-                                                        : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-100',
+                                                        : 'border-border bg-background text-muted-foreground hover:bg-accent hover:text-accent-foreground',
                                                 )}
                                             >
                                                 {option.label}
@@ -333,7 +333,7 @@ export default function EstoqueIndex({
                                         ))}
                                     </div>
                                     <div className="flex flex-wrap items-center gap-2">
-                                        <label htmlFor="stock_sort" className="text-xs font-semibold uppercase tracking-wide text-slate-500">Ordenar por</label>
+                                        <label htmlFor="stock_sort" className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Ordenar por</label>
                                         <select
                                             id="stock_sort"
                                             className={inputBaseClass}
@@ -346,15 +346,15 @@ export default function EstoqueIndex({
                                         <button
                                             type="button"
                                             onClick={() => setSortDir(sortDir === 'asc' ? 'desc' : 'asc')}
-                                            className="rounded-md border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-600 transition hover:bg-slate-100"
+                                            className="rounded-md border border-border bg-background px-3 py-2 text-xs font-semibold text-muted-foreground transition hover:bg-accent hover:text-accent-foreground"
                                         >
                                             {sortDir === 'asc' ? 'Asc' : 'Desc'}
                                         </button>
                                     </div>
                                     </div>
 
-                                    <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-blue-100 bg-white/80 px-3 py-2 text-xs text-slate-600">
-                                        <span>Exibindo <strong className="text-slate-900">{filteredItems.length}</strong> de <strong className="text-slate-900">{items.length}</strong> itens</span>
+                                    <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2 text-xs text-muted-foreground">
+                                        <span>Exibindo <strong className="text-foreground">{filteredItems.length}</strong> de <strong className="text-foreground">{items.length}</strong> itens</span>
                                         <span className="inline-flex items-center gap-1 text-rose-700">
                                             <AlertTriangle className="h-3.5 w-3.5" />
                                             Criticos: <strong>{criticalCount}</strong>
@@ -365,24 +365,24 @@ export default function EstoqueIndex({
                                 {items.length === 0 ? (
                                     <p className="text-sm text-muted-foreground">Nenhuma movimentação de estoque registrada até o momento.</p>
                                 ) : filteredItems.length === 0 ? (
-                                    <div className="rounded-lg border border-dashed border-slate-200 bg-slate-50 p-6 text-center text-sm text-slate-600">
+                                    <div className="rounded-lg border border-dashed border-border bg-muted dark:bg-slate-900/40 p-6 text-center text-sm text-muted-foreground">
                                         Nenhum item encontrado para os filtros aplicados.
                                     </div>
                                 ) : (
                                     <div className="overflow-x-auto">
-                                        <table className="min-w-full divide-y divide-slate-200">
-                                            <thead className="bg-blue-50/70">
+                                        <table className="min-w-full divide-y divide-border">
+                                            <thead className="bg-blue-50/70 dark:bg-slate-950/60">
                                                 <tr>
-                                                    <th className="w-5/12 px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">Item</th>
-                                                    <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">Entradas</th>
-                                                    <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">Entregas</th>
-                                                    <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">Disponível</th>
-                                                    <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">Mínimo</th>
-                                                    <th className="px-4 py-2 text-center text-xs font-semibold uppercase tracking-wider text-slate-500">Risco</th>
-                                                    <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">Status</th>
+                                                    <th className="w-5/12 px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">Item</th>
+                                                    <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">Entradas</th>
+                                                    <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">Entregas</th>
+                                                    <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">Disponível</th>
+                                                    <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">Mínimo</th>
+                                                    <th className="px-4 py-2 text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground">Risco</th>
+                                                    <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">Status</th>
                                                 </tr>
                                             </thead>
-                                            <tbody className="divide-y divide-slate-200 bg-white">
+                                            <tbody className="divide-y divide-border bg-card">
                                                 {filteredItems.map((item) => {
                                                     const minStock = Number(item.min_stock ?? 0);
                                                     const available = Number(item.available ?? 0);
@@ -394,20 +394,20 @@ export default function EstoqueIndex({
                                                     return (
                                                         <tr
                                                             key={item.id}
-                                                            className={clsx('transition-colors hover:bg-slate-50', {
+                                                            className={clsx('transition-colors hover:bg-muted/50 dark:hover:bg-slate-900/40', {
                                                                 'bg-red-50/60 hover:bg-red-50': item.is_below_min,
                                                             })}
                                                         >
                                                             <td className="w-5/12 px-4 py-3">
-                                                                <p className="break-words text-sm font-semibold text-slate-900">{item.name}</p>
+                                                                <p className="break-words text-sm font-semibold text-foreground">{item.name}</p>
                                                                 {item.ca_number ? (
-                                                                    <p className="text-xs text-slate-500">CA {item.ca_number}</p>
+                                                                    <p className="text-xs text-muted-foreground">CA {item.ca_number}</p>
                                                                 ) : null}
                                                             </td>
-                                                            <td className="px-4 py-3 text-right text-sm text-slate-700">{item.total_entries}</td>
-                                                            <td className="px-4 py-3 text-right text-sm text-slate-700">{item.total_deliveries}</td>
-                                                            <td className="px-4 py-3 text-right text-sm font-semibold text-slate-900">{available}</td>
-                                                            <td className="px-4 py-3 text-right text-sm text-slate-700">{item.min_stock ?? '-'}</td>
+                                                            <td className="px-4 py-3 text-right text-sm text-muted-foreground">{item.total_entries}</td>
+                                                            <td className="px-4 py-3 text-right text-sm text-muted-foreground">{item.total_deliveries}</td>
+                                                            <td className="px-4 py-3 text-right text-sm font-semibold text-foreground">{available}</td>
+                                                            <td className="px-4 py-3 text-right text-sm text-muted-foreground">{item.min_stock ?? '-'}</td>
                                                             <td className="px-4 py-3 text-center">
                                                                 {ratio !== null ? (
                                                                     <div className="flex flex-col items-center gap-1">
@@ -420,7 +420,7 @@ export default function EstoqueIndex({
                                                                                 style={{ width: `${ratio}%` }}
                                                                             />
                                                                         </div>
-                                                                        <span className="text-[11px] text-slate-500">{ratio}%</span>
+                                                                        <span className="text-[11px] text-muted-foreground">{ratio}%</span>
                                                                     </div>
                                                                 ) : (
                                                                     <span className="text-xs text-slate-400">—</span>
@@ -453,7 +453,7 @@ export default function EstoqueIndex({
                                 <div className="overflow-x-auto">
                                     <Table>
                                         <TableHeader>
-                                            <TableRow className="bg-blue-50/70">
+                                            <TableRow className="bg-blue-50/70 dark:bg-slate-950/60">
                                                 <TableHead>Nome</TableHead>
                                                 <TableHead>Categoria</TableHead>
                                                 <TableHead>CA</TableHead>
@@ -465,7 +465,7 @@ export default function EstoqueIndex({
                                         <TableBody>
                                             {epis?.data?.length ? (
                                                 epis.data.map((epi) => (
-                                                    <TableRow key={epi.id} className="transition-colors hover:bg-slate-50">
+                                                    <TableRow key={epi.id} className="transition-colors hover:bg-muted/50 dark:hover:bg-slate-900/40">
                                                         <TableCell className="font-medium">{epi.name}</TableCell>
                                                         <TableCell>{epi.category ?? '-'}</TableCell>
                                                         <TableCell>{epi.ca_number ?? '-'}</TableCell>
@@ -503,7 +503,7 @@ export default function EstoqueIndex({
                                                 key={link.url ?? link.label}
                                                 href={link.url ?? '#'}
                                                 className={clsx(
-                                                    'rounded-md border border-slate-200 px-3 py-1 text-sm text-slate-600 transition hover:bg-slate-100',
+                                                    'rounded-md border border-border px-3 py-1 text-sm text-muted-foreground transition hover:bg-slate-100',
                                                     {
                                                         'bg-blue-700 text-white hover:bg-blue-700': link.active,
                                                         'pointer-events-none opacity-50': !link.url,
@@ -518,9 +518,9 @@ export default function EstoqueIndex({
 
                             <TabsContent value="categories" className="space-y-6 px-6 py-6">
                                 <div className="space-y-2">
-                                    <h3 className="text-base font-semibold text-slate-900">Categorias de EPI</h3>
+                                    <h3 className="text-base font-semibold text-foreground">Categorias de EPI</h3>
                                     <div className="flex flex-wrap gap-2">
-                                        <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700">
+                                        <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                             <Tags className="mr-1 h-3 w-3" />
                                             {categories.length} categorias
                                         </Badge>
@@ -533,7 +533,7 @@ export default function EstoqueIndex({
                                 </div>
                                 <form onSubmit={submitCategory} className="grid gap-4 md:grid-cols-2">
                                     <div className="space-y-2 md:col-span-2">
-                                        <label htmlFor="category_name" className="text-sm font-medium text-slate-700">Nome da categoria</label>
+                                        <label htmlFor="category_name" className="text-sm font-medium text-muted-foreground">Nome da categoria</label>
                                         <input
                                             id="category_name"
                                             type="text"
@@ -545,7 +545,7 @@ export default function EstoqueIndex({
                                         <InputError message={categoryForm.errors.name} />
                                     </div>
                                     <div className="space-y-2">
-                                        <label htmlFor="category_default_return_days" className="text-sm font-medium text-slate-700">
+                                        <label htmlFor="category_default_return_days" className="text-sm font-medium text-muted-foreground">
                                             Dias para devolução padrão (opcional)
                                         </label>
                                         <input
@@ -559,7 +559,7 @@ export default function EstoqueIndex({
                                         <InputError message={categoryForm.errors.default_return_days} />
                                     </div>
                                     <div className="space-y-2 md:col-span-2">
-                                        <label htmlFor="category_description" className="text-sm font-medium text-slate-700">Descrição (opcional)</label>
+                                        <label htmlFor="category_description" className="text-sm font-medium text-muted-foreground">Descrição (opcional)</label>
                                         <textarea
                                             id="category_description"
                                             className={textareaBaseClass}
@@ -577,28 +577,28 @@ export default function EstoqueIndex({
                                         )}
                                     </div>
                                 </form>
-                                <div className="overflow-hidden rounded-lg border border-slate-200">
-                                    <table className="min-w-full divide-y divide-slate-200">
-                                        <thead className="bg-blue-50/70">
+                                <div className="overflow-hidden rounded-lg border border-border">
+                                    <table className="min-w-full divide-y divide-border">
+                                        <thead className="bg-blue-50/70 dark:bg-slate-950/60">
                                             <tr>
-                                                <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">Categoria</th>
-                                                <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">Devolução padrão</th>
-                                                <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">Ações</th>
+                                                <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">Categoria</th>
+                                                <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">Devolução padrão</th>
+                                                <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">Ações</th>
                                             </tr>
                                         </thead>
-                                        <tbody className="divide-y divide-slate-200 bg-white">
+                                        <tbody className="divide-y divide-border bg-card">
                                             {categories.length === 0 ? (
                                                 <tr>
-                                                    <td className="px-4 py-4 text-sm text-slate-500" colSpan={3}>Nenhuma categoria cadastrada.</td>
+                                                    <td className="px-4 py-4 text-sm text-muted-foreground" colSpan={3}>Nenhuma categoria cadastrada.</td>
                                                 </tr>
                                             ) : (
                                                 categories.map((category) => (
-                                                    <tr key={category.id} className="transition-colors hover:bg-slate-50">
+                                                    <tr key={category.id} className="transition-colors hover:bg-muted/50 dark:hover:bg-slate-900/40">
                                                         <td className="px-4 py-3">
-                                                            <p className="text-sm font-semibold text-slate-900">{category.name}</p>
-                                                            {category.description && <p className="text-xs text-slate-500">{category.description}</p>}
+                                                            <p className="text-sm font-semibold text-foreground">{category.name}</p>
+                                                            {category.description && <p className="text-xs text-muted-foreground">{category.description}</p>}
                                                         </td>
-                                                        <td className="px-4 py-3 text-sm text-slate-700">
+                                                        <td className="px-4 py-3 text-sm text-muted-foreground">
                                                             {category.default_return_days !== null && category.default_return_days !== undefined
                                                                 ? `${category.default_return_days} dias`
                                                                 : 'Não definido'}

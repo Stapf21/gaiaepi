@@ -1,4 +1,4 @@
-﻿import Checkbox from '@/Components/Checkbox';
+import Checkbox from '@/Components/Checkbox';
 import InputError from '@/Components/InputError';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
@@ -38,7 +38,7 @@ export default function Login({ status, canResetPassword }) {
                         type="email"
                         name="email"
                         value={data.email}
-                        className="block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-300"
+                        className="block w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground shadow-sm outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-300"
                         autoComplete="username"
                         autoFocus
                         onChange={(e) => setData('email', e.target.value)}
@@ -55,7 +55,7 @@ export default function Login({ status, canResetPassword }) {
                         type="password"
                         name="password"
                         value={data.password}
-                        className="block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-300"
+                        className="block w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground shadow-sm outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-300"
                         autoComplete="current-password"
                         onChange={(e) => setData('password', e.target.value)}
                     />
@@ -69,13 +69,13 @@ export default function Login({ status, canResetPassword }) {
                             checked={data.remember}
                             onChange={(e) => setData('remember', e.target.checked)}
                         />
-                        <span className="ms-2 text-sm text-slate-600">Lembrar de mim</span>
+                        <span className="ms-2 text-sm text-muted-foreground">Lembrar de mim</span>
                     </label>
 
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="text-sm font-medium text-slate-600 underline underline-offset-2 transition hover:text-slate-900"
+                            className="text-sm font-medium text-muted-foreground underline underline-offset-2 transition hover:text-foreground"
                         >
                             Esqueci minha senha
                         </Link>

@@ -1,4 +1,4 @@
-﻿import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.jsx';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.jsx';
 import InputError from '@/Components/InputError.jsx';
 import Modal from '@/Components/Modal.jsx';
 import { Head, Link, router, useForm } from '@inertiajs/react';
@@ -34,10 +34,10 @@ const formatStatus = (status) => {
 
 export default function FuncionariosShow({ employee, history = {}, links = {}, prompts = {}, can = {} }) {
     const stats = [
-        { label: 'Total de entregas', value: history?.stats?.total ?? 0, tone: 'from-blue-50 via-white to-sky-50' },
-        { label: 'Entregas em aberto', value: history?.stats?.open ?? 0, tone: 'from-amber-50 via-white to-amber-50' },
-        { label: 'Itens em uso', value: history?.stats?.active_items ?? 0, tone: 'from-indigo-50 via-white to-indigo-50' },
-        { label: 'Última entrega', value: history?.stats?.last_delivery_at ?? '-', tone: 'from-slate-50 via-white to-blue-50' },
+        { label: 'Total de entregas', value: history?.stats?.total ?? 0, tone: 'from-blue-50 via-white to-sky-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40' },
+        { label: 'Entregas em aberto', value: history?.stats?.open ?? 0, tone: 'from-amber-50 via-white to-amber-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40' },
+        { label: 'Itens em uso', value: history?.stats?.active_items ?? 0, tone: 'from-indigo-50 via-white to-indigo-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40' },
+        { label: 'Última entrega', value: history?.stats?.last_delivery_at ?? '-', tone: 'from-slate-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40' },
     ];
 
     const deliveries = history?.deliveries ?? [];
@@ -115,20 +115,20 @@ export default function FuncionariosShow({ employee, history = {}, links = {}, p
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
                         <div className="mb-2 flex flex-wrap items-center gap-2">
-                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700">
+                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 <User className="mr-1 h-3 w-3" />
                                 Perfil do colaborador
                             </Badge>
-                            <Badge variant="outline" className="border-blue-100 bg-white text-blue-700">
+                            <Badge variant="outline" className="border-blue-100 bg-white text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 <Repeat2 className="mr-1 h-3 w-3" />
                                 Histórico de movimentações
                             </Badge>
                         </div>
-                        <h1 className="text-2xl font-semibold text-slate-900">{employee?.name ?? 'Funcionário'}</h1>
-                        <p className="mt-1 text-sm text-slate-600">
+                        <h1 className="text-2xl font-semibold text-foreground">{employee?.name ?? 'Funcionário'}</h1>
+                        <p className="mt-1 text-sm text-muted-foreground">
                             {employee?.position ?? 'Cargo não informado'} · {employee?.department ?? 'Setor não informado'}
                         </p>
-                        {employee?.company ? <p className="text-xs text-slate-500">{employee.company}</p> : null}
+                        {employee?.company ? <p className="text-xs text-muted-foreground">{employee.company}</p> : null}
                     </div>
                     <div className="flex flex-wrap gap-2">
                         <Button variant="outline" type="button" onClick={goBack}>
@@ -163,17 +163,17 @@ export default function FuncionariosShow({ employee, history = {}, links = {}, p
                 </div>
 
                 <section className="grid gap-4 lg:grid-cols-[2fr_1fr]">
-                    <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 shadow-sm">
+                    <Card className="border-border bg-gradient-to-br from-blue-50 via-white to-sky-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40 shadow-sm">
                         <CardContent className="p-5">
                             <p className="text-xs font-semibold uppercase tracking-wider text-blue-700">Visão geral do colaborador</p>
-                            <h2 className="mt-1 text-xl font-semibold text-slate-900">Acompanhamento de entregas e status</h2>
-                            <p className="mt-1 text-sm text-slate-600">Resumo da situação do colaborador no controle de EPIs.</p>
+                            <h2 className="mt-1 text-xl font-semibold text-foreground">Acompanhamento de entregas e status</h2>
+                            <p className="mt-1 text-sm text-muted-foreground">Resumo da situação do colaborador no controle de EPIs.</p>
 
                             <div className="mt-4 grid gap-3 sm:grid-cols-4">
                                 {stats.map((item) => (
                                     <div key={item.label} className={`rounded-lg border border-blue-100 bg-gradient-to-br ${item.tone} px-3 py-2`}>
                                         <p className="text-xs text-blue-700">{item.label}</p>
-                                        <p className="text-sm font-semibold text-slate-900">{item.value}</p>
+                                        <p className="text-sm font-semibold text-foreground">{item.value}</p>
                                     </div>
                                 ))}
                             </div>
@@ -182,31 +182,31 @@ export default function FuncionariosShow({ employee, history = {}, links = {}, p
 
                     <Card className="shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-base font-medium text-slate-700">Sinalizadores</CardTitle>
+                            <CardTitle className="text-base font-medium text-muted-foreground">Sinalizadores</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3 text-sm">
-                            <div className="flex items-center justify-between rounded-lg bg-blue-50 px-3 py-2">
+                            <div className="flex items-center justify-between rounded-lg bg-blue-50/70 dark:bg-blue-500/10 px-3 py-2">
                                 <span className="inline-flex items-center gap-2 font-medium text-blue-700">
                                     <ShieldCheck className="h-4 w-4" />
                                     Status atual
                                 </span>
-                                <span className={`rounded-full border px-2 py-0.5 text-xs font-semibold ${employeeStatusClass[employee?.status] ?? 'border-slate-200 bg-slate-100 text-slate-700'}`}>
+                                <span className={`rounded-full border px-2 py-0.5 text-xs font-semibold ${employeeStatusClass[employee?.status] ?? 'border-border bg-muted text-muted-foreground dark:bg-slate-900/40 dark:text-slate-200'}`}>
                                     {formatStatus(employee?.status)}
                                 </span>
                             </div>
-                            <div className="flex items-center justify-between rounded-lg bg-amber-50 px-3 py-2">
+                            <div className="flex items-center justify-between rounded-lg bg-amber-50/70 dark:bg-amber-500/10 px-3 py-2">
                                 <span className="inline-flex items-center gap-2 font-medium text-amber-700">
                                     <AlertTriangle className="h-4 w-4" />
                                     Entregas em aberto
                                 </span>
                                 <span className="font-semibold text-amber-700">{openDeliveries}</span>
                             </div>
-                            <div className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2">
-                                <span className="inline-flex items-center gap-2 font-medium text-slate-700">
+                            <div className="flex items-center justify-between rounded-lg bg-muted dark:bg-slate-900/40 px-3 py-2">
+                                <span className="inline-flex items-center gap-2 font-medium text-muted-foreground">
                                     <PackageCheck className="h-4 w-4" />
                                     Itens pendentes
                                 </span>
-                                <span className="font-semibold text-slate-700">{pendingItems}</span>
+                                <span className="font-semibold text-muted-foreground">{pendingItems}</span>
                             </div>
                         </CardContent>
                     </Card>
@@ -215,29 +215,29 @@ export default function FuncionariosShow({ employee, history = {}, links = {}, p
                 <div className="grid gap-6 lg:grid-cols-3">
                     <Card className="shadow-sm lg:col-span-1">
                         <CardHeader>
-                            <CardTitle className="text-base font-semibold text-slate-900">Dados cadastrais</CardTitle>
+                            <CardTitle className="text-base font-semibold text-foreground">Dados cadastrais</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <dl className="space-y-3 text-sm text-slate-700">
+                            <dl className="space-y-3 text-sm text-muted-foreground">
                                 <div className="flex flex-col">
-                                    <dt className="text-xs uppercase text-slate-500">Registro</dt>
+                                    <dt className="text-xs uppercase text-muted-foreground">Registro</dt>
                                     <dd className="font-medium">{employee?.registration_number ?? '-'}</dd>
                                 </div>
                                 <div className="flex flex-col">
-                                    <dt className="text-xs uppercase text-slate-500">E-mail</dt>
+                                    <dt className="text-xs uppercase text-muted-foreground">E-mail</dt>
                                     <dd className="font-medium">{employee?.email ?? '-'}</dd>
                                 </div>
                                 <div className="flex flex-col">
-                                    <dt className="text-xs uppercase text-slate-500">Telefone</dt>
+                                    <dt className="text-xs uppercase text-muted-foreground">Telefone</dt>
                                     <dd className="font-medium">{employee?.phone ?? employee?.mobile_phone ?? '-'}</dd>
                                 </div>
                                 <div className="flex flex-col">
-                                    <dt className="text-xs uppercase text-slate-500">Admissão</dt>
+                                    <dt className="text-xs uppercase text-muted-foreground">Admissão</dt>
                                     <dd className="font-medium">{employee?.hire_date ?? '-'}</dd>
                                 </div>
                                 {employee?.termination_date ? (
                                     <div className="flex flex-col">
-                                        <dt className="text-xs uppercase text-slate-500">Desligamento</dt>
+                                        <dt className="text-xs uppercase text-muted-foreground">Desligamento</dt>
                                         <dd className="font-medium">{employee.termination_date}</dd>
                                     </div>
                                 ) : null}
@@ -247,21 +247,21 @@ export default function FuncionariosShow({ employee, history = {}, links = {}, p
 
                     <Card className="shadow-sm lg:col-span-2">
                         <CardHeader>
-                            <CardTitle className="text-base font-semibold text-slate-900">Histórico de entregas</CardTitle>
+                            <CardTitle className="text-base font-semibold text-foreground">Histórico de entregas</CardTitle>
                             <p className="text-sm text-muted-foreground">Total de movimentações registradas: {totalDeliveries}</p>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             {deliveries.length === 0 ? (
-                                <div className="rounded-lg border border-dashed border-slate-200 p-6 text-center text-sm text-slate-500">
+                                <div className="rounded-lg border border-dashed border-border p-6 text-center text-sm text-muted-foreground">
                                     Nenhuma entrega registrada para este funcionário.
                                 </div>
                             ) : (
                                 deliveries.map((delivery) => (
-                                    <div key={delivery.id} className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+                                    <div key={delivery.id} className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 p-4 shadow-sm">
                                         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                                             <div>
-                                                <p className="text-base font-semibold text-slate-900">{delivery.code}</p>
-                                                <p className="text-xs text-slate-500">
+                                                <p className="text-base font-semibold text-foreground">{delivery.code}</p>
+                                                <p className="text-xs text-muted-foreground">
                                                     Entregue em {delivery.delivered_at ?? '-'}
                                                     {delivery.expected_return_at ? (
                                                         <span className="ml-2">· Previsto para {delivery.expected_return_at}</span>
@@ -272,7 +272,7 @@ export default function FuncionariosShow({ employee, history = {}, links = {}, p
                                                 </p>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <Badge className={deliveryStatusClass[delivery.status] ?? 'bg-slate-200 text-slate-700'}>
+                                                <Badge className={deliveryStatusClass[delivery.status] ?? 'bg-slate-200 text-muted-foreground'}>
                                                     {formatStatus(delivery.status)}
                                                 </Badge>
                                                 <Link href={delivery.show_url} className="text-xs font-medium text-blue-600 hover:underline">
@@ -282,27 +282,27 @@ export default function FuncionariosShow({ employee, history = {}, links = {}, p
                                         </div>
 
                                         <div className="mt-3 border-t border-slate-100 pt-3">
-                                            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Itens entregues</p>
-                                            <ul className="mt-2 space-y-1 text-sm text-slate-700">
+                                            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Itens entregues</p>
+                                            <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
                                                 {delivery.items.map((item) => (
                                                     <li key={item.id} className="flex items-center justify-between">
                                                         <span>{item.epi ?? 'EPI'}</span>
-                                                        <span className="font-semibold text-slate-900">x{item.quantity}</span>
+                                                        <span className="font-semibold text-foreground">x{item.quantity}</span>
                                                     </li>
                                                 ))}
                                             </ul>
                                         </div>
 
                                         {delivery.logs?.length ? (
-                                            <div className="mt-4 rounded-md bg-slate-50 p-3">
-                                                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Últimas movimentações</p>
-                                                <ul className="mt-2 space-y-1 text-xs text-slate-600">
+                                            <div className="mt-4 rounded-md bg-muted dark:bg-slate-900/40 p-3">
+                                                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Últimas movimentações</p>
+                                                <ul className="mt-2 space-y-1 text-xs text-muted-foreground">
                                                     {delivery.logs.map((log) => (
                                                         <li key={log.id} className="flex flex-col gap-0.5">
-                                                            <span className="font-medium text-slate-700">
+                                                            <span className="font-medium text-muted-foreground">
                                                                 {log.created_at ?? '-'} · {log.action}
                                                             </span>
-                                                            {log.notes ? <span className="text-slate-500">{log.notes}</span> : null}
+                                                            {log.notes ? <span className="text-muted-foreground">{log.notes}</span> : null}
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -318,49 +318,49 @@ export default function FuncionariosShow({ employee, history = {}, links = {}, p
                 {latestReport ? (
                     <Card className="shadow-sm">
                         <CardHeader>
-                            <CardTitle className="text-base font-semibold text-slate-900">Relatório de demissão</CardTitle>
+                            <CardTitle className="text-base font-semibold text-foreground">Relatório de demissão</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
-                            <div className="flex flex-wrap items-center gap-3 text-sm text-slate-600">
+                            <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
                                 <span>
-                                    Gerado em <span className="font-semibold text-slate-900">{latestReport.terminated_at ?? '-'}</span>
+                                    Gerado em <span className="font-semibold text-foreground">{latestReport.terminated_at ?? '-'}</span>
                                 </span>
                                 {latestReport.by ? (
                                     <span>
-                                        por <span className="font-semibold text-slate-900">{latestReport.by}</span>
+                                        por <span className="font-semibold text-foreground">{latestReport.by}</span>
                                     </span>
                                 ) : null}
                             </div>
                             <div className="grid gap-4 sm:grid-cols-3">
-                                <div className="rounded-lg border border-slate-200 p-3 text-center">
-                                    <p className="text-xs uppercase text-slate-500">Itens entregues</p>
-                                    <p className="text-2xl font-semibold text-slate-900">{latestReport.summary?.total_items ?? 0}</p>
+                                <div className="rounded-lg border border-border p-3 text-center">
+                                    <p className="text-xs uppercase text-muted-foreground">Itens entregues</p>
+                                    <p className="text-2xl font-semibold text-foreground">{latestReport.summary?.total_items ?? 0}</p>
                                 </div>
-                                <div className="rounded-lg border border-slate-200 p-3 text-center">
-                                    <p className="text-xs uppercase text-slate-500">Itens pendentes</p>
+                                <div className="rounded-lg border border-border p-3 text-center">
+                                    <p className="text-xs uppercase text-muted-foreground">Itens pendentes</p>
                                     <p className="text-2xl font-semibold text-amber-600">{latestReport.summary?.pending_items ?? 0}</p>
                                 </div>
-                                <div className="rounded-lg border border-slate-200 p-3 text-center">
-                                    <p className="text-xs uppercase text-slate-500">Entregas em aberto</p>
-                                    <p className="text-2xl font-semibold text-slate-900">{latestReport.summary?.open_deliveries ?? 0}</p>
+                                <div className="rounded-lg border border-border p-3 text-center">
+                                    <p className="text-xs uppercase text-muted-foreground">Entregas em aberto</p>
+                                    <p className="text-2xl font-semibold text-foreground">{latestReport.summary?.open_deliveries ?? 0}</p>
                                 </div>
                             </div>
 
                             {latestReport.pending_items?.length ? (
                                 <div className="rounded-lg border border-dashed border-amber-200 p-4">
                                     <p className="text-xs font-semibold uppercase tracking-wide text-amber-700">Itens pendentes de devolução</p>
-                                    <ul className="mt-2 space-y-1 text-sm text-slate-700">
+                                    <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
                                         {latestReport.pending_items.map((item, index) => (
                                             <li key={`${item.delivery_id}-${index}`} className="flex flex-wrap gap-2">
                                                 <span className="font-medium">{item.epi ?? 'EPI'}</span>
-                                                <span className="text-slate-500">Qtd: {item.quantity}</span>
-                                                <span className="text-slate-500">Entrega: {item.delivery_code}</span>
+                                                <span className="text-muted-foreground">Qtd: {item.quantity}</span>
+                                                <span className="text-muted-foreground">Entrega: {item.delivery_code}</span>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
                             ) : (
-                                <p className="text-sm text-slate-500">Sem pendências registradas no relatório.</p>
+                                <p className="text-sm text-muted-foreground">Sem pendências registradas no relatório.</p>
                             )}
                         </CardContent>
                     </Card>
@@ -370,8 +370,8 @@ export default function FuncionariosShow({ employee, history = {}, links = {}, p
             <Modal show={kitPromptOpen} onClose={() => setKitPromptOpen(false)}>
                 <div className="space-y-4 p-6">
                     <div>
-                        <h2 className="text-lg font-semibold text-slate-900">Aplicar kit padrão do setor?</h2>
-                        <p className="text-sm text-slate-600">Deseja registrar agora a entrega do kit padrão de EPIs para este colaborador?</p>
+                        <h2 className="text-lg font-semibold text-foreground">Aplicar kit padrão do setor?</h2>
+                        <p className="text-sm text-muted-foreground">Deseja registrar agora a entrega do kit padrão de EPIs para este colaborador?</p>
                     </div>
                     <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
                         <Button variant="outline" onClick={() => setKitPromptOpen(false)}>
@@ -385,12 +385,12 @@ export default function FuncionariosShow({ employee, history = {}, links = {}, p
             <Modal show={terminateModalOpen} onClose={() => setTerminateModalOpen(false)}>
                 <form onSubmit={terminateEmployee} className="space-y-4 p-6">
                     <div>
-                        <h2 className="text-lg font-semibold text-slate-900">Demitir colaborador</h2>
-                        <p className="text-sm text-slate-600">A demissão encerrará o vínculo e gerará o relatório dos EPIs entregues e pendentes.</p>
+                        <h2 className="text-lg font-semibold text-foreground">Demitir colaborador</h2>
+                        <p className="text-sm text-muted-foreground">A demissão encerrará o vínculo e gerará o relatório dos EPIs entregues e pendentes.</p>
                     </div>
 
                     <div className="space-y-2">
-                        <label htmlFor="termination_date" className="text-sm font-medium text-slate-700">Data de desligamento</label>
+                        <label htmlFor="termination_date" className="text-sm font-medium text-muted-foreground">Data de desligamento</label>
                         <input
                             id="termination_date"
                             type="date"
@@ -403,7 +403,7 @@ export default function FuncionariosShow({ employee, history = {}, links = {}, p
                     </div>
 
                     <div className="space-y-2">
-                        <label htmlFor="termination_reason" className="text-sm font-medium text-slate-700">Motivo</label>
+                        <label htmlFor="termination_reason" className="text-sm font-medium text-muted-foreground">Motivo</label>
                         <input
                             id="termination_reason"
                             type="text"
@@ -416,7 +416,7 @@ export default function FuncionariosShow({ employee, history = {}, links = {}, p
                     </div>
 
                     <div className="space-y-2">
-                        <label htmlFor="termination_notes" className="text-sm font-medium text-slate-700">Observações (opcional)</label>
+                        <label htmlFor="termination_notes" className="text-sm font-medium text-muted-foreground">Observações (opcional)</label>
                         <textarea
                             id="termination_notes"
                             className={textareaBaseClass}

@@ -68,39 +68,39 @@ export default function Entrada({ epis = [] }) {
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
                         <div className="mb-2 flex flex-wrap items-center gap-2">
-                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700">
+                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 <PackagePlus className="mr-1 h-3 w-3" />
                                 Entrada de estoque
                             </Badge>
-                            <Badge variant="outline" className="border-blue-100 bg-white text-blue-700">
+                            <Badge variant="outline" className="border-blue-100 bg-white text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 <ShieldCheck className="mr-1 h-3 w-3" />
                                 Registro operacional
                             </Badge>
                         </div>
-                        <h1 className="text-2xl font-semibold text-slate-900">Registrar entrada</h1>
+                        <h1 className="text-2xl font-semibold text-foreground">Registrar entrada</h1>
                         <p className="text-sm text-muted-foreground">Informe os dados da compra ou reposicao para atualizar o saldo.</p>
                     </div>
                 </div>
 
                 <section className="grid gap-4 lg:grid-cols-[2fr_1fr]">
-                    <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 shadow-sm">
+                    <Card className="border-border bg-gradient-to-br from-blue-50 via-white to-sky-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40 shadow-sm">
                         <CardContent className="p-5">
                             <p className="text-xs font-semibold uppercase tracking-wider text-blue-700">Resumo da entrada</p>
-                            <h2 className="mt-1 text-xl font-semibold text-slate-900">Conferencia antes do registro</h2>
-                            <p className="mt-1 text-sm text-slate-600">Selecione o item e preencha os dados para registrar no estoque.</p>
+                            <h2 className="mt-1 text-xl font-semibold text-foreground">Conferencia antes do registro</h2>
+                            <p className="mt-1 text-sm text-muted-foreground">Selecione o item e preencha os dados para registrar no estoque.</p>
 
                             <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                                <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                     <p className="text-xs text-blue-700">EPI selecionado</p>
-                                    <p className="text-sm font-semibold text-slate-900">{selectedEpi?.name ?? '-'}</p>
+                                    <p className="text-sm font-semibold text-foreground">{selectedEpi?.name ?? '-'}</p>
                                 </div>
-                                <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                     <p className="text-xs text-blue-700">Quantidade</p>
-                                    <p className="text-sm font-semibold text-slate-900">{data.quantity || 0}</p>
+                                    <p className="text-sm font-semibold text-foreground">{data.quantity || 0}</p>
                                 </div>
-                                <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                     <p className="text-xs text-blue-700">Valor estimado</p>
-                                    <p className="text-sm font-semibold text-slate-900">{estimatedTotal ?? '-'}</p>
+                                    <p className="text-sm font-semibold text-foreground">{estimatedTotal ?? '-'}</p>
                                 </div>
                             </div>
                         </CardContent>
@@ -108,18 +108,18 @@ export default function Entrada({ epis = [] }) {
 
                     <Card className="shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-base font-medium text-slate-700">Checklist</CardTitle>
+                            <CardTitle className="text-base font-medium text-muted-foreground">Checklist</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-3 text-sm text-slate-600">
-                            <div className="rounded-lg bg-blue-50 px-3 py-2">
+                        <CardContent className="space-y-3 text-sm text-muted-foreground">
+                            <div className="rounded-lg bg-blue-50/70 dark:bg-blue-500/10 px-3 py-2">
                                 <p className="font-medium text-blue-700">Campos obrigatorios</p>
                                 <p>EPI e quantidade.</p>
                             </div>
-                            <div className="rounded-lg bg-slate-50 px-3 py-2">
-                                <p className="font-medium text-slate-700">Campos recomendados</p>
+                            <div className="rounded-lg bg-muted dark:bg-slate-900/40 px-3 py-2">
+                                <p className="font-medium text-muted-foreground">Campos recomendados</p>
                                 <p>Custo, fornecedor e documento fiscal.</p>
                             </div>
-                            <div className="rounded-lg bg-amber-50 px-3 py-2">
+                            <div className="rounded-lg bg-amber-50/70 dark:bg-amber-500/10 px-3 py-2">
                                 <p className="font-medium text-amber-700">Validade</p>
                                 <p>Preencha a validade para itens com vencimento.</p>
                             </div>
@@ -130,7 +130,7 @@ export default function Entrada({ epis = [] }) {
                 <Card className="shadow-sm">
                     <CardHeader className="flex flex-row items-center justify-between gap-3">
                         <div>
-                            <CardTitle className="text-base font-semibold text-slate-800">Formulario de entrada</CardTitle>
+                            <CardTitle className="text-base font-semibold text-foreground">Formulario de entrada</CardTitle>
                             <p className="text-sm text-muted-foreground">Dados da compra, documento e observacoes.</p>
                         </div>
                         <ClipboardList className="h-5 w-5 text-slate-400" />
@@ -139,7 +139,7 @@ export default function Entrada({ epis = [] }) {
                         <form onSubmit={submit} className="space-y-6">
                             <div className="grid gap-6 md:grid-cols-2">
                                 <div className="space-y-2">
-                                    <label htmlFor="entry_epi" className="text-sm font-medium text-slate-700">EPI</label>
+                                    <label htmlFor="entry_epi" className="text-sm font-medium text-muted-foreground">EPI</label>
                                     <select
                                         id="entry_epi"
                                         className={inputBaseClass}
@@ -160,7 +160,7 @@ export default function Entrada({ epis = [] }) {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="entry_quantity" className="text-sm font-medium text-slate-700">Quantidade</label>
+                                    <label htmlFor="entry_quantity" className="text-sm font-medium text-muted-foreground">Quantidade</label>
                                     <input
                                         id="entry_quantity"
                                         type="number"
@@ -178,7 +178,7 @@ export default function Entrada({ epis = [] }) {
 
                             <div className="grid gap-6 md:grid-cols-2">
                                 <div className="space-y-2">
-                                    <label htmlFor="entry_unit_cost" className="text-sm font-medium text-slate-700">Custo unitario (R$)</label>
+                                    <label htmlFor="entry_unit_cost" className="text-sm font-medium text-muted-foreground">Custo unitario (R$)</label>
                                     <input
                                         id="entry_unit_cost"
                                         type="number"
@@ -192,7 +192,7 @@ export default function Entrada({ epis = [] }) {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="entry_supplier" className="text-sm font-medium text-slate-700">Fornecedor (opcional)</label>
+                                    <label htmlFor="entry_supplier" className="text-sm font-medium text-muted-foreground">Fornecedor (opcional)</label>
                                     <input
                                         id="entry_supplier"
                                         type="text"
@@ -206,7 +206,7 @@ export default function Entrada({ epis = [] }) {
 
                             <div className="grid gap-6 md:grid-cols-2">
                                 <div className="space-y-2">
-                                    <label htmlFor="entry_invoice_number" className="text-sm font-medium text-slate-700">Nota fiscal / documento (opcional)</label>
+                                    <label htmlFor="entry_invoice_number" className="text-sm font-medium text-muted-foreground">Nota fiscal / documento (opcional)</label>
                                     <input
                                         id="entry_invoice_number"
                                         type="text"
@@ -217,7 +217,7 @@ export default function Entrada({ epis = [] }) {
                                     <InputError message={errors.invoice_number} />
                                 </div>
                                 <div className="space-y-2">
-                                    <label htmlFor="entry_invoice_date" className="text-sm font-medium text-slate-700">Data do documento (opcional)</label>
+                                    <label htmlFor="entry_invoice_date" className="text-sm font-medium text-muted-foreground">Data do documento (opcional)</label>
                                     <input
                                         id="entry_invoice_date"
                                         type="date"
@@ -231,7 +231,7 @@ export default function Entrada({ epis = [] }) {
 
                             <div className="grid gap-6 md:grid-cols-2">
                                 <div className="space-y-2">
-                                    <label htmlFor="entry_acquired_at" className="text-sm font-medium text-slate-700">Data de aquisicao (opcional)</label>
+                                    <label htmlFor="entry_acquired_at" className="text-sm font-medium text-muted-foreground">Data de aquisicao (opcional)</label>
                                     <input
                                         id="entry_acquired_at"
                                         type="date"
@@ -242,7 +242,7 @@ export default function Entrada({ epis = [] }) {
                                     <InputError message={errors.acquired_at} />
                                 </div>
                                 <div className="space-y-2">
-                                    <label htmlFor="entry_expires_at" className="text-sm font-medium text-slate-700">Validade do EPI (opcional)</label>
+                                    <label htmlFor="entry_expires_at" className="text-sm font-medium text-muted-foreground">Validade do EPI (opcional)</label>
                                     <input
                                         id="entry_expires_at"
                                         type="date"
@@ -255,7 +255,7 @@ export default function Entrada({ epis = [] }) {
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="entry_notes" className="text-sm font-medium text-slate-700">Observacoes (opcional)</label>
+                                <label htmlFor="entry_notes" className="text-sm font-medium text-muted-foreground">Observacoes (opcional)</label>
                                 <textarea
                                     id="entry_notes"
                                     className={textareaBaseClass}

@@ -1,4 +1,4 @@
-﻿import ApplicationLogo from '@/Components/ApplicationLogo';
+import ApplicationLogo from '@/Components/ApplicationLogo';
 import LoginBackground from '@/Components/LoginBackground';
 import { Link, usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';

@@ -216,12 +216,12 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                 <Settings className="mr-1 h-3 w-3" />
                                 Preferências do sistema
                             </Badge>
-                            <Badge variant="outline" className="border-blue-100 bg-white text-blue-700">
+                            <Badge variant="outline" className="border-blue-100 bg-card text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 <ShieldCheck className="mr-1 h-3 w-3" />
                                 Administração
                             </Badge>
                         </div>
-                        <h1 className="text-2xl font-semibold text-slate-900">Preferências do sistema</h1>
+                        <h1 className="text-2xl font-semibold text-foreground">Preferências do sistema</h1>
                         <p className="text-sm text-muted-foreground">Gerencie parâmetros, documentos e identidade visual.</p>
                     </div>
                 </div>
@@ -229,30 +229,30 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                 <div className="grid gap-4 md:grid-cols-3">
                     <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-sm font-medium uppercase tracking-wide text-slate-600">Grupos</CardTitle>
+                            <CardTitle className="text-sm font-medium uppercase tracking-wide text-muted-foreground">Grupos</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-3xl font-semibold text-slate-900">{settingsGroupKeys.length + (hasBrandingTab ? 1 : 0)}</p>
+                            <p className="text-3xl font-semibold text-foreground">{settingsGroupKeys.length + (hasBrandingTab ? 1 : 0)}</p>
                             <p className="text-xs text-muted-foreground">Seções de configuração disponíveis.</p>
                         </CardContent>
                     </Card>
 
                     <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-indigo-50 shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-sm font-medium uppercase tracking-wide text-slate-600">Parâmetros</CardTitle>
+                            <CardTitle className="text-sm font-medium uppercase tracking-wide text-muted-foreground">Parâmetros</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-3xl font-semibold text-slate-900">{totalSettings}</p>
+                            <p className="text-3xl font-semibold text-foreground">{totalSettings}</p>
                             <p className="text-xs text-muted-foreground">Valores controlados pelo sistema.</p>
                         </CardContent>
                     </Card>
 
                     <Card className="border-emerald-100 bg-gradient-to-br from-emerald-50 via-white to-emerald-50 shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-sm font-medium uppercase tracking-wide text-slate-600">Identidade visual</CardTitle>
+                            <CardTitle className="text-sm font-medium uppercase tracking-wide text-muted-foreground">Identidade visual</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-3xl font-semibold text-slate-900">{brandingConfigured}</p>
+                            <p className="text-3xl font-semibold text-foreground">{brandingConfigured}</p>
                             <p className="text-xs text-muted-foreground">Assets configurados (logo, favicon, fundo, GIF).</p>
                         </CardContent>
                     </Card>
@@ -260,7 +260,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
 
                 <Card className="shadow-sm">
                     <CardHeader>
-                        <CardTitle className="text-base font-semibold text-slate-900">
+                        <CardTitle className="text-base font-semibold text-foreground">
                             Parâmetros do sistema
                         </CardTitle>
                     </CardHeader>
@@ -272,7 +272,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                         <TabsTrigger
                                             key={group}
                                             value={group}
-                                            className="rounded-md px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:text-slate-900 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm"
+                                            className="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition hover:text-foreground data-[state=active]:bg-card data-[state=active]:text-foreground data-[state=active]:shadow-sm"
                                         >
                                             {formatGroupLabel(group)}
                                         </TabsTrigger>
@@ -280,7 +280,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                     {hasBrandingTab && (
                                         <TabsTrigger
                                             value="branding"
-                                            className="rounded-md px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:text-slate-900 data-[state=active]:bg-white data-[state=active]:text-slate-900 data-[state=active]:shadow-sm"
+                                            className="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition hover:text-foreground data-[state=active]:bg-card data-[state=active]:text-foreground data-[state=active]:shadow-sm"
                                         >
                                             Identidade visual
                                         </TabsTrigger>
@@ -292,20 +292,20 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                             {groups[group].map((setting) => (
                                                 <div
                                                     key={setting.id}
-                                                    className="rounded-lg border border-slate-200 bg-white px-4 py-3 shadow-sm"
+                                                    className="rounded-lg border border-border bg-card px-4 py-3 shadow-sm"
                                                 >
                                                     <div className="flex items-start justify-between gap-4">
                                                         <div>
-                                                            <p className="text-sm font-medium text-slate-800">
+                                                            <p className="text-sm font-medium text-foreground">
                                                                 {setting.label}
                                                             </p>
-                                                            <p className="text-xs font-mono text-slate-500">{setting.key}</p>
+                                                            <p className="text-xs font-mono text-muted-foreground">{setting.key}</p>
                                                         </div>
                                                         <div className="flex items-center gap-2">
                                                             {setting.key !== editableKey ? (
                                                                 <Badge
                                                                     variant="outline"
-                                                                    className="border-slate-200 bg-slate-50 text-slate-600"
+                                                                    className="border-border bg-muted dark:bg-slate-900/40 text-muted-foreground"
                                                                 >
                                                                     Somente leitura
                                                                 </Badge>
@@ -327,7 +327,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                     </div>
                                                     <Separator className="my-3" />
                                                     <p className="text-sm text-muted-foreground">
-                                                        Valor atual: <strong className="break-all font-semibold text-slate-800">{setting.value ?? '-'}</strong>
+                                                        Valor atual: <strong className="break-all font-semibold text-foreground">{setting.value ?? '-'}</strong>
                                                     </p>
                                                 </div>
                                             ))}
@@ -339,12 +339,12 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                         <form onSubmit={submitBranding} className="space-y-6">
                                             <div className="grid gap-6 md:grid-cols-2">
                                                 <div className="space-y-3">
-                                                    <p className="text-sm font-medium text-slate-800">Logo principal</p>
+                                                    <p className="text-sm font-medium text-foreground">Logo principal</p>
                                                     {branding.logo_url ? (
                                                         <img
                                                             src={branding.logo_url}
                                                             alt="Logo atual"
-                                                            className="h-16 w-auto rounded border border-slate-200 bg-white object-contain p-2"
+                                                            className="h-16 w-auto rounded border border-border bg-card object-contain p-2"
                                                         />
                                                     ) : (
                                                         <p className="text-xs text-muted-foreground">Nenhuma imagem configurada.</p>
@@ -362,12 +362,12 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                             Selecionar arquivo
                                                         </Button>
                                                         {brandingForm.data.logo && (
-                                                            <p className="text-xs text-slate-500">{brandingForm.data.logo.name}</p>
+                                                            <p className="text-xs text-muted-foreground">{brandingForm.data.logo.name}</p>
                                                         )}
                                                     </div>
                                                     <InputError message={brandingForm.errors.logo} />
                                                     <div className="space-y-2">
-                                                        <label htmlFor="logo_url" className="text-sm font-medium text-slate-700">
+                                                        <label htmlFor="logo_url" className="text-sm font-medium text-muted-foreground">
                                                             Ou definir URL da logo
                                                         </label>
                                                         <input
@@ -382,12 +382,12 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                     </div>
                                                 </div>
                                                 <div className="space-y-3">
-                                                    <p className="text-sm font-medium text-slate-800">Favicon</p>
+                                                    <p className="text-sm font-medium text-foreground">Favicon</p>
                                                     {branding.favicon_url ? (
                                                         <img
                                                             src={branding.favicon_url}
                                                             alt="Favicon atual"
-                                                            className="h-12 w-12 rounded border border-slate-200 bg-white object-contain p-2"
+                                                            className="h-12 w-12 rounded border border-border bg-card object-contain p-2"
                                                         />
                                                     ) : (
                                                         <p className="text-xs text-muted-foreground">Nenhum favicon configurado.</p>
@@ -409,12 +409,12 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                             Selecionar arquivo
                                                         </Button>
                                                         {brandingForm.data.favicon && (
-                                                            <p className="text-xs text-slate-500">{brandingForm.data.favicon.name}</p>
+                                                            <p className="text-xs text-muted-foreground">{brandingForm.data.favicon.name}</p>
                                                         )}
                                                     </div>
                                                     <InputError message={brandingForm.errors.favicon} />
                                                     <div className="space-y-2">
-                                                        <label htmlFor="favicon_url" className="text-sm font-medium text-slate-700">
+                                                        <label htmlFor="favicon_url" className="text-sm font-medium text-muted-foreground">
                                                             Ou definir URL do favicon
                                                         </label>
                                                         <input
@@ -430,9 +430,9 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                 </div>
                                             </div>
 
-                                            <div className="space-y-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+                                            <div className="space-y-4 rounded-lg border border-border bg-card p-4 shadow-sm">
                                                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                                                    <p className="text-sm font-medium text-slate-800">Fundo da tela de login</p>
+                                                    <p className="text-sm font-medium text-foreground">Fundo da tela de login</p>
                                                     {brandingForm.data.clear_login_background && (
                                                         <span className="text-xs font-semibold text-amber-600">
                                                             Fundo será removido
@@ -443,7 +443,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                     <img
                                                         src={branding.login_background_url}
                                                         alt="Fundo atual"
-                                                        className="h-32 w-full rounded-md border border-slate-200 object-cover"
+                                                        className="h-32 w-full rounded-md border border-border object-cover"
                                                     />
                                                 ) : (
                                                     <p className="text-xs text-muted-foreground">
@@ -469,7 +469,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                         Selecionar arquivo
                                                     </Button>
                                                     {brandingForm.data.login_background && (
-                                                        <p className="text-xs text-slate-500">
+                                                        <p className="text-xs text-muted-foreground">
                                                             {brandingForm.data.login_background.name}
                                                         </p>
                                                     )}
@@ -477,7 +477,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                 <InputError message={brandingForm.errors.login_background} />
 
                                                 <div className="space-y-2">
-                                                    <label htmlFor="login_background_link" className="text-sm font-medium text-slate-700">
+                                                    <label htmlFor="login_background_link" className="text-sm font-medium text-muted-foreground">
                                                         Ou definir um link de imagem
                                                     </label>
                                                     <input
@@ -511,7 +511,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                             Remover fundo
                                                         </Button>
                                                     </div>
-                                                    <p className="text-xs text-slate-500">
+                                                    <p className="text-xs text-muted-foreground">
                                                         {branding.login_background_is_default
                                                             ? 'Utilizando o fundo padrão do sistema.'
                                                             : 'Visualização atual conforme imagem acima.'}
@@ -519,9 +519,9 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                 </div>
                                             </div>
 
-                                            <div className="space-y-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+                                            <div className="space-y-4 rounded-lg border border-border bg-card p-4 shadow-sm">
                                                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                                                    <p className="text-sm font-medium text-slate-800">GIF de sobreposição do login</p>
+                                                    <p className="text-sm font-medium text-foreground">GIF de sobreposição do login</p>
                                                     {brandingForm.data.clear_login_overlay_gif && (
                                                         <span className="text-xs font-semibold text-amber-600">
                                                             GIF será removido
@@ -533,7 +533,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                     <img
                                                         src={branding.login_overlay_gif_url}
                                                         alt="GIF atual"
-                                                        className="h-32 w-full rounded-md border border-slate-200 object-cover"
+                                                        className="h-32 w-full rounded-md border border-border object-cover"
                                                     />
                                                 ) : (
                                                     <p className="text-xs text-muted-foreground">
@@ -561,7 +561,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                         Selecionar GIF
                                                     </Button>
                                                     {brandingForm.data.login_overlay_gif && (
-                                                        <p className="text-xs text-slate-500">
+                                                        <p className="text-xs text-muted-foreground">
                                                             {brandingForm.data.login_overlay_gif.name}
                                                         </p>
                                                     )}
@@ -569,7 +569,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                 <InputError message={brandingForm.errors.login_overlay_gif} />
 
                                                 <div className="space-y-2">
-                                                    <label htmlFor="login_overlay_gif_url" className="text-sm font-medium text-slate-700">
+                                                    <label htmlFor="login_overlay_gif_url" className="text-sm font-medium text-muted-foreground">
                                                         Ou definir URL do GIF
                                                     </label>
                                                     <input
@@ -584,7 +584,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                                                         }}
                                                     />
                                                     <InputError message={brandingForm.errors.login_overlay_gif_url} />
-                                                    <p className="text-xs text-slate-500">Use o link direto do arquivo (.gif ou .webp). Ex.: https://i.imgur.com/arquivo.gif</p>
+                                                    <p className="text-xs text-muted-foreground">Use o link direto do arquivo (.gif ou .webp). Ex.: https://i.imgur.com/arquivo.gif</p>
                                                 </div>
 
                                                 <div className="flex flex-wrap gap-3">
@@ -627,15 +627,15 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                 <form onSubmit={submitSetting}>
                     <div className="space-y-4 p-6">
                         <div>
-                            <h3 className="text-base font-semibold text-slate-900">
+                            <h3 className="text-base font-semibold text-foreground">
                                 Editar declaração da ficha de entrega
                             </h3>
-                            <p className="text-sm text-slate-500">
+                            <p className="text-sm text-muted-foreground">
                                 Ajuste o texto exibido na declaração do documento de entrega de EPI.
                             </p>
                         </div>
                         <div className="space-y-2">
-                            <label htmlFor="declaration" className="text-sm font-medium text-slate-700">
+                            <label htmlFor="declaration" className="text-sm font-medium text-muted-foreground">
                                 Declaração
                             </label>
                             <textarea
@@ -655,7 +655,7 @@ export default function ConfiguracoesIndex({ groups = {}, branding = {}, can = {
                             <InputError message={errors['settings.0.value']} />
                         </div>
                     </div>
-                    <div className="flex justify-end gap-3 border-t border-slate-100 bg-slate-50 px-6 py-4">
+                    <div className="flex justify-end gap-3 border-t border-border bg-muted dark:bg-slate-900/40 px-6 py-4">
                         <Button type="button" variant="outline" onClick={closeEditing}>
                             Cancelar
                         </Button>

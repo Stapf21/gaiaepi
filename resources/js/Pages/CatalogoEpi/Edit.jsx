@@ -59,39 +59,39 @@ export default function CatalogoEpiEdit({ categories = [], epi }) {
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
                         <div className="mb-2 flex flex-wrap items-center gap-2">
-                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700">
+                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 <FilePenLine className="mr-1 h-3 w-3" />
                                 Edicao de EPI
                             </Badge>
-                            <Badge variant="outline" className="border-blue-100 bg-white text-blue-700">
+                            <Badge variant="outline" className="border-blue-100 bg-card text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 <ShieldCheck className="mr-1 h-3 w-3" />
                                 Controle padrao
                             </Badge>
                         </div>
-                        <h1 className="text-2xl font-semibold text-slate-900">Editar EPI</h1>
+                        <h1 className="text-2xl font-semibold text-foreground">Editar EPI</h1>
                         <p className="text-sm text-muted-foreground">Atualize os dados do equipamento mantendo o padrao de estoque.</p>
                     </div>
                 </div>
 
                 <section className="grid gap-4 lg:grid-cols-[2fr_1fr]">
-                    <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 shadow-sm">
+                    <Card className="border-border bg-gradient-to-br from-blue-50 via-white to-sky-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40 shadow-sm">
                         <CardContent className="p-5">
                             <p className="text-xs font-semibold uppercase tracking-wider text-blue-700">Resumo da edicao</p>
-                            <h2 className="mt-1 text-xl font-semibold text-slate-900">Conferencia dos campos</h2>
-                            <p className="mt-1 text-sm text-slate-600">Revise categoria, faixa de estoque e parametros antes de salvar.</p>
+                            <h2 className="mt-1 text-xl font-semibold text-foreground">Conferencia dos campos</h2>
+                            <p className="mt-1 text-sm text-muted-foreground">Revise categoria, faixa de estoque e parametros antes de salvar.</p>
 
                             <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                                <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                     <p className="text-xs text-blue-700">Categoria</p>
-                                    <p className="text-sm font-semibold text-slate-900">{selectedCategory?.name ?? '-'}</p>
+                                    <p className="text-sm font-semibold text-foreground">{selectedCategory?.name ?? '-'}</p>
                                 </div>
-                                <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                     <p className="text-xs text-blue-700">Unidade</p>
-                                    <p className="text-sm font-semibold text-slate-900">{data.unit || '-'}</p>
+                                    <p className="text-sm font-semibold text-foreground">{data.unit || '-'}</p>
                                 </div>
-                                <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                     <p className="text-xs text-blue-700">Validacao periodica</p>
-                                    <p className="text-sm font-semibold text-slate-900">{data.requires_validation ? 'Sim' : 'Nao'}</p>
+                                    <p className="text-sm font-semibold text-foreground">{data.requires_validation ? 'Sim' : 'Nao'}</p>
                                 </div>
                             </div>
                         </CardContent>
@@ -99,18 +99,18 @@ export default function CatalogoEpiEdit({ categories = [], epi }) {
 
                     <Card className="shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-base font-medium text-slate-700">Checklist</CardTitle>
+                            <CardTitle className="text-base font-medium text-muted-foreground">Checklist</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-3 text-sm text-slate-600">
-                            <div className="rounded-lg bg-blue-50 px-3 py-2">
+                        <CardContent className="space-y-3 text-sm text-muted-foreground">
+                            <div className="rounded-lg bg-blue-50/70 dark:bg-slate-950/60 dark:bg-blue-500/10 px-3 py-2">
                                 <p className="font-medium text-blue-700">Obrigatorios</p>
                                 <p>Categoria, nome e unidade.</p>
                             </div>
-                            <div className="rounded-lg bg-slate-50 px-3 py-2">
-                                <p className="font-medium text-slate-700">Importante</p>
+                            <div className="rounded-lg bg-muted dark:bg-slate-900/40 px-3 py-2">
+                                <p className="font-medium text-muted-foreground">Importante</p>
                                 <p>Mantenha faixa de estoque coerente.</p>
                             </div>
-                            <div className="rounded-lg bg-amber-50 px-3 py-2">
+                            <div className="rounded-lg bg-amber-50/70 dark:bg-amber-500/10 px-3 py-2">
                                 <p className="font-medium text-amber-700">Atencao</p>
                                 <p>Estoque maximo nao deve ser menor que o minimo.</p>
                             </div>
@@ -121,7 +121,7 @@ export default function CatalogoEpiEdit({ categories = [], epi }) {
                 <Card className="shadow-sm">
                     <CardHeader className="flex flex-row items-center justify-between gap-3">
                         <div>
-                            <CardTitle className="text-base font-semibold text-slate-800">Informacoes do equipamento</CardTitle>
+                            <CardTitle className="text-base font-semibold text-foreground">Informacoes do equipamento</CardTitle>
                             <p className="text-sm text-muted-foreground">Atualize os dados principais para controle e rastreabilidade.</p>
                         </div>
                         <ClipboardList className="h-5 w-5 text-slate-400" />
@@ -130,7 +130,7 @@ export default function CatalogoEpiEdit({ categories = [], epi }) {
                         <form onSubmit={submit} className="space-y-8">
                             <div className="grid gap-6 md:grid-cols-2">
                                 <div className="space-y-2">
-                                    <label htmlFor="category_id" className="text-sm font-medium text-slate-700">Categoria</label>
+                                    <label htmlFor="category_id" className="text-sm font-medium text-muted-foreground">Categoria</label>
                                     <select
                                         id="category_id"
                                         className={inputBaseClass}
@@ -149,7 +149,7 @@ export default function CatalogoEpiEdit({ categories = [], epi }) {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="name" className="text-sm font-medium text-slate-700">Nome do EPI</label>
+                                    <label htmlFor="name" className="text-sm font-medium text-muted-foreground">Nome do EPI</label>
                                     <input
                                         id="name"
                                         type="text"
@@ -162,7 +162,7 @@ export default function CatalogoEpiEdit({ categories = [], epi }) {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="ca_number" className="text-sm font-medium text-slate-700">Numero do CA</label>
+                                    <label htmlFor="ca_number" className="text-sm font-medium text-muted-foreground">Numero do CA</label>
                                     <input
                                         id="ca_number"
                                         type="text"
@@ -174,7 +174,7 @@ export default function CatalogoEpiEdit({ categories = [], epi }) {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="unit" className="text-sm font-medium text-slate-700">Unidade</label>
+                                    <label htmlFor="unit" className="text-sm font-medium text-muted-foreground">Unidade</label>
                                     <input
                                         id="unit"
                                         type="text"
@@ -187,7 +187,7 @@ export default function CatalogoEpiEdit({ categories = [], epi }) {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="size" className="text-sm font-medium text-slate-700">Tamanho / medida</label>
+                                    <label htmlFor="size" className="text-sm font-medium text-muted-foreground">Tamanho / medida</label>
                                     <input
                                         id="size"
                                         type="text"
@@ -199,7 +199,7 @@ export default function CatalogoEpiEdit({ categories = [], epi }) {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="min_stock" className="text-sm font-medium text-slate-700">Estoque minimo</label>
+                                    <label htmlFor="min_stock" className="text-sm font-medium text-muted-foreground">Estoque minimo</label>
                                     <input
                                         id="min_stock"
                                         type="number"
@@ -212,7 +212,7 @@ export default function CatalogoEpiEdit({ categories = [], epi }) {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="max_stock" className="text-sm font-medium text-slate-700">Estoque maximo</label>
+                                    <label htmlFor="max_stock" className="text-sm font-medium text-muted-foreground">Estoque maximo</label>
                                     <input
                                         id="max_stock"
                                         type="number"
@@ -228,7 +228,7 @@ export default function CatalogoEpiEdit({ categories = [], epi }) {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="return_days" className="text-sm font-medium text-slate-700">Devolucao (dias)</label>
+                                    <label htmlFor="return_days" className="text-sm font-medium text-muted-foreground">Devolucao (dias)</label>
                                     <input
                                         id="return_days"
                                         type="number"
@@ -241,7 +241,7 @@ export default function CatalogoEpiEdit({ categories = [], epi }) {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="unit_cost" className="text-sm font-medium text-slate-700">Custo unitario (R$)</label>
+                                    <label htmlFor="unit_cost" className="text-sm font-medium text-muted-foreground">Custo unitario (R$)</label>
                                     <input
                                         id="unit_cost"
                                         type="number"
@@ -255,7 +255,7 @@ export default function CatalogoEpiEdit({ categories = [], epi }) {
                                 </div>
 
                                 <div className="space-y-2 md:col-span-2">
-                                    <label htmlFor="description" className="text-sm font-medium text-slate-700">Descricao</label>
+                                    <label htmlFor="description" className="text-sm font-medium text-muted-foreground">Descricao</label>
                                     <textarea
                                         id="description"
                                         rows={4}
@@ -267,7 +267,7 @@ export default function CatalogoEpiEdit({ categories = [], epi }) {
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
+                            <div className="flex items-center gap-2 rounded-lg border border-border bg-muted dark:bg-slate-900/40 px-3 py-2">
                                 <input
                                     id="requires_validation"
                                     type="checkbox"
@@ -275,7 +275,7 @@ export default function CatalogoEpiEdit({ categories = [], epi }) {
                                     checked={data.requires_validation}
                                     onChange={(event) => setData('requires_validation', event.target.checked)}
                                 />
-                                <label htmlFor="requires_validation" className="text-sm text-slate-700">
+                                <label htmlFor="requires_validation" className="text-sm text-muted-foreground">
                                     EPI requer validacao / certificacao periodica
                                 </label>
                                 <Tags className="ml-auto h-4 w-4 text-slate-400" />

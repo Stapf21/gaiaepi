@@ -119,21 +119,21 @@ export default function Departamentos({ companies = [], departments = [], epis =
 
             <div className="space-y-6 px-4 pb-10 pt-6 sm:px-6 lg:px-12">
                 <div>
-                    <h1 className="text-2xl font-semibold text-slate-900">Departamentos</h1>
+                    <h1 className="text-2xl font-semibold text-foreground">Departamentos</h1>
                     <p className="text-sm text-muted-foreground">
                         Cadastre departamentos e vincule-os a suas respectivas empresas.
                     </p>
                 </div>
                 <Card className="shadow-sm">
                     <CardHeader>
-                        <CardTitle className="text-base font-semibold text-slate-900">
+                        <CardTitle className="text-base font-semibold text-foreground">
                             {editingDepartment ? 'Editar departamento' : 'Novo departamento'}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-6">
                         <form onSubmit={submit} className="grid gap-4 md:grid-cols-2">
                             <div className="space-y-2">
-                                <label htmlFor="department_company" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="department_company" className="text-sm font-medium text-muted-foreground">
                                     Empresa
                                 </label>
                                 <select
@@ -154,7 +154,7 @@ export default function Departamentos({ companies = [], departments = [], epis =
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="department_name" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="department_name" className="text-sm font-medium text-muted-foreground">
                                     Nome do departamento
                                 </label>
                                 <input
@@ -169,7 +169,7 @@ export default function Departamentos({ companies = [], departments = [], epis =
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="department_code" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="department_code" className="text-sm font-medium text-muted-foreground">
                                     Codigo interno (opcional)
                                 </label>
                                 <input
@@ -183,7 +183,7 @@ export default function Departamentos({ companies = [], departments = [], epis =
                             </div>
 
                             <div className="space-y-2 md:col-span-2">
-                                <label htmlFor="department_description" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="department_description" className="text-sm font-medium text-muted-foreground">
                                     Descricao (opcional)
                                 </label>
                                 <textarea
@@ -195,11 +195,11 @@ export default function Departamentos({ companies = [], departments = [], epis =
                                 <InputError message={departmentForm.errors.description} />
                             </div>
 
-                            <div className="md:col-span-2 space-y-4 rounded-lg border border-slate-200 p-4">
+                            <div className="md:col-span-2 space-y-4 rounded-lg border border-border p-4">
                                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                                     <div>
-                                        <p className="text-sm font-semibold text-slate-800">Kit padrao de EPIs por setor</p>
-                                        <p className="text-xs text-slate-500">
+                                        <p className="text-sm font-semibold text-foreground">Kit padrao de EPIs por setor</p>
+                                        <p className="text-xs text-muted-foreground">
                                             Defina os itens sugeridos automaticamente ao registrar entregas para este setor.
                                         </p>
                                     </div>
@@ -209,14 +209,14 @@ export default function Departamentos({ companies = [], departments = [], epis =
                                 </div>
 
                                 {kitItems.length === 0 ? (
-                                    <p className="text-sm text-slate-500">Nenhum item cadastrado para este kit.</p>
+                                    <p className="text-sm text-muted-foreground">Nenhum item cadastrado para este kit.</p>
                                 ) : (
                                     <div className="space-y-3">
                                         {kitItems.map((item, index) => (
-                                            <div key={`kit-item-${index}`} className="rounded-lg border border-slate-200 p-3">
+                                            <div key={`kit-item-${index}`} className="rounded-lg border border-border p-3">
                                                 <div className="grid gap-3 md:grid-cols-12">
                                                     <div className="space-y-1 md:col-span-4">
-                                                        <label className="text-xs font-medium text-slate-600">Item de EPI</label>
+                                                        <label className="text-xs font-medium text-muted-foreground">Item de EPI</label>
                                                         <select
                                                             className={inputBaseClass}
                                                             value={item.epi_id}
@@ -236,7 +236,7 @@ export default function Departamentos({ companies = [], departments = [], epis =
                                                     </div>
 
                                                     <div className="space-y-1 md:col-span-2">
-                                                        <label className="text-xs font-medium text-slate-600">Quantidade</label>
+                                                        <label className="text-xs font-medium text-muted-foreground">Quantidade</label>
                                                         <input
                                                             type="number"
                                                             min="1"
@@ -251,7 +251,7 @@ export default function Departamentos({ companies = [], departments = [], epis =
                                                     </div>
 
                                                     <div className="space-y-1 md:col-span-2">
-                                                        <label className="text-xs font-medium text-slate-600">Tamanho</label>
+                                                        <label className="text-xs font-medium text-muted-foreground">Tamanho</label>
                                                         <input
                                                             type="text"
                                                             className={inputBaseClass}
@@ -263,7 +263,7 @@ export default function Departamentos({ companies = [], departments = [], epis =
                                                     </div>
 
                                                     <div className="space-y-1 md:col-span-2">
-                                                        <label className="text-xs font-medium text-slate-600">Validade (dias)</label>
+                                                        <label className="text-xs font-medium text-muted-foreground">Validade (dias)</label>
                                                         <input
                                                             type="number"
                                                             min="0"
@@ -285,7 +285,7 @@ export default function Departamentos({ companies = [], departments = [], epis =
                                                     </div>
 
                                                     <div className="space-y-1 md:col-span-9">
-                                                        <label className="text-xs font-medium text-slate-600">Observações</label>
+                                                        <label className="text-xs font-medium text-muted-foreground">Observações</label>
                                                         <input
                                                             type="text"
                                                             className={inputBaseClass}
@@ -300,11 +300,11 @@ export default function Departamentos({ companies = [], departments = [], epis =
                                                         <input
                                                             id={`kit-required-${index}`}
                                                             type="checkbox"
-                                                            className="h-4 w-4 rounded border-slate-300 text-slate-800 focus:ring-slate-200"
+                                                            className="h-4 w-4 rounded border-slate-300 text-foreground focus:ring-slate-200"
                                                             checked={Boolean(item.is_required)}
                                                             onChange={(event) => updateKitItem(index, 'is_required', event.target.checked)}
                                                         />
-                                                        <label htmlFor={`kit-required-${index}`} className="text-xs font-medium text-slate-600">
+                                                        <label htmlFor={`kit-required-${index}`} className="text-xs font-medium text-muted-foreground">
                                                             Obrigatório
                                                         </label>
                                                     </div>
@@ -331,31 +331,31 @@ export default function Departamentos({ companies = [], departments = [], epis =
                             </div>
                         </form>
 
-                        <div className="overflow-hidden rounded-lg border border-slate-200">
-                            <table className="min-w-full divide-y divide-slate-200">
-                                <thead className="bg-slate-50">
+                        <div className="overflow-hidden rounded-lg border border-border">
+                            <table className="min-w-full divide-y divide-border">
+                                <thead className="bg-muted/50 dark:bg-slate-950/60">
                                     <tr>
-                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                             Departamento
                                         </th>
-                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                             Empresa
                                         </th>
-                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                             Codigo
                                         </th>
-                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                             Kit padrao
                                         </th>
-                                        <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                             Acoes
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-slate-200 bg-white">
+                                <tbody className="divide-y divide-border bg-card">
                                     {departments.length === 0 ? (
                                         <tr>
-                                            <td className="px-4 py-4 text-sm text-slate-500" colSpan={5}>
+                                            <td className="px-4 py-4 text-sm text-muted-foreground" colSpan={5}>
                                                 Nenhum departamento cadastrado.
                                             </td>
                                         </tr>
@@ -363,20 +363,20 @@ export default function Departamentos({ companies = [], departments = [], epis =
                                         departments.map((department) => (
                                             <tr key={department.id}>
                                                 <td className="px-4 py-3">
-                                                    <p className="text-sm font-semibold text-slate-800">{department.name}</p>
+                                                    <p className="text-sm font-semibold text-foreground">{department.name}</p>
                                                     {department.description && (
-                                                        <p className="text-xs text-slate-500">{department.description}</p>
+                                                        <p className="text-xs text-muted-foreground">{department.description}</p>
                                                     )}
                                                 </td>
-                                                <td className="px-4 py-3 text-sm text-slate-600">
+                                                <td className="px-4 py-3 text-sm text-muted-foreground">
                                                     {department.company?.name ?? '-'}
                                                 </td>
-                                                <td className="px-4 py-3 text-sm text-slate-600">
+                                                <td className="px-4 py-3 text-sm text-muted-foreground">
                                                     {department.code ?? '-'}
                                                 </td>
-                                                <td className="px-4 py-3 text-sm text-slate-600">
+                                                <td className="px-4 py-3 text-sm text-muted-foreground">
                                                     {department.default_epi_items?.length ? (
-                                                        <span className="rounded-full bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700">
+                                                        <span className="rounded-full bg-slate-100 px-2 py-1 text-xs font-medium text-muted-foreground">
                                                             {department.default_epi_items.length} itens
                                                         </span>
                                                     ) : (

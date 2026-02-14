@@ -1,4 +1,4 @@
-﻿import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.jsx';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.jsx';
 import InputError from '@/Components/InputError.jsx';
 import { Head, Link, router, useForm } from '@inertiajs/react';
 import { useMemo } from 'react';
@@ -150,43 +150,43 @@ export default function EmployeeForm({
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
                         <div className="mb-2 flex flex-wrap items-center gap-2">
-                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700">
+                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 {isEdit ? <Users className="mr-1 h-3 w-3" /> : <UserPlus className="mr-1 h-3 w-3" />}
                                 {isEdit ? 'Edição de colaborador' : 'Cadastro de colaborador'}
                             </Badge>
-                            <Badge variant="outline" className="border-blue-100 bg-white text-blue-700">
+                            <Badge variant="outline" className="border-blue-100 bg-white text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 <ShieldCheck className="mr-1 h-3 w-3" />
                                 Operação de RH
                             </Badge>
                         </div>
-                        <h1 className="text-2xl font-semibold text-slate-900">{headerTitle}</h1>
+                        <h1 className="text-2xl font-semibold text-foreground">{headerTitle}</h1>
                         <p className="text-sm text-muted-foreground">Preencha os dados do colaborador e associe aos cadastros existentes.</p>
                     </div>
                 </div>
 
                 <section className="grid gap-4 lg:grid-cols-[2fr_1fr]">
-                    <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 shadow-sm">
+                    <Card className="border-border bg-gradient-to-br from-blue-50 via-white to-sky-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40 shadow-sm">
                         <CardContent className="p-5">
                             <p className="text-xs font-semibold uppercase tracking-wider text-blue-700">Resumo do cadastro</p>
-                            <h2 className="mt-1 text-xl font-semibold text-slate-900">Conferência dos vínculos</h2>
+                            <h2 className="mt-1 text-xl font-semibold text-foreground">Conferência dos vínculos</h2>
                             <p className="mt-1 text-sm text-slate-600">Valide empresa, departamento e cargo antes de salvar.</p>
 
                             <div className="mt-4 grid gap-3 sm:grid-cols-4">
-                                <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                     <p className="text-xs text-blue-700">Empresa</p>
-                                    <p className="text-sm font-semibold text-slate-900">{selectedCompany?.name ?? '-'}</p>
+                                    <p className="text-sm font-semibold text-foreground">{selectedCompany?.name ?? '-'}</p>
                                 </div>
-                                <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                     <p className="text-xs text-blue-700">Departamento</p>
-                                    <p className="text-sm font-semibold text-slate-900">{selectedDepartment?.name ?? '-'}</p>
+                                    <p className="text-sm font-semibold text-foreground">{selectedDepartment?.name ?? '-'}</p>
                                 </div>
-                                <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                     <p className="text-xs text-blue-700">Cargo</p>
-                                    <p className="text-sm font-semibold text-slate-900">{selectedPosition?.name ?? '-'}</p>
+                                    <p className="text-sm font-semibold text-foreground">{selectedPosition?.name ?? '-'}</p>
                                 </div>
-                                <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                     <p className="text-xs text-blue-700">Status</p>
-                                    <p className="text-sm font-semibold text-slate-900">{statusLabel ?? '-'}</p>
+                                    <p className="text-sm font-semibold text-foreground">{statusLabel ?? '-'}</p>
                                 </div>
                             </div>
                         </CardContent>
@@ -194,15 +194,15 @@ export default function EmployeeForm({
 
                     <Card className="shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-base font-medium text-slate-700">Checklist</CardTitle>
+                            <CardTitle className="text-base font-medium text-muted-foreground">Checklist</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3 text-sm text-slate-600">
-                            <div className="rounded-lg bg-blue-50 px-3 py-2">
+                            <div className="rounded-lg bg-blue-50/70 dark:bg-blue-500/10 px-3 py-2">
                                 <p className="font-medium text-blue-700">Obrigatórios</p>
                                 <p>Empresa, nome e status.</p>
                             </div>
-                            <div className="rounded-lg bg-slate-50 px-3 py-2">
-                                <p className="font-medium text-slate-700">Documentos</p>
+                            <div className="rounded-lg bg-muted dark:bg-slate-900/40 px-3 py-2">
+                                <p className="font-medium text-muted-foreground">Documentos</p>
                                 <p>Preencha matrícula, CPF e RG para rastreio.</p>
                             </div>
                             {departmentChanged ? (
@@ -230,7 +230,7 @@ export default function EmployeeForm({
                         <form onSubmit={submit} className="space-y-8">
                             <div className="grid gap-6 md:grid-cols-2">
                                 <div className="space-y-2">
-                                    <label htmlFor="company_id" className="text-sm font-medium text-slate-700">Empresa</label>
+                                    <label htmlFor="company_id" className="text-sm font-medium text-muted-foreground">Empresa</label>
                                     <select
                                         id="company_id"
                                         className={inputBaseClass}
@@ -251,7 +251,7 @@ export default function EmployeeForm({
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="department_id" className="text-sm font-medium text-slate-700">Departamento</label>
+                                    <label htmlFor="department_id" className="text-sm font-medium text-muted-foreground">Departamento</label>
                                     <select
                                         id="department_id"
                                         className={inputBaseClass}
@@ -271,7 +271,7 @@ export default function EmployeeForm({
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="position_id" className="text-sm font-medium text-slate-700">Cargo</label>
+                                    <label htmlFor="position_id" className="text-sm font-medium text-muted-foreground">Cargo</label>
                                     <select
                                         id="position_id"
                                         className={inputBaseClass}
@@ -291,7 +291,7 @@ export default function EmployeeForm({
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="status" className="text-sm font-medium text-slate-700">Status</label>
+                                    <label htmlFor="status" className="text-sm font-medium text-muted-foreground">Status</label>
                                     <select
                                         id="status"
                                         className={inputBaseClass}
@@ -311,7 +311,7 @@ export default function EmployeeForm({
 
                             <div className="grid gap-6 md:grid-cols-2">
                                 <div className="space-y-2">
-                                    <label htmlFor="name" className="text-sm font-medium text-slate-700">Nome completo</label>
+                                    <label htmlFor="name" className="text-sm font-medium text-muted-foreground">Nome completo</label>
                                     <input
                                         id="name"
                                         type="text"
@@ -324,7 +324,7 @@ export default function EmployeeForm({
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="email" className="text-sm font-medium text-slate-700">Email</label>
+                                    <label htmlFor="email" className="text-sm font-medium text-muted-foreground">Email</label>
                                     <input
                                         id="email"
                                         type="email"
@@ -338,7 +338,7 @@ export default function EmployeeForm({
 
                             <div className="grid gap-6 md:grid-cols-3">
                                 <div className="space-y-2">
-                                    <label htmlFor="registration_number" className="text-sm font-medium text-slate-700">Matrícula</label>
+                                    <label htmlFor="registration_number" className="text-sm font-medium text-muted-foreground">Matrícula</label>
                                     <input
                                         id="registration_number"
                                         type="text"
@@ -350,7 +350,7 @@ export default function EmployeeForm({
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="cpf" className="text-sm font-medium text-slate-700">CPF</label>
+                                    <label htmlFor="cpf" className="text-sm font-medium text-muted-foreground">CPF</label>
                                     <input
                                         id="cpf"
                                         type="text"
@@ -362,7 +362,7 @@ export default function EmployeeForm({
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="rg" className="text-sm font-medium text-slate-700">RG</label>
+                                    <label htmlFor="rg" className="text-sm font-medium text-muted-foreground">RG</label>
                                     <input
                                         id="rg"
                                         type="text"
@@ -376,7 +376,7 @@ export default function EmployeeForm({
 
                             <div className="grid gap-6 md:grid-cols-3">
                                 <div className="space-y-2">
-                                    <label htmlFor="birth_date" className="text-sm font-medium text-slate-700">Data de nascimento</label>
+                                    <label htmlFor="birth_date" className="text-sm font-medium text-muted-foreground">Data de nascimento</label>
                                     <input
                                         id="birth_date"
                                         type="date"
@@ -388,7 +388,7 @@ export default function EmployeeForm({
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="hire_date" className="text-sm font-medium text-slate-700">Data de admissão</label>
+                                    <label htmlFor="hire_date" className="text-sm font-medium text-muted-foreground">Data de admissão</label>
                                     <input
                                         id="hire_date"
                                         type="date"
@@ -400,7 +400,7 @@ export default function EmployeeForm({
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="termination_date" className="text-sm font-medium text-slate-700">Data de desligamento</label>
+                                    <label htmlFor="termination_date" className="text-sm font-medium text-muted-foreground">Data de desligamento</label>
                                     <input
                                         id="termination_date"
                                         type="date"
@@ -419,7 +419,7 @@ export default function EmployeeForm({
 
                                 <div className="grid gap-6 md:grid-cols-2">
                                     <div className="space-y-2">
-                                        <label htmlFor="address_street" className="text-sm font-medium text-slate-700">Rua</label>
+                                        <label htmlFor="address_street" className="text-sm font-medium text-muted-foreground">Rua</label>
                                         <input
                                             id="address_street"
                                             type="text"
@@ -431,7 +431,7 @@ export default function EmployeeForm({
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label htmlFor="address_number" className="text-sm font-medium text-slate-700">Número</label>
+                                        <label htmlFor="address_number" className="text-sm font-medium text-muted-foreground">Número</label>
                                         <input
                                             id="address_number"
                                             type="text"
@@ -443,7 +443,7 @@ export default function EmployeeForm({
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label htmlFor="address_complement" className="text-sm font-medium text-slate-700">Complemento</label>
+                                        <label htmlFor="address_complement" className="text-sm font-medium text-muted-foreground">Complemento</label>
                                         <input
                                             id="address_complement"
                                             type="text"
@@ -455,7 +455,7 @@ export default function EmployeeForm({
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label htmlFor="address_district" className="text-sm font-medium text-slate-700">Bairro</label>
+                                        <label htmlFor="address_district" className="text-sm font-medium text-muted-foreground">Bairro</label>
                                         <input
                                             id="address_district"
                                             type="text"
@@ -467,7 +467,7 @@ export default function EmployeeForm({
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label htmlFor="address_city" className="text-sm font-medium text-slate-700">Cidade</label>
+                                        <label htmlFor="address_city" className="text-sm font-medium text-muted-foreground">Cidade</label>
                                         <input
                                             id="address_city"
                                             type="text"
@@ -479,7 +479,7 @@ export default function EmployeeForm({
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label htmlFor="address_state" className="text-sm font-medium text-slate-700">Estado</label>
+                                        <label htmlFor="address_state" className="text-sm font-medium text-muted-foreground">Estado</label>
                                         <input
                                             id="address_state"
                                             type="text"
@@ -491,7 +491,7 @@ export default function EmployeeForm({
                                     </div>
 
                                     <div className="space-y-2 md:col-span-2">
-                                        <label htmlFor="address_zip" className="text-sm font-medium text-slate-700">CEP</label>
+                                        <label htmlFor="address_zip" className="text-sm font-medium text-muted-foreground">CEP</label>
                                         <input
                                             id="address_zip"
                                             type="text"

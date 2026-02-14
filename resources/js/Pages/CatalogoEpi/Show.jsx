@@ -35,44 +35,44 @@ export default function CatalogoEpiShow({ epi }) {
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
                         <div className="mb-2 flex flex-wrap items-center gap-2">
-                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700">
+                            <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 <PackageSearch className="mr-1 h-3 w-3" />
                                 Detalhes do EPI
                             </Badge>
-                            <Badge variant="outline" className="border-blue-100 bg-white text-blue-700">
+                            <Badge variant="outline" className="border-blue-100 bg-card text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">
                                 <ShieldCheck className="mr-1 h-3 w-3" />
                                 Consulta tecnica
                             </Badge>
                         </div>
-                        <h1 className="text-2xl font-semibold text-slate-900">{epi?.name ?? 'EPI'}</h1>
+                        <h1 className="text-2xl font-semibold text-foreground">{epi?.name ?? 'EPI'}</h1>
                         <p className="text-sm text-muted-foreground">{epi?.category ?? 'Sem categoria'}</p>
                     </div>
                     {epi?.requires_validation ? (
-                        <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700">Requer validacao</Badge>
+                        <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-700 dark:border-slate-700/60 dark:bg-slate-900/40 dark:text-slate-200">Requer validacao</Badge>
                     ) : (
                         <Badge variant="secondary">Sem validacao</Badge>
                     )}
                 </div>
 
                 <section className="grid gap-4 lg:grid-cols-[2fr_1fr]">
-                    <Card className="border-blue-100 bg-gradient-to-br from-blue-50 via-white to-sky-50 shadow-sm">
+                    <Card className="border-border bg-gradient-to-br from-blue-50 via-white to-sky-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900/40 shadow-sm">
                         <CardContent className="p-5">
                             <p className="text-xs font-semibold uppercase tracking-wider text-blue-700">Resumo tecnico</p>
-                            <h2 className="mt-1 text-xl font-semibold text-slate-900">Visao consolidada do equipamento</h2>
-                            <p className="mt-1 text-sm text-slate-600">Dados de identificacao, estoque e custo para consulta rapida.</p>
+                            <h2 className="mt-1 text-xl font-semibold text-foreground">Visao consolidada do equipamento</h2>
+                            <p className="mt-1 text-sm text-muted-foreground">Dados de identificacao, estoque e custo para consulta rapida.</p>
 
                             <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                                <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                     <p className="text-xs text-blue-700">CA</p>
-                                    <p className="text-sm font-semibold text-slate-900">{epi?.ca_number ?? '-'}</p>
+                                    <p className="text-sm font-semibold text-foreground">{epi?.ca_number ?? '-'}</p>
                                 </div>
-                                <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                     <p className="text-xs text-blue-700">Unidade</p>
-                                    <p className="text-sm font-semibold text-slate-900">{epi?.unit ?? '-'}</p>
+                                    <p className="text-sm font-semibold text-foreground">{epi?.unit ?? '-'}</p>
                                 </div>
-                                <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
+                                <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-3 py-2">
                                     <p className="text-xs text-blue-700">Custo unitario</p>
-                                    <p className="text-sm font-semibold text-slate-900">{formatMoney(epi?.unit_cost)}</p>
+                                    <p className="text-sm font-semibold text-foreground">{formatMoney(epi?.unit_cost)}</p>
                                 </div>
                             </div>
                         </CardContent>
@@ -80,20 +80,20 @@ export default function CatalogoEpiShow({ epi }) {
 
                     <Card className="shadow-sm">
                         <CardHeader className="pb-2">
-                            <CardTitle className="text-base font-medium text-slate-700">Estoque</CardTitle>
+                            <CardTitle className="text-base font-medium text-muted-foreground">Estoque</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3 text-sm">
-                            <div className="flex items-center justify-between rounded-lg bg-blue-50 px-3 py-2">
+                            <div className="flex items-center justify-between rounded-lg bg-blue-50/70 dark:bg-slate-950/60 dark:bg-blue-500/10 px-3 py-2">
                                 <span className="font-medium text-blue-700">Minimo</span>
                                 <span className="font-semibold text-blue-700">{epi?.min_stock ?? '-'}</span>
                             </div>
-                            <div className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2">
-                                <span className="font-medium text-slate-700">Maximo</span>
-                                <span className="font-semibold text-slate-700">{epi?.max_stock ?? '-'}</span>
+                            <div className="flex items-center justify-between rounded-lg bg-muted dark:bg-slate-900/40 px-3 py-2">
+                                <span className="font-medium text-muted-foreground">Maximo</span>
+                                <span className="font-semibold text-muted-foreground">{epi?.max_stock ?? '-'}</span>
                             </div>
-                            <div className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2">
-                                <span className="font-medium text-slate-700">Devolucao (dias)</span>
-                                <span className="font-semibold text-slate-700">{epi?.return_days ?? '-'}</span>
+                            <div className="flex items-center justify-between rounded-lg bg-muted dark:bg-slate-900/40 px-3 py-2">
+                                <span className="font-medium text-muted-foreground">Devolucao (dias)</span>
+                                <span className="font-semibold text-muted-foreground">{epi?.return_days ?? '-'}</span>
                             </div>
                         </CardContent>
                     </Card>
@@ -102,7 +102,7 @@ export default function CatalogoEpiShow({ epi }) {
                 <Card className="shadow-sm">
                     <CardHeader className="flex flex-row items-center justify-between gap-3">
                         <div>
-                            <CardTitle className="text-base font-semibold text-slate-800">Informacoes detalhadas</CardTitle>
+                            <CardTitle className="text-base font-semibold text-foreground">Informacoes detalhadas</CardTitle>
                             <p className="text-sm text-muted-foreground">Dados completos do equipamento cadastrado.</p>
                         </div>
                         <ClipboardList className="h-5 w-5 text-slate-400" />
@@ -110,16 +110,16 @@ export default function CatalogoEpiShow({ epi }) {
                     <CardContent className="space-y-6">
                         <div className="grid gap-4 sm:grid-cols-2">
                             <div>
-                                <p className="text-xs uppercase tracking-wide text-slate-500">Tamanho / medida</p>
-                                <p className="text-sm font-medium text-slate-800">{epi?.size ?? '-'}</p>
+                                <p className="text-xs uppercase tracking-wide text-muted-foreground">Tamanho / medida</p>
+                                <p className="text-sm font-medium text-foreground">{epi?.size ?? '-'}</p>
                             </div>
                             <div>
-                                <p className="text-xs uppercase tracking-wide text-slate-500">Categoria</p>
-                                <p className="text-sm font-medium text-slate-800">{epi?.category ?? '-'}</p>
+                                <p className="text-xs uppercase tracking-wide text-muted-foreground">Categoria</p>
+                                <p className="text-sm font-medium text-foreground">{epi?.category ?? '-'}</p>
                             </div>
                             <div className="sm:col-span-2">
-                                <p className="text-xs uppercase tracking-wide text-slate-500">Descricao</p>
-                                <p className="text-sm text-slate-700">{epi?.description ?? 'Sem descricao.'}</p>
+                                <p className="text-xs uppercase tracking-wide text-muted-foreground">Descricao</p>
+                                <p className="text-sm text-muted-foreground">{epi?.description ?? 'Sem descricao.'}</p>
                             </div>
                         </div>
 

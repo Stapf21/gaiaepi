@@ -70,7 +70,7 @@ export default function Categorias({ epiCategories = [] }) {
 
             <div className="space-y-6 px-4 pb-10 pt-6 sm:px-6 lg:px-12">
                 <div>
-                    <h1 className="text-2xl font-semibold text-slate-900">Categorias de EPI</h1>
+                    <h1 className="text-2xl font-semibold text-foreground">Categorias de EPI</h1>
                     <p className="text-sm text-muted-foreground">
                         Organize os EPIs em categorias e defina prazos de devolucao padrao.
                     </p>
@@ -78,14 +78,14 @@ export default function Categorias({ epiCategories = [] }) {
 
                 <Card className="shadow-sm">
                     <CardHeader>
-                        <CardTitle className="text-base font-semibold text-slate-900">
+                        <CardTitle className="text-base font-semibold text-foreground">
                             {editingCategory ? 'Editar categoria' : 'Nova categoria'}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-6">
                         <form onSubmit={submit} className="grid gap-4 md:grid-cols-2">
                             <div className="space-y-2 md:col-span-2">
-                                <label htmlFor="category_name" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="category_name" className="text-sm font-medium text-muted-foreground">
                                     Nome da categoria
                                 </label>
                                 <input
@@ -100,7 +100,7 @@ export default function Categorias({ epiCategories = [] }) {
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="category_default_return_days" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="category_default_return_days" className="text-sm font-medium text-muted-foreground">
                                     Dias para devolucao padrao (opcional)
                                 </label>
                                 <input
@@ -115,7 +115,7 @@ export default function Categorias({ epiCategories = [] }) {
                             </div>
 
                             <div className="space-y-2 md:col-span-2">
-                                <label htmlFor="category_description" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="category_description" className="text-sm font-medium text-muted-foreground">
                                     Descricao (opcional)
                                 </label>
                                 <textarea
@@ -143,25 +143,25 @@ export default function Categorias({ epiCategories = [] }) {
                             </div>
                         </form>
 
-                        <div className="overflow-hidden rounded-lg border border-slate-200">
-                            <table className="min-w-full divide-y divide-slate-200">
-                                <thead className="bg-slate-50">
+                        <div className="overflow-hidden rounded-lg border border-border">
+                            <table className="min-w-full divide-y divide-border">
+                                <thead className="bg-muted/50 dark:bg-slate-950/60">
                                     <tr>
-                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                             Categoria
                                         </th>
-                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                             Devolucao padrao
                                         </th>
-                                        <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                             Acoes
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-slate-200 bg-white">
+                                <tbody className="divide-y divide-border bg-card">
                                     {epiCategories.length === 0 ? (
                                         <tr>
-                                            <td className="px-4 py-4 text-sm text-slate-500" colSpan={3}>
+                                            <td className="px-4 py-4 text-sm text-muted-foreground" colSpan={3}>
                                                 Nenhuma categoria cadastrada.
                                             </td>
                                         </tr>
@@ -169,16 +169,16 @@ export default function Categorias({ epiCategories = [] }) {
                                         epiCategories.map((category) => (
                                             <tr key={category.id}>
                                                 <td className="px-4 py-3">
-                                                    <p className="text-sm font-semibold text-slate-900">
+                                                    <p className="text-sm font-semibold text-foreground">
                                                         {category.name}
                                                     </p>
                                                     {category.description && (
-                                                        <p className="text-xs text-slate-500">
+                                                        <p className="text-xs text-muted-foreground">
                                                             {category.description}
                                                         </p>
                                                     )}
                                                 </td>
-                                                <td className="px-4 py-3 text-sm text-slate-700">
+                                                <td className="px-4 py-3 text-sm text-muted-foreground">
                                                     {category.default_return_days !== null &&
                                                     category.default_return_days !== undefined
                                                         ? `${category.default_return_days} dias`

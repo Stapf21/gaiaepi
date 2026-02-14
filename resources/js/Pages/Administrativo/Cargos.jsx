@@ -94,21 +94,21 @@ export default function Cargos({ companies = [], departments = [], positions = [
 
             <div className="space-y-6 px-4 pb-10 pt-6 sm:px-6 lg:px-12">
                 <div>
-                    <h1 className="text-2xl font-semibold text-slate-900">Cargos</h1>
+                    <h1 className="text-2xl font-semibold text-foreground">Cargos</h1>
                     <p className="text-sm text-muted-foreground">
                         Mantenha os cargos atualizados e configure prazos padrao para devolucao de EPIs.
                     </p>
                 </div>
                 <Card className="shadow-sm">
                     <CardHeader>
-                        <CardTitle className="text-base font-semibold text-slate-900">
+                        <CardTitle className="text-base font-semibold text-foreground">
                             {editingPosition ? 'Editar cargo' : 'Novo cargo'}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-6">
                         <form onSubmit={submit} className="grid gap-4 md:grid-cols-2">
                             <div className="space-y-2">
-                                <label htmlFor="position_company" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="position_company" className="text-sm font-medium text-muted-foreground">
                                     Empresa
                                 </label>
                                 <select
@@ -129,7 +129,7 @@ export default function Cargos({ companies = [], departments = [], positions = [
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="position_department" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="position_department" className="text-sm font-medium text-muted-foreground">
                                     Departamento (opcional)
                                 </label>
                                 <select
@@ -149,7 +149,7 @@ export default function Cargos({ companies = [], departments = [], positions = [
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="position_name" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="position_name" className="text-sm font-medium text-muted-foreground">
                                     Nome do cargo
                                 </label>
                                 <input
@@ -164,7 +164,7 @@ export default function Cargos({ companies = [], departments = [], positions = [
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="position_code" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="position_code" className="text-sm font-medium text-muted-foreground">
                                     Codigo interno (opcional)
                                 </label>
                                 <input
@@ -178,7 +178,7 @@ export default function Cargos({ companies = [], departments = [], positions = [
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="position_return_days" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="position_return_days" className="text-sm font-medium text-muted-foreground">
                                     Dias para devolucao de EPI (opcional)
                                 </label>
                                 <input
@@ -193,7 +193,7 @@ export default function Cargos({ companies = [], departments = [], positions = [
                             </div>
 
                             <div className="space-y-2 md:col-span-2">
-                                <label htmlFor="position_description" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="position_description" className="text-sm font-medium text-muted-foreground">
                                     Descricao (opcional)
                                 </label>
                                 <textarea
@@ -221,28 +221,28 @@ export default function Cargos({ companies = [], departments = [], positions = [
                             </div>
                         </form>
 
-                        <div className="overflow-hidden rounded-lg border border-slate-200">
-                            <table className="min-w-full divide-y divide-slate-200">
-                                <thead className="bg-slate-50">
+                        <div className="overflow-hidden rounded-lg border border-border">
+                            <table className="min-w-full divide-y divide-border">
+                                <thead className="bg-muted/50 dark:bg-slate-950/60">
                                     <tr>
-                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                             Cargo
                                         </th>
-                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                             Empresa
                                         </th>
-                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                             Departamento
                                         </th>
-                                        <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">
+                                        <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                             Acoes
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-slate-200 bg-white">
+                                <tbody className="divide-y divide-border bg-card">
                                     {positions.length === 0 ? (
                                         <tr>
-                                            <td className="px-4 py-4 text-sm text-slate-500" colSpan={4}>
+                                            <td className="px-4 py-4 text-sm text-muted-foreground" colSpan={4}>
                                                 Nenhum cargo cadastrado.
                                             </td>
                                         </tr>
@@ -250,20 +250,20 @@ export default function Cargos({ companies = [], departments = [], positions = [
                                         positions.map((position) => (
                                             <tr key={position.id}>
                                                 <td className="px-4 py-3">
-                                                    <p className="text-sm font-semibold text-slate-800">{position.name}</p>
+                                                    <p className="text-sm font-semibold text-foreground">{position.name}</p>
                                                     {position.epi_return_days !== null && position.epi_return_days !== undefined && (
-                                                        <p className="text-xs text-slate-500">
+                                                        <p className="text-xs text-muted-foreground">
                                                             Devolucao padrao: {position.epi_return_days} dias
                                                         </p>
                                                     )}
                                                     {position.description && (
-                                                        <p className="text-xs text-slate-500">{position.description}</p>
+                                                        <p className="text-xs text-muted-foreground">{position.description}</p>
                                                     )}
                                                 </td>
-                                                <td className="px-4 py-3 text-sm text-slate-600">
+                                                <td className="px-4 py-3 text-sm text-muted-foreground">
                                                     {position.company?.name ?? '—'}
                                                 </td>
-                                                <td className="px-4 py-3 text-sm text-slate-600">
+                                                <td className="px-4 py-3 text-sm text-muted-foreground">
                                                     {position.department?.name ?? '—'}
                                                 </td>
                                                 <td className="px-4 py-3 text-right text-sm">

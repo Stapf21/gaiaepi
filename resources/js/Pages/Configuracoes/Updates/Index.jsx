@@ -63,7 +63,7 @@ export default function UpdatesIndex({ deploy = {} }) {
                     <CardHeader>
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <div className="space-y-1">
-                                <CardTitle className="text-base font-semibold text-slate-900">Painel de atualização</CardTitle>
+                                <CardTitle className="text-base font-semibold text-foreground">Painel de atualização</CardTitle>
                                 <p className="text-sm text-muted-foreground">
                                     Compare a versão atual com a mais recente do repositório e dispare o deploy quando necessário.
                                 </p>
@@ -117,7 +117,7 @@ export default function UpdatesIndex({ deploy = {} }) {
                                 </Link>
                             </Button>
                             <span className="text-sm text-slate-600">
-                                Status: <span className="font-semibold text-slate-900">{deploy.running ? 'Executando' : 'Parado'}</span>
+                                Status: <span className="font-semibold text-foreground">{deploy.running ? 'Executando' : 'Parado'}</span>
                             </span>
                         </div>
 
@@ -137,13 +137,13 @@ export default function UpdatesIndex({ deploy = {} }) {
 
                 <Card className="shadow-sm">
                     <CardHeader>
-                        <CardTitle className="text-base font-semibold text-slate-900">
+                        <CardTitle className="text-base font-semibold text-foreground">
                             Log de atualização ({deploy.log_file ?? 'storage/logs/deploy.log'})
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="max-h-[480px] w-full overflow-auto rounded-lg bg-slate-950 p-4">
-                            <pre className="w-full whitespace-pre-wrap break-all text-xs leading-relaxed text-slate-100">{logLines.length ? logLines.join('\n') : 'Sem logs ainda.'}</pre>
+                        <div className="max-h-[480px] w-full overflow-auto rounded-lg border border-border bg-slate-950 p-4">
+                            <pre className="max-w-full whitespace-pre-wrap break-all text-xs leading-relaxed text-slate-100">{logLines.length ? logLines.join('\n') : 'Sem logs ainda.'}</pre>
                         </div>
                     </CardContent>
                 </Card>
@@ -154,9 +154,9 @@ export default function UpdatesIndex({ deploy = {} }) {
 
 function StatusItem({ label, value, mono = false }) {
     return (
-        <div className="rounded-lg border border-slate-200 bg-white px-4 py-3">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{label}</p>
-            <p className={`mt-1 text-sm font-semibold text-slate-900 ${mono ? 'break-all font-mono' : ''}`}>{value}</p>
+        <div className="rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 px-4 py-3">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{label}</p>
+            <p className={`mt-1 text-sm font-semibold text-foreground ${mono ? 'break-all font-mono' : ''}`}>{value}</p>
         </div>
     );
 }

@@ -160,14 +160,14 @@ export default function UsuariosIndex({ users = [], roles = [], permissions = []
             <div className="mx-auto grid max-w-6xl gap-6 px-4 pb-10 pt-6 lg:grid-cols-2 lg:px-8">
                 <Card className="shadow-sm">
                     <CardHeader>
-                        <CardTitle className="text-base font-semibold text-slate-900">
+                        <CardTitle className="text-base font-semibold text-foreground">
                             Usuarios do sistema
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-6">
-                        <div className="overflow-hidden rounded-lg border border-slate-200">
+                        <div className="overflow-hidden rounded-lg border border-border">
                             <Table>
-                                <TableHeader className="bg-slate-50">
+                                <TableHeader className="bg-muted/50 dark:bg-slate-950/60">
                                     <TableRow>
                                         <TableHead>Nome</TableHead>
                                         <TableHead>Email</TableHead>
@@ -179,9 +179,9 @@ export default function UsuariosIndex({ users = [], roles = [], permissions = []
                                     {users.length ? (
                                         users.map((user) => (
                                             <TableRow key={user.id}>
-                                                <TableCell className="font-medium text-slate-800">{user.name}</TableCell>
-                                                <TableCell className="text-sm text-slate-600">{user.email}</TableCell>
-                                                <TableCell className="text-sm text-slate-600">
+                                                <TableCell className="font-medium text-foreground">{user.name}</TableCell>
+                                                <TableCell className="text-sm text-muted-foreground">{user.email}</TableCell>
+                                                <TableCell className="text-sm text-muted-foreground">
                                                     {user.roles?.length ? user.roles.join(', ') : 'Nenhum'}
                                                 </TableCell>
                                                 <TableCell className="flex justify-end gap-2">
@@ -210,9 +210,9 @@ export default function UsuariosIndex({ users = [], roles = [], permissions = []
                             </Table>
                         </div>
 
-                        <form onSubmit={submitUser} className="space-y-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+                        <form onSubmit={submitUser} className="space-y-4 rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 p-4 shadow-sm">
                             <div className="flex items-center justify-between">
-                                <h3 className="text-sm font-semibold text-slate-900">
+                                <h3 className="text-sm font-semibold text-foreground">
                                     {editingUser ? 'Editar usuario' : 'Novo usuario'}
                                 </h3>
                                 {editingUser && (
@@ -222,13 +222,13 @@ export default function UsuariosIndex({ users = [], roles = [], permissions = []
                                 )}
                             </div>
                             <div className="space-y-2">
-                                <label htmlFor="user-name" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="user-name" className="text-sm font-medium text-muted-foreground">
                                     Nome
                                 </label>
                                 <input
                                     id="user-name"
                                     type="text"
-                                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none"
+                                    className="w-full rounded-md border border-border px-3 py-2 text-sm focus:border-slate-500 focus:outline-none"
                                     value={userForm.data.name}
                                     onChange={(event) => userForm.setData('name', event.target.value)}
                                     required
@@ -236,13 +236,13 @@ export default function UsuariosIndex({ users = [], roles = [], permissions = []
                                 <InputError message={userForm.errors.name} />
                             </div>
                             <div className="space-y-2">
-                                <label htmlFor="user-email" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="user-email" className="text-sm font-medium text-muted-foreground">
                                     Email
                                 </label>
                                 <input
                                     id="user-email"
                                     type="email"
-                                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none"
+                                    className="w-full rounded-md border border-border px-3 py-2 text-sm focus:border-slate-500 focus:outline-none"
                                     value={userForm.data.email}
                                     onChange={(event) => userForm.setData('email', event.target.value)}
                                     required
@@ -250,13 +250,13 @@ export default function UsuariosIndex({ users = [], roles = [], permissions = []
                                 <InputError message={userForm.errors.email} />
                             </div>
                             <div className="space-y-2">
-                                <label htmlFor="user-password" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="user-password" className="text-sm font-medium text-muted-foreground">
                                     {editingUser ? 'Senha (opcional)' : 'Senha temporaria'}
                                 </label>
                                 <input
                                     id="user-password"
                                     type="password"
-                                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none"
+                                    className="w-full rounded-md border border-border px-3 py-2 text-sm focus:border-slate-500 focus:outline-none"
                                     value={userForm.data.password}
                                     onChange={(event) => userForm.setData('password', event.target.value)}
                                     placeholder={editingUser ? 'Informe para atualizar' : 'Minimo 8 caracteres'}
@@ -265,13 +265,13 @@ export default function UsuariosIndex({ users = [], roles = [], permissions = []
                                 <InputError message={userForm.errors.password} />
                             </div>
                             <div className="space-y-2">
-                                <p className="text-sm font-medium text-slate-700">Perfis de acesso</p>
+                                <p className="text-sm font-medium text-muted-foreground">Perfis de acesso</p>
                                 <div className="flex flex-wrap gap-3">
                                     {roles.map((role) => (
-                                        <label key={role.id} className="flex items-center gap-2 text-sm text-slate-600">
+                                        <label key={role.id} className="flex items-center gap-2 text-sm text-muted-foreground">
                                             <input
                                                 type="checkbox"
-                                                className="h-4 w-4 rounded border-slate-300 text-slate-700 focus:ring-slate-500"
+                                                className="h-4 w-4 rounded border-border text-muted-foreground focus:ring-slate-500"
                                                 checked={userForm.data.roles.includes(role.name)}
                                                 onChange={() => toggleUserRole(role.name)}
                                             />
@@ -297,12 +297,12 @@ export default function UsuariosIndex({ users = [], roles = [], permissions = []
 
                 <Card className="shadow-sm">
                     <CardHeader>
-                        <CardTitle className="text-base font-semibold text-slate-900">Perfis e permissoes</CardTitle>
+                        <CardTitle className="text-base font-semibold text-foreground">Perfis e permissoes</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-6">
-                        <div className="overflow-hidden rounded-lg border border-slate-200">
+                        <div className="overflow-hidden rounded-lg border border-border">
                             <Table>
-                                <TableHeader className="bg-slate-50">
+                                <TableHeader className="bg-muted/50 dark:bg-slate-950/60">
                                     <TableRow>
                                         <TableHead>Perfil</TableHead>
                                         <TableHead>Permissoes</TableHead>
@@ -313,8 +313,8 @@ export default function UsuariosIndex({ users = [], roles = [], permissions = []
                                     {roles.length ? (
                                         roles.map((role) => (
                                             <TableRow key={role.id}>
-                                                <TableCell className="font-medium text-slate-800">{roleLabel(role.name)}</TableCell>
-                                                <TableCell className="text-sm text-slate-600">
+                                                <TableCell className="font-medium text-foreground">{roleLabel(role.name)}</TableCell>
+                                                <TableCell className="text-sm text-muted-foreground">
                                                     {role.permissions?.length ? role.permissions.join(', ') : 'Nenhuma'}
                                                 </TableCell>
                                                 <TableCell className="flex justify-end gap-2">
@@ -343,9 +343,9 @@ export default function UsuariosIndex({ users = [], roles = [], permissions = []
                             </Table>
                         </div>
 
-                        <form onSubmit={submitRole} className="space-y-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+                        <form onSubmit={submitRole} className="space-y-4 rounded-lg border border-border bg-card/70 dark:bg-slate-950/40 p-4 shadow-sm">
                             <div className="flex items-center justify-between">
-                                <h3 className="text-sm font-semibold text-slate-900">
+                                <h3 className="text-sm font-semibold text-foreground">
                                     {editingRole ? 'Editar perfil' : 'Novo perfil'}
                                 </h3>
                                 {editingRole && (
@@ -355,13 +355,13 @@ export default function UsuariosIndex({ users = [], roles = [], permissions = []
                                 )}
                             </div>
                             <div className="space-y-2">
-                                <label htmlFor="role-name" className="text-sm font-medium text-slate-700">
+                                <label htmlFor="role-name" className="text-sm font-medium text-muted-foreground">
                                     Nome do perfil
                                 </label>
                                 <input
                                     id="role-name"
                                     type="text"
-                                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none"
+                                    className="w-full rounded-md border border-border px-3 py-2 text-sm focus:border-slate-500 focus:outline-none"
                                     value={roleForm.data.name}
                                     onChange={(event) => roleForm.setData('name', event.target.value)}
                                     required
@@ -369,13 +369,13 @@ export default function UsuariosIndex({ users = [], roles = [], permissions = []
                                 <InputError message={roleForm.errors.name} />
                             </div>
                             <div className="space-y-2">
-                                <p className="text-sm font-medium text-slate-700">Permissoes</p>
+                                <p className="text-sm font-medium text-muted-foreground">Permissoes</p>
                                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
                                     {permissionsGrouped.map((permission) => (
-                                        <label key={permission.name} className="flex items-center gap-2 text-sm text-slate-600">
+                                        <label key={permission.name} className="flex items-center gap-2 text-sm text-muted-foreground">
                                             <input
                                                 type="checkbox"
-                                                className="h-4 w-4 rounded border-slate-300 text-slate-700 focus:ring-slate-500"
+                                                className="h-4 w-4 rounded border-border text-muted-foreground focus:ring-slate-500"
                                                 checked={roleForm.data.permissions.includes(permission.name)}
                                                 onChange={() => toggleRolePermission(permission.name)}
                                             />
